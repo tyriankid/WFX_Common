@@ -1,0 +1,443 @@
+﻿<Hi:Common_Header runat="server" />
+<script src="../script/masonry.pkgd.min.js"></script>
+<style>
+body{
+    background:#d3cdc9;
+}
+.item.w2 { width: 50%; }
+.item{ 
+    width: 50%;
+    padding:15px;
+    word-break:break-all;
+}
+.item .itemcon{
+    padding:10px;
+}
+.item .itemcon:before,.item .itemcon::after{
+    content:"";
+    position:absolute;
+    z-index: 99;  
+}
+.item .itemcon .itemtit{
+    position:relative;
+    font-size:12px;
+    padding:5px;
+}
+.item .itemcon .itemtit a{
+    position:absolute;
+    top:0;
+    right:0;
+    color: #EB8282;
+}
+.item .itemcon .itemtit img{
+    width:36px;
+    height:36px;
+    border-radius:50%;   
+}
+.item .itemcon .itemtit span{
+    display:inline-block;
+    height:36px;
+    line-height:36px;
+    color: #539CD1;
+}
+.item .itemcon .msgcon{
+    font-size: 16px;
+    text-indent:1em;
+}
+.item .itemcon .msgtim{
+    text-align:right;
+    padding-top:5px;
+    color:#a4a4a4;
+}
+.class_a{
+    background:#f1f1f1;
+    transform:rotate(-2deg);
+    -ms-transform:rotate(-2deg); 	/* IE 9 */
+    -moz-transform:rotate(-2deg); 	/* Firefox */
+    -webkit-transform:rotate(-2deg); /* Safari 和 Chrome */
+    -o-transform:rotate(-2deg); 	/* Opera */
+    box-shadow: 5px 10px 5px #BEBEBE;
+    -moz-box-shadow: 5px 10px 5px #BEBEBE;
+    -webkit-box-shadow: 5px 10px 5px #BEBEBE;
+}
+.class_a:before{
+    top: -15px;
+    left: 0;
+    width:15px;
+    height:50px;
+    background:rgba(205,161,106,.8);
+    transform:rotate(45deg);
+    -ms-transform:rotate(45deg); 	/* IE 9 */
+    -moz-transform:rotate(45deg); 	/* Firefox */
+    -webkit-transform:rotate(45deg); /* Safari 和 Chrome */
+    -o-transform:rotate(45deg); 	/* Opera */
+}
+.class_a:after{
+    top: -15px;
+    right:0;
+    width:15px;
+    height:50px;
+    background:rgba(205,161,106,.8);
+    transform:rotate(-45deg);
+    -ms-transform:rotate(-45deg); 	/* IE 9 */
+    -moz-transform:rotate(-45deg); 	/* Firefox */
+    -webkit-transform:rotate(-45deg); /* Safari 和 Chrome */
+    -o-transform:rotate(-45deg); 	/* Opera */
+}
+.class_a div{
+    transform:rotate(2deg);
+    -ms-transform:rotate(2deg); 	/* IE 9 */
+    -moz-transform:rotate(2deg); 	/* Firefox */
+    -webkit-transform:rotate(2deg); /* Safari 和 Chrome */
+    -o-transform:rotate(2deg); 	/* Opera */
+}
+.class_b{
+    background:#f1f1f1;
+    transform:rotate(3deg);
+    -ms-transform:rotate(3deg); 	/* IE 9 */
+    -moz-transform:rotate(3deg); 	/* Firefox */
+    -webkit-transform:rotate(3deg); /* Safari 和 Chrome */
+    -o-transform:rotate(3deg); 	/* Opera */
+    box-shadow: 8px 8px 5px #B7B7B7;
+    -moz-box-shadow: 8px 8px 5px #B7B7B7;
+    -webkit-box-shadow: 8px 8px 5px #B7B7B7;
+}
+.class_b:before{
+    width:35px;
+    height:15px;
+    top: 10px;
+    left: 50%;
+    background:rgba(119,188,212,0.8);
+    transform:rotate(90deg) translateX(-50%);
+    -moz-transform:rotate(90deg) translateX(-50%); 	/* Firefox */
+    -webkit-transform:rotate(90deg) translateX(-50%); /* Safari 和 Chrome */
+}
+.class_b div{
+    transform:rotate(-3deg);
+    -ms-transform:rotate(-3deg); 	/* IE 9 */
+    -moz-transform:rotate(-3deg); 	/* Firefox */
+    -webkit-transform:rotate(-3deg); /* Safari 和 Chrome */
+    -o-transform:rotate(-3deg); 	/* Opera */
+}
+.class_c{
+    background:#efe9d3;
+    box-shadow: -4px 4px 4px #B8B7B7;
+    -moz-box-shadow: -4px 4px 4px #B8B7B7;
+    -webkit-box-shadow: -4px 4px 4px #B8B7B7;
+}
+.class_c:before{
+    width:35px;
+    height:15px;
+    top: 5px;
+    left: 50%;
+    background:#f5ad98;
+    transform:translateX(-50%);
+    -moz-transform:translateX(-50%);
+    -webkit-transform:translateX(-50%);
+}
+.class_d{
+    background:#E1EEFA;
+    transform:rotate(3deg);
+    -ms-transform:rotate(3deg); 	/* IE 9 */
+    -moz-transform:rotate(3deg); 	/* Firefox */
+    -webkit-transform:rotate(3deg); /* Safari 和 Chrome */
+    -o-transform:rotate(3deg); 	/* Opera */
+    box-shadow: -4px 4px 4px #B8B7B7;
+    -moz-box-shadow: -4px 4px 4px #B8B7B7;
+    -webkit-box-shadow: -4px 4px 4px #B8B7B7;
+}
+.class_d .itemtit{
+    padding-top:5px;
+    border-top:3px dotted #d1cec9;
+}
+.class_d:before{
+    top: -8px;
+    left: 0;
+    width:15px;
+    height:35px;
+    background:#82a0c7;
+    transform:rotate(45deg);
+    -ms-transform:rotate(45deg); 	/* IE 9 */
+    -moz-transform:rotate(45deg); 	/* Firefox */
+    -webkit-transform:rotate(45deg); /* Safari 和 Chrome */
+    -o-transform:rotate(45deg); 	/* Opera */
+}
+.class_d:after{
+    top: -8px;
+    right: 0;
+    width:15px;
+    height:35px;
+    background:#82a0c7;
+    transform:rotate(-45deg);
+    -ms-transform:rotate(-45deg); 	/* IE 9 */
+    -moz-transform:rotate(-45deg); 	/* Firefox */
+    -webkit-transform:rotate(-45deg); /* Safari 和 Chrome */
+    -o-transform:rotate(-45deg); 	/* Opera */
+}
+.class_d div{
+    transform:rotate(-3deg);
+    -ms-transform:rotate(-3deg); 	/* IE 9 */
+    -moz-transform:rotate(-3deg); 	/* Firefox */
+    -webkit-transform:rotate(-3deg); /* Safari 和 Chrome */
+    -o-transform:rotate(-3deg); 	/* Opera */
+}
+.class_e{
+    background:#efe9d3;
+    transform:rotate(-3deg);
+    -ms-transform:rotate(-3deg); 	/* IE 9 */
+    -moz-transform:rotate(-3deg); 	/* Firefox */
+    -webkit-transform:rotate(-3deg); /* Safari 和 Chrome */
+    -o-transform:rotate(-3deg); 	/* Opera */
+    box-shadow: 8px 8px 5px #B7B7B7;
+    -moz-box-shadow: 8px 8px 5px #B7B7B7;
+    -webkit-box-shadow: 8px 8px 5px #B7B7B7;
+}
+.class_e:before{
+    top: -25px;
+    width: 15px;
+    height: 60px;
+    background:rgba(172,185,149,1);
+    transform:rotate(65deg);
+    -ms-transform:rotate(65deg); 	/* IE 9 */
+    -moz-transform:rotate(65deg); 	/* Firefox */
+    -webkit-transform:rotate(65deg); /* Safari 和 Chrome */
+    -o-transform:rotate(65deg); 	/* Opera */
+}
+.class_e div{
+    transform:rotate(3deg);
+    -ms-transform:rotate(3deg); 	/* IE 9 */
+    -moz-transform:rotate(3deg); 	/* Firefox */
+    -webkit-transform:rotate(3deg); /* Safari 和 Chrome */
+    -o-transform:rotate(3deg); 	/* Opera */
+}
+.class_f{
+    background:#E5DDFE;
+    box-shadow: 5px 10px 10px #A3A3A3;
+    -moz-box-shadow: 5px 10px 10px #A3A3A3;
+    -webkit-box-shadow: 5px 10px 10px #A3A3A3;
+}
+.class_f:before{
+    top: 0;
+    left: 20px;
+    width:15px;
+    height:35px;
+    background:rgba(199,146,210,.8);
+    transform:rotate(170deg);
+    -ms-transform:rotate(170deg); 	/* IE 9 */
+    -moz-transform:rotate(170deg); 	/* Firefox */
+    -webkit-transform:rotate(170deg); /* Safari 和 Chrome */
+    -o-transform:rotate(170deg); 	/* Opera */
+}
+.class_f:after{
+    top: -10px;
+    right:30px;
+    width:15px;
+    height:35px;
+    background:rgba(199,146,210,.8);
+    transform:rotate(-170deg);
+    -ms-transform:rotate(-170deg); 	/* IE 9 */
+    -moz-transform:rotate(-170deg); 	/* Firefox */
+    -webkit-transform:rotate(-170deg); /* Safari 和 Chrome */
+    -o-transform:rotate(-170deg); 	/* Opera */
+}
+.msgsq:before,.msgsq:after{
+    content:"";
+    display:table;
+    float:none;
+    clear:both;
+    overflow:hidden;
+}
+.msgsq li{
+    float: left;
+    width: 50%;
+    text-align: center;
+    height: 50px;
+    line-height: 50px;
+    background-color: #fff;
+    font-size: 16px;
+    padding:0 20px;
+}
+.msgsq li a{
+    display:block;    
+}
+.msgsq li span{
+    display:block;
+}
+.msgsq li.chooseMsg{
+    border-bottom: 2px solid #557730;    
+}
+.msgsq li.chooseMsg a{
+    color: #557730;
+}
+.addMsg{
+    position:fixed;
+    top:20px;
+    right:5px;
+    width:48px;
+    height:48px;
+    z-index:9;
+    -webkit-transition: -webkit-transform .5s ease-out;
+	-moz-transition: -moz-transform .5s ease-out;
+	-o-transition: -o-transform .5s ease-out;
+	-ms-transition: -ms-transform .5s ease-out;    
+}
+.publicMsg{
+    position:fixed;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    display:none;
+    background: rgba(255,255,255,.7);
+    z-index:8;    
+}
+.publicMsg div{
+    position:fixed;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    -moz-transform:translate(-50%,-50%);
+    -webkit-transform:translate(-50%,-50%);
+    width:100%;
+    padding:0 20px;  
+}
+.publicMsg div input,.publicMsg div textarea{
+    width:100%;
+    margin:0;
+    outline:0;
+}
+.publicMsg div textarea{
+    height:100px;
+    padding:10px;
+    font-size: 16px;
+    margin-bottom:10px;
+    border: 2px solid #343434;   
+}
+.publicMsg div input{
+    padding:0;
+    height:36px;
+    line-height:36px;
+    font-size:18px;
+    color:#fff;
+    background-color: #343434;
+    border: 0;    
+}
+/*.msgli{
+    background:#fff;
+    padding:10px;
+    box-shadow:0 3px 5px #D8D8D8;
+    -moz-box-shadow:0 3px 5px #D8D8D8;
+    -webkit-box-shadow:0 3px 5px #D8D8D8;
+}
+.msgli li:first-child img{
+    width:36px;
+    height:36px;
+    border-radius:50%;    
+}
+.msgli li:first-child span{
+    padding-left:10px;
+    color: #9C9C9C;    
+}
+.msgli li:first-child a{
+    float:right;
+    width: 36px;
+    height: 36px;
+    color: #9C9C9C;
+    background:url(../images/delMsg.png) no-repeat center center ;    
+} 
+.msgli li:nth-child(2){
+    padding:10px;
+    font-size: 16px;
+}
+.msgli li:last-child{
+    text-align:right;
+    color: #9C9C9C; 
+}*/  
+</style>
+<form id="form1" runat="server">
+<ul class="msgsq">
+    <li><a href="MyStoreMessage.aspx"><span>留言广场</span></a></li>
+    <li><a href="MyStoreMessage.aspx?t=1"><span>我的留言</span></a></li> 
+</ul>
+<p class="text-center list-empty hide" id="empty">
+    <span class="glyphicon glyphicon-star" style="margin-left: 6px;"></span>
+    <em>尚未留言</em>
+</p>
+	<div class=" pbox shouc-box" style="padding:0">    
+        <div id="pbox_1">
+            <div id="container" class="js-masonry" data-masonry-options='{"itemSelector": ".item" }'>   
+           <Hi:VshopTemplatedRepeater ID="rptStoreMessage" TemplateFile="/Tags/skin-Common_MyStoreMsg.ascx" runat="server" />   
+            </div>
+         </div>
+         <div id="pager">
+            </div> 
+         </div>
+   
+<div class="addMsg" onclick="addMsg(this);"><img src="../images/addMSG.png" width="100%" height="100%" /></div>
+<div class="publicMsg">
+    <div>
+        <%<asp:textbox id="txtMsgCon" TextMode="multiline" runat="server"></asp:textbox>%>
+        <%<asp:button id="btnSave" runat="server" text="发布留言" OnClientClick="return check()" />%>
+    </div>
+</div>
+<input type="hidden" value="" runat="server" clientidmode="static" id="txtTotal" />
+    <input type="hidden" value="" runat="server" clientidmode="static" id="txtt" />
+<script>
+    //禁用右上角菜单
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        WeixinJSBridge.call('hideOptionMenu');
+    });
+
+</script>
+    <script src="/Utility/common.js" type="text/javascript"></script>
+<script src="/Utility/pager.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function () {
+        if (!$.trim($('#pbox_1').html())) {
+            $('.pbox').addClass('hide');
+            $('#empty').removeClass('hide');
+        }
+        if ($("#txtt").val() == "1") {
+            $(".msgsq").children().last().addClass("chooseMsg");
+        } else {
+            $(".msgsq").children().first().addClass("chooseMsg");
+        }
+        vshopPager('pager', $('#txtTotal').val(), 1, 20);
+       
+    });
+
+    function check() {
+        if ($("#vMyStoreMessage_txtMsgCon").val().trim() == "") {
+            alert("留言内容不能为空");
+            return false;
+        }
+    }
+    var a = 1;
+    function addMsg(e) {
+        if (a == 1) {
+            $(e).css({ transform: "rotateZ(45deg)" });
+            a = 2;
+        } else if (a == 2) {
+            $(e).css({ transform: "rotateZ(0deg)" });
+            a = 1;
+        }
+        
+        $(".publicMsg").toggle();
+    }
+
+//随机生成样式
+    function GetRandomNum(Min, Max) {
+        var Range = Max - Min;
+        var Rand = Math.random();
+        return (Min + Math.round(Rand * Range));
+    }
+    $(function () {
+        var allc = ["class_a", "class_b", "class_c", "class_d", "class_e", "class_f"];
+        $("#container").children().each(function () {
+            var num = GetRandomNum(0, 5);
+            $(this).children().addClass(allc[num]);
+        });
+    });
+  </script>
+</form>
+<hi:common_footer runat="server" />

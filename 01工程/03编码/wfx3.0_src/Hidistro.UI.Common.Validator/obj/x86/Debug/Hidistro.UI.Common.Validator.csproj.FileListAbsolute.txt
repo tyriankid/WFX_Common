@@ -1,0 +1,4 @@
+C:\project\WFX_Common\01工程\03编码\wfx3.0_src\Hidistro.UI.Common.Validator\bin\Debug\Hidistro.UI.Common.Validator.dll
+C:\project\WFX_Common\01工程\03编码\wfx3.0_src\Hidistro.UI.Common.Validator\bin\Debug\Hidistro.UI.Common.Validator.pdb
+C:\project\WFX_Common\01工程\03编码\wfx3.0_src\Hidistro.UI.Common.Validator\obj\x86\Debug\Hidistro.UI.Common.Validator.dll
+C:\project\WFX_Common\01工程\03编码\wfx3.0_src\Hidistro.UI.Common.Validator\obj\x86\Debug\Hidistro.UI.Common.Validator.pdb

@@ -1,0 +1,7 @@
+
+
+1:所有模板皮肤下的Skin-RequestCommissions.html (去掉了快捷支付按钮)
+
+2:web\Storage\master\QRcord.jpg  (重做了二维码推广图)
+
+3:web\Admin\distributor\BalanceDrawApplyList.aspx  (屏蔽了红包配送)

@@ -1,0 +1,5 @@
+C:\project\WFX_Common\01工程\03编码\wfx3.0_src\Hishop.TransferManager\bin\Debug\Hishop.TransferManager.dll
+C:\project\WFX_Common\01工程\03编码\wfx3.0_src\Hishop.TransferManager\bin\Debug\Hishop.TransferManager.pdb
+C:\project\WFX_Common\01工程\03编码\wfx3.0_src\Hishop.TransferManager\obj\x86\Debug\Hishop.TransferManager.csprojResolveAssemblyReference.cache
+C:\project\WFX_Common\01工程\03编码\wfx3.0_src\Hishop.TransferManager\obj\x86\Debug\Hishop.TransferManager.dll
+C:\project\WFX_Common\01工程\03编码\wfx3.0_src\Hishop.TransferManager\obj\x86\Debug\Hishop.TransferManager.pdb

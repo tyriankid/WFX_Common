@@ -1,0 +1,8 @@
+C:\project\WFX_Common\01工程\03编码\wfx3.0_src\Hidistro.Core\bin\Debug\Hidistro.Core.dll
+C:\project\WFX_Common\01工程\03编码\wfx3.0_src\Hidistro.Core\bin\Debug\Hidistro.Core.pdb
+C:\project\WFX_Common\01工程\03编码\wfx3.0_src\Hidistro.Core\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+C:\project\WFX_Common\01工程\03编码\wfx3.0_src\Hidistro.Core\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+C:\project\WFX_Common\01工程\03编码\wfx3.0_src\Hidistro.Core\bin\Debug\Microsoft.Practices.ObjectBuilder2.dll
+C:\project\WFX_Common\01工程\03编码\wfx3.0_src\Hidistro.Core\obj\x86\Debug\Hidistro.Core.csprojResolveAssemblyReference.cache
+C:\project\WFX_Common\01工程\03编码\wfx3.0_src\Hidistro.Core\obj\x86\Debug\Hidistro.Core.dll
+C:\project\WFX_Common\01工程\03编码\wfx3.0_src\Hidistro.Core\obj\x86\Debug\Hidistro.Core.pdb

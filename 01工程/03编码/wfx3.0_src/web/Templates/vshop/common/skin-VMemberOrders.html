@@ -1,0 +1,129 @@
+﻿<hi:common_header runat="server" />
+  <ul class="clearfix  orders-title memberorders-title  title_bg">
+        <li class=""><a href="?status=0">全部订单</a></li>
+        <li><a href="?status=1">待付款</a></li>
+        <li><a href="?status=3">配送中</a></li>
+      </ul>
+
+
+<div id="divorderlist">
+    <hi:vshoptemplatedrepeater id="rptOrders" templatefile="/Tags/skin-Common_MemberCenterOrders.ascx" runat="server"/>
+</div>
+<script>
+    //禁用右上角菜单
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        WeixinJSBridge.call('hideOptionMenu');
+    });
+</script>
+<p id="divEmpty" class="text-center list-empty hide">
+    <span class="glyphicon glyphicon-list-alt" style="margin-left: -3px;"></span><em>订单列表为空</em>
+</p>
+<script type="text/javascript">
+    function FinishOrder(orderId) {
+        var data = {};
+        data.orderId = orderId;
+        myConfirm('询问', '您确定已经收到货物了吗？', '确定收货', function () {
+            $.post("/api/VshopProcess.ashx?action=FinishOrder", data, function (json) {
+                if (json.success === true) {
+                     if (json.couponvalue > 0) {
+                        alert_h('确认收货成功！您已获得一张价值' + json.couponvalue+"的优惠券！", function () {
+                            location.reload();
+                        });
+                    }
+                   else if (json.isapply == 0) {
+                        alert_h('确认收货成功！', function () {
+                            location.reload();
+                        });
+                    }
+                    else if (json.isapply == 1){
+                        alert_h('确认收货成功,您的消费达到成为分销商要求,是否申请？', function () {
+                            location.href = "/Vshop/ApplicationDescription.aspx";
+                        });
+                    }
+
+                }
+                else {
+                    alert_h(json.msg);
+                }
+            });
+        });
+    }
+
+    function CloseOrder(orderId) {
+        var data = {};
+        data.orderId = orderId;
+        myConfirm('询问', '您确定要关闭订单吗？', '关闭订单', function () {
+            $.post("/api/VshopProcess.ashx?action=CloseOrder", data, function (json) {
+                if (json.success === true) {
+                    alert_h('关闭订单成功！', function () {
+                        location.reload();
+                    });
+                }
+                else {
+                    alert_h(json.msg);
+                }
+            });
+        });
+    }
+
+    //pro辣特殊需求,追加订单,点击按钮后跳转到点餐页面,取消最低消费限制,取消配送费限制
+    function AddOrder(orderId) {
+        setCookie("proLa_AddOrder", orderId, getMinsLeft());
+        location.href = "/Vshop/PicOrder.aspx";
+    }
+
+    //设置cookie
+    function setCookie(cname, cvalue, exminutes) {
+        var d = new Date();
+        d.setTime(d.getTime() + (exminutes * 60 * 1000));
+        var expires = "expires=" + d.toUTCString();
+        document.cookie = cname + "=" + cvalue + "; " + expires;
+    }
+    //获取cookie
+    function getCookie(cname) {
+        var name = cname + "=";
+        var ca = document.cookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') c = c.substring(1);
+            if (c.indexOf(name) != -1) return c.substring(name.length, c.length);
+        }
+        return "";
+    }
+
+    function getMinsLeft (){
+        var orderDate = new Date($("[role='btnAddOrder']").attr("payTime"));
+        var nowDate = new Date();
+        var orderMins = orderDate.getDay()*60*24+ orderDate.getHours() * 60 + orderDate.getMinutes();
+        var nowMins = nowDate.getDay() * 60 * 24 + nowDate.getHours() * 60 + nowDate.getMinutes();
+        var minsLeft = nowMins - orderMins;
+        return minsLeft;
+    }
+
+    $(function () {
+        //追加订单按钮出现在支付后的20分钟内.
+        var mLeft = getMinsLeft();
+        if (mLeft < 20) {//20分钟之外,隐藏该按钮
+            $("[role='btnAddOrder']").hide();
+        }
+
+        if (!$.trim($("#divorderlist").html())) {
+            $("#divorderlist").hide();
+            $("#divEmpty").removeClass('hide');
+        }
+
+        var list_h = (document.documentElement.clientHeight - 49 - $('.list-empty').height()) * .5 + 'px';
+        $('.list-empty').css('margin-top', list_h);
+        var status = getParam('status');
+        if (status == "0") {
+            $(".title_bg li").removeClass("activenum").eq(0).addClass("activenum");
+        } else if (status == "3") {
+            $(".title_bg li").removeClass("activenum").eq(2).addClass("activenum");
+        } else if (status == "1") {
+            $(".title_bg li").removeClass("activenum").eq(1).addClass("activenum");
+        }
+
+    })
+</script>
+
+<hi:common_footer runat="server" />

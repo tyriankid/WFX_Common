@@ -1,0 +1,307 @@
+﻿@charset "UTF-8";
+
+/* ------------------------------------------
+  RESET
+--------------------------------------------- */
+
+*{
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+
+ul,li{
+	list-style: none;
+}
+
+img{
+	display: block;
+	width: 100%;
+}
+a{
+	text-decoration: none;
+}
+a:active,
+a:link,
+a:hover {
+	color:#454545;
+  outline: 0;
+  text-decoration: none;
+}
+
+@-webkit-viewport { width: device-width; }
+@-moz-viewport { width: device-width; }
+@-ms-viewport { width: device-width; }
+@-o-viewport { width: device-width; }
+@viewport { width: device-width; }
+
+input::-webkit-input-placeholder { /* WebKit browsers */ 
+color: #999; 
+} 
+input::-moz-placeholder { /* Mozilla Firefox 4 to 18 */ 
+color: #999; 
+} 
+input::-moz-placeholder { /* Mozilla Firefox 19+ */ 
+color: #999; 
+} 
+input::-ms-input-placeholder { /* Internet Explorer 10+ */ 
+color: #999; 
+} 
+/* ------------------------------------------
+  BASE DEMO STYLES
+--------------------------------------------- */
+body,html{
+    font-size:16px;
+}
+body {
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  color: #000;
+  background: #f9f9f9;
+  font-weight:normal;
+  font-family:Helvetica,STHeiti,"Microsoft YaHei",Verdana,Arial,Tahoma,sans-serif;
+}
+input,a{
+    font-family:Helvetica,STHeiti,"Microsoft YaHei",Verdana,Arial,Tahoma,sans-serif;
+}
+.category_fix{
+    position:fixed !important;
+    top:0;
+    z-index:100 !important;
+}
+.banner{
+    height:8rem;
+    position:relative;
+    overflow:hidden;
+}
+.banner img{
+    position:absolute;
+    top:0;
+    z-index:1;
+}
+#category{
+    overflow:hidden;
+}
+#category div{
+    float:left;
+    width:33.33%;
+    height:3rem;
+    line-height:3rem;
+    text-align:center;
+    color: #fff;
+    font-size:1rem;
+    background-color:#2c2c2c;
+    border-bottom:3px solid #3f4342;
+}
+#category div.selected{
+    color:#FF5208;
+    border-bottom:5px solid #FF5208;
+}
+.product .goods{
+    position:relative;
+    margin-bottom:.5rem;
+    overflow:hidden;
+}
+.product .goods:last-child{
+    margin-bottom:0;
+}
+.product .goods .info{
+    position:absolute;
+    bottom:0;
+    width:100%;
+    padding:.5rem 1rem;
+    color: #fff;
+    z-index: 10;
+}
+.product .goods .info .title{
+    float:left;
+    width:60%;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    overflow:hidden;
+}
+.product .goods .info .price{
+    float:right;
+    color: #FF5208;
+}
+.product .goods .info .price i{
+    margin-left: .8rem;
+    color: #fff;
+}
+.shop_cart{
+    position:fixed;
+    width:100%;
+    height:3rem;
+    line-height:3rem;
+    bottom:-3rem;
+    text-align:center;
+    color:#fff;
+    background-color:#FF5208;
+    z-index: 100;
+}
+.shop_cart i{
+    font-size:1.36rem;
+    margin-right: 1rem;
+}
+.shop_cart span{
+    font-size:1.36rem;
+}
+.loadimg{
+    width:auto;
+    height:auto;
+    margin:30% auto;
+}
+#skuSelectorDiv{
+    position:fixed;
+    width: 100%;
+    text-align: center;
+    background-color:#fff;
+    z-index:102;
+}
+#skuSelectorDiv ul{
+    overflow:hidden;
+}
+#skuSelectorDiv ul li{
+    padding:1rem 0;
+    border-top:1px solid #c6c6c6;
+}
+#skuSelectorDiv ul li:first-child{
+    position:relative;
+    text-align:left;
+    overflow:hidden
+}
+#skuSelectorDiv ul li:first-child .imgbox{
+    float:left;
+    width:5rem;
+    height:5rem;
+    margin:0 1rem;
+    vertical-align: bottom;
+}
+#skuSelectorDiv ul li:first-child .imgbox img{
+    height:100%;
+}
+#skuSelectorDiv ul li:first-child a{
+    position: absolute;
+    width:3rem;
+    height:3rem;
+    line-height:3rem;
+    text-align:center;
+    right: 0;
+    top: 0;
+    font-size: 1.5rem;
+    color: #F0736F;
+}
+#skuSelectorDiv ul li:first-child .infobox{
+    position: absolute;
+    top: 2.5rem;
+    width: 60%;
+    margin-left: 6.5rem;
+}
+#skuSelectorDiv ul li:first-child div p{
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    overflow:hidden;
+}
+#skuSelectorDiv ul li:first-child div p:last-child{
+    color:#F0736F;
+}
+.spec_title{
+    position:relative;
+    width:35%;
+    padding:.5rem 0;
+    color:#fff;
+    background-color:#f0736f;
+    margin: 0 auto 1rem;
+    border-radius:3px;
+}
+.spec_title:after{
+    content:"";
+    position:absolute;
+    bottom: -16px;
+    left: 50%;
+    border-style:solid;
+    border-width:.5rem;
+    border-color:#f0736f transparent transparent transparent;
+    transform:translateX(-50%);
+    -moz-transform:translateX(-50%);
+    -webkit-transform:translateX(-50%); 
+}
+.spec-kind div{
+    display: inline-block;
+    width: 5rem;
+    padding: .5rem 0;
+    margin: 5px;
+    border: 1px solid #6c6c6c;
+    border-radius: .25rem;
+    color: #6c6c6c;
+}
+.spec-kind div.selected{
+    color:#f0736f;
+    border-color:#f0736f;
+}
+.count div{
+    width: 50%;
+    height:2.5rem;
+    line-height:2.2rem;
+    display: inline-block;
+    border: 1px solid #6C6C6C;
+    border-radius: .25rem;
+    font-size: 2rem;
+    color: #868686;
+    overflow: hidden;
+}
+.count div input{
+    display:inline-block;
+    width:50%;
+    height:2.5rem;
+    text-align:center;
+    vertical-align: top;
+    font-size: 1.36rem;
+    color: #868686;
+    border-left: 1px solid #6C6C6C;
+    border-right: 1px solid #6C6C6C;
+    border-radius:0;
+}
+.count div span{
+    display:inline-block;
+    width:25%;
+}
+.shopping_cart a{
+    display:inline-block;
+    width: 40%;
+    height:2rem;
+    line-height:2rem;
+    color:#fff;
+    margin:0 5%;
+    border-radius: .25rem;
+}
+.shopping_cart a:first-child{
+    background-color:#ff7803;
+}
+.shopping_cart a:last-child{
+    background-color:#fc1b00;
+}
+#mask_layer{
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background:rgba(0,0,0,.6);
+    z-index:101;
+}
+@media screen and (min-width: 767px){
+    body,html{
+        font-size:24px;
+    }
+}
+@media screen and (min-width: 1023px){
+    body,html{
+        font-size:36px;
+    }
+}

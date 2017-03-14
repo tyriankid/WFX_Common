@@ -1,0 +1,118 @@
+﻿<hi:common_header runat="server" />
+
+<div class="pbox pbox-select">
+    <div class="pbox-select-border">
+        <input type="text" id="txtKeywords" placeholder="" />
+        <span class="input-group-btn">
+            <button type="submit" class="btn btn-warning" data-type="last" onclick="searchs()">搜索</button>
+        </span>
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="../style/classify.css" rev="stylesheet" type="text/css">
+<div class="classify clear" id="classify">
+    <div class="hd box">
+        <ul>
+            <hi:vshoptemplatedrepeater id="rptCategories" templatefile="/Tags/skin-Common_NewCategories.ascx"
+                                       runat="server" />
+        </ul>
+    </div>
+    <div class="bd box">
+        <ul>
+            <!--<li><a href=""> <img src="../images/pic.jpg"><span>时尚秋裤</span></a></li>-->
+            <hi:vshoptemplatedrepeater id="rptProducts" templatefile="/Tags/skin-Common_NewProdcts.ascx"
+                                       runat="server" />
+        </ul>
+
+    </div>
+</div>
+<script type="text/javascript" src="../script/jquery1.42.min.js"></script>
+<script src="../script/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="../script/jquery.SuperSlide.2.1.js"></script>
+<script type="text/javascript">jQuery("#classify").slide();</script>
+<script type="text/javascript" src="../script/jQuery.equalHeights.js"></script>
+<script type="text/javascript">
+    $(function () { $('#classify').equalHeights(); });
+</script>
+
+
+<hi:common_footer runat="server" />
+
+<script type="text/javascript">
+    function searchs() {
+        var key = $("#txtKeywords").val();
+        var str = window.location.search;
+        var categoryId = getParam("categoryId");;
+        if (-1 == str.indexOf("&keyWord=")) {
+            categoryId = str.substring(str.indexOf("categoryId=") + 11);
+        } else {
+            categoryId = str.substring(str.indexOf("categoryId=") + 11, str.indexOf("&keyWord="));
+        }
+        var url = "/Vshop/ProductList.aspx?categoryId=" + categoryId + "&keyWord=" + escape(key);
+        window.location.href = url;
+    }
+
+    $(document).ready(function () {
+        var str = window.location.search;
+        if (str.indexOf("keyWord=") != -1) {
+            var keyWord = str.substring(str.indexOf("keyWord=") + 8);
+            if (keyWord.length > 0) {
+                $("#txtKeywords").val(keyWord);
+            }
+        }
+        $(".hd ul li").removeClass("on");
+        var liid = getParam("categoryId");
+        if (liid != "" && liid != null) {
+            $(".hd ul #" + liid).addClass("on");
+        } else {
+            $(".hd ul li").first().addClass("on");
+        }
+
+
+    });
+
+
+    $(".hfooter .glyphicon-refresh").click(function () {
+        location.reload();
+    })
+
+    $(".hfooter .glyphicon-arrow-left").click(function () {
+        history.go(-1);
+    })
+
+    //隐藏右上角菜单
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        WeixinJSBridge.call('hideOptionMenu');
+    });
+
+    //隐藏底部菜单
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        WeixinJSBridge.call('hideToolbar');
+    });
+
+
+    function goUrl(url) {
+        //        alert(url);
+        location.replace(url);
+
+    }
+
+    $(function () {
+        var categoryItems = $('a.categoryItem');
+        var cateogryId, url;
+        $.each(categoryItems, function (i, item) {
+            cateogryId = $(item).attr('value');
+            if ($(item).attr('name') == "True")
+                url = '?categoryId=' + cateogryId;
+            else
+                url = '/Vshop/ProductList.aspx?categoryId=' + cateogryId;
+            $(item).attr('onclick', 'goUrl("' + url + '")').attr('href', 'javascript:;');
+
+        });
+
+        $(".pbox-select-tags li .select-tags-img").height($(".pbox-select-tags li .select-tags-img").width());
+
+    });
+
+</script>

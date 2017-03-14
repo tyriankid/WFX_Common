@@ -1,0 +1,304 @@
+10-16
+表：Vshop_Menu
+添加字段：Client
+hidistro.Entitties项目引用Hidistro.Membership.Core
+修改MenuDao方法 添加参数ClientType
+
+10-20
+表：aspnet_Member
+添加字段：RegSource 注册来源 AliOpenId支付宝openID
+
+Alter Table vshop_Menu ADD Client tinyint--增加区分微信菜单和支付宝菜单的区别字段
+Alter Table aspnet_Members ADD regSource nvarchar(100)--增加区分微信菜单和支付宝菜单的区别字段
+Alter Table aspnet_Members ADD AliOpenID int--增加区分微信菜单和支付宝菜单的区别字段
+
+10-22
+Alter Table Hishop_Coupons ADD sendAtHomepage int default 0 --增加优惠券是否在首页赠送的字段
+Alter Table Hishop_Coupons ADD sendAtDistributor int default 0 --增加优惠券是否在成为分销商时赠送的字段
+
+10-27
+创建优惠卷规则表
+USE [WFX]
+GO
+
+/****** Object:  Table [dbo].[Hishop_CouponsRule]    Script Date: 10/29/2015 14:27:01 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Hishop_CouponsRule](
+	[CouponsRuleId] [int] NOT NULL,
+	[CouponsId] [int] NULL,
+	[CategoryId] [int] NULL,
+ CONSTRAINT [PK_Hishop_CouponsRule] PRIMARY KEY CLUSTERED 
+(
+	[CouponsRuleId] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+
+10-30  创建数据库方法
+if object_id('Fn_jhb_CatagoryIdByRule') is not null drop function Fn_jhb_CatagoryIdByRule
+go
+/********************
+*功能:得到优惠卷使用规则
+*作者:JHB
+*参数:@CouponsId----优惠卷ID
+*调用方法:select aa=dbo.Fn_jhb_CatagoryIdByRule(1)
+********************/
+create function Fn_jhb_CatagoryIdByRule(@CouponsId int)
+returns nvarchar(600)
+as
+begin
+declare @CategoryIds nvarchar(100)
+Select @CategoryIds=isnull(@CategoryIds+',','')+RTRIM(CategoryId) From Hishop_CouponsRule Where CouponsId=@CouponsId
+return(@CategoryIds)
+end
+go
+
+
+
+2015-11-25 新增一个菜单
+insert into yihui_menuinfo (miname,Layout,MIUrl,Visible) values ('设置商品区域','040105','productdl/ProductOnSalesdl.aspx',1)
+update YiHui_MenuInfo set IconLink = 'images/menu2_3.png' where Layout='0304'
+update YiHui_MenuInfo set IconLink = 'images/menu4_0.png' where Layout='0501'
+
+2015-12-2 新增分销商店铺访问信息和限时抢购功能
+GO
+
+/****** Object:  Table [dbo].[YiHui_DistributorVisitInfo]    Script Date: 11/28/2015 14:10:23 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[YiHui_DistributorVisitInfo](
+	[DVId] [uniqueidentifier] ROWGUIDCOL  NOT NULL,
+	[MemberId] [int] NOT NULL,
+	[DistributorId] [int] NOT NULL,
+	[VisitCountPerday] [int] NOT NULL,
+	[VisitDate] [datetime] NOT NULL,
+ CONSTRAINT [PK_YiHui_DistributorVisitInfo] PRIMARY KEY CLUSTERED 
+(
+	[DVId] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+ALTER TABLE [dbo].[YiHui_DistributorVisitInfo] ADD  CONSTRAINT [DF_YiHui_DistributorVisitInfo_DVId]  DEFAULT (newid()) FOR [DVId]
+GO
+
+Alter Table Hishop_Gifts ADD stock int default 0 --增加礼品表的库存字段
+
+insert into YiHui_MenuInfo (MIName, Layout,MIUrl ,Visible, IconLink) values
+('商城促销活动 ','0305' ,'', 1,'images/menu10702.png' )
+
+insert into YiHui_MenuInfo (MIName, Layout,MIUrl ,Visible, IconLink) values
+('限时抢购 ','030501' ,'promotion/countdowns.aspx', 1,'' )
+
+insert into YiHui_MenuInfo (MIName,Layout,MIUrl,Visible) values
+('团购','030502','promotion/groupbuys.aspx',1)
+
+/****** Object:  Table [dbo].[Hishop_CountDown]    Script Date: 12/02/2015 17:23:40 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo]. [Hishop_CountDown](
+       [CountDownId] [int] IDENTITY( 1,1 ) NOT NULL,
+       [ProductId] [int] NOT NULL,
+       [StartDate] [datetime] NOT NULL,
+       [EndDate] [datetime] NOT NULL,
+       [Content] [ntext] NULL,
+       [DisplaySequence] [int] NOT NULL,
+       [CountDownPrice] [money] NOT NULL,
+       [MaxCount] [int] NULL,
+ CONSTRAINT [PK_Hishop_CountDown] PRIMARY KEY NONCLUSTERED
+(
+       [CountDownId] ASC
+)WITH ( PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF , IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON ) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+
+ALTER TABLE [dbo]. [Hishop_CountDown]  WITH CHECK ADD  CONSTRAINT [FK_Hishop_CountDown_Products] FOREIGN KEY([ProductId] )
+REFERENCES [dbo] .[Hishop_Products] ([ProductId])
+ON DELETE CASCADE
+GO
+
+ALTER TABLE [dbo]. [Hishop_CountDown] CHECK CONSTRAINT [FK_Hishop_CountDown_Products]
+GO
+
+ALTER TABLE [dbo]. [Hishop_CountDown] ADD   CONSTRAINT [DF_Hishop_CountDown_DisplaySequence]   DEFAULT (( 0)) FOR [DisplaySequence]
+GO
+
+ALTER TABLE [dbo]. [Hishop_CountDown] ADD   CONSTRAINT [DF_Hishop_CountDown_MaxCount]   DEFAULT (( 1)) FOR [MaxCount]
+GO
+
+/****** Object:  View [dbo].[vw_Hishop_CountDown]    Script Date: 12/02/2015 17:22:42 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE VIEW [dbo]. [vw_Hishop_CountDown]
+       AS
+SELECT CountDownId,P .ProductId, p.ProductName ,p. MarketPrice,p .SalePrice, c.CountDownPrice ,c. StartDate,c .EndDate, c.[MaxCount] ,c. DisplaySequence,
+p.ThumbnailUrl40 ,p. ThumbnailUrl60,p .ThumbnailUrl100, p.ThumbnailUrl160 , p.ThumbnailUrl180 , p .ThumbnailUrl220, ThumbnailUrl310
+FROM Hishop_CountDown c join vw_Hishop_BrowseProductList p ON c.ProductId = p.ProductId
+GO
+
+
+GO
+/****** Object:  StoredProcedure [dbo].[cp_Gift_CreateUpdateDelete]    Script Date: 12/05/2015 10:24:12 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER PROCEDURE [dbo].[cp_Gift_CreateUpdateDelete]  
+(  
+@GiftId INT = NULL OUTPUT,  
+@Name NVARCHAR(100) = NULL,  
+@ShortDescription NVARCHAR(2000) = NULL,  
+@Stock int = 0,  
+@Unit NVARCHAR(10) = NULL,  
+@LongDescription NTEXT = NULL,  
+@Title NVARCHAR(100) = NULL,  
+@Meta_Description NVARCHAR(1000) = NULL,  
+@Meta_Keywords NVARCHAR(1000) = NULL,  
+@CostPrice MONEY = NULL,  
+@ImageUrl [nvarchar] (255) = NULL,  
+@ThumbnailUrl40 [nvarchar] (255) = NULL,  
+@ThumbnailUrl60 [nvarchar] (255) = NULL,  
+@ThumbnailUrl100 [nvarchar] (255) = NULL,  
+@ThumbnailUrl160 [nvarchar] (255) = NULL,  
+@ThumbnailUrl180 [nvarchar] (255) = NULL,  
+@ThumbnailUrl220 [nvarchar] (255) = NULL,  
+@ThumbnailUrl310 [nvarchar] (255) = NULL,  
+@ThumbnailUrl410 [nvarchar] (255) = NULL,  
+@MarketPrice MONEY = NULL,  
+@NeedPoint INT = NULL,  
+@Action INT,  
+@IsPromotion bit,  
+@Status INT OUTPUT  
+)  
+AS  
+SET @Status = 99  
+  
+IF @Action = 2 -- 删除  
+BEGIN  
+DELETE FROM Hishop_Gifts WHERE GiftId = @GiftId  
+IF @@ROWCOUNT = 1  
+SET @Status = 0  
+END  
+  
+IF @Action = 0 -- 创建  
+BEGIN  
+  
+INSERT INTO  
+Hishop_Gifts  
+([Name], ShortDescription, Unit, LongDescription, Title,  
+Meta_Description, Meta_Keywords,  
+ImageUrl, ThumbnailUrl40, ThumbnailUrl60, ThumbnailUrl100, ThumbnailUrl160, ThumbnailUrl180,  
+ThumbnailUrl220, ThumbnailUrl310, ThumbnailUrl410,  
+CostPrice, MarketPrice, NeedPoint,IsPromotion,Stock)  
+VALUES  
+(@Name, @ShortDescription, @Unit, @LongDescription, @Title,  
+@Meta_Description, @Meta_Keywords,  
+@ImageUrl, @ThumbnailUrl40, @ThumbnailUrl60, @ThumbnailUrl100, @ThumbnailUrl160, @ThumbnailUrl180,  
+@ThumbnailUrl220, @ThumbnailUrl310, @ThumbnailUrl410,  
+@CostPrice, @MarketPrice, @NeedPoint,@IsPromotion,@Stock)  
+  
+SELECT @GiftId = @@IDENTITY  
+  
+IF @@ROWCOUNT = 1  
+SET @Status = 0  
+  
+RETURN  
+END  
+  
+IF @Action = 1 -- 修改  
+BEGIN  
+  
+UPDATE  
+Hishop_Gifts  
+SET  
+[Name] = @Name,  
+ShortDescription = @ShortDescription,  
+Unit = @Unit,  
+LongDescription = @LongDescription,  
+Title = @Title,  
+Meta_Description = @Meta_Description,  
+Meta_Keywords = @Meta_Keywords,  
+ImageUrl = @ImageUrl,  
+ThumbnailUrl40 = @ThumbnailUrl40, ThumbnailUrl60 = @ThumbnailUrl60, ThumbnailUrl100 = @ThumbnailUrl100, ThumbnailUrl160 = @ThumbnailUrl160, ThumbnailUrl180 = @ThumbnailUrl180,  
+ThumbnailUrl220 = @ThumbnailUrl220, ThumbnailUrl310 = @ThumbnailUrl310, ThumbnailUrl410 = @ThumbnailUrl410,  
+CostPrice = @CostPrice,MarketPrice = @MarketPrice, NeedPoint = @NeedPoint,IsPromotion=@IsPromotion,Stock=@Stock  
+WHERE GiftId = @GiftId  
+  
+IF @@ROWCOUNT = 1  
+SET @Status = 0  
+  
+RETURN  
+END
+
+
+GO
+
+/****** Object:  Table [dbo].[Hishop_GroupBuyCondition]    Script Date: 12/08/2015 12:32:56 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Hishop_GroupBuyCondition](
+	[GroupBuyId] [int] NOT NULL,
+	[Count] [int] NOT NULL,
+	[Price] [money] NOT NULL,
+ CONSTRAINT [PK_Hishop_GroupBuyCondition] PRIMARY KEY NONCLUSTERED 
+(
+	[GroupBuyId] ASC,
+	[Count] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+ALTER TABLE [dbo].[Hishop_GroupBuyCondition]  WITH CHECK ADD  CONSTRAINT [FK_Hishop_GroupBuyCondition_Hishop_GroupBuy] FOREIGN KEY([GroupBuyId])
+REFERENCES [dbo].[Hishop_GroupBuy] ([GroupBuyId])
+ON DELETE CASCADE
+GO
+
+ALTER TABLE [dbo].[Hishop_GroupBuyCondition] CHECK CONSTRAINT [FK_Hishop_GroupBuyCondition_Hishop_GroupBuy]
+GO
+
+
+
+/****** Object:  View [dbo].[vw_Hishop_GroupBuy]    Script Date: 12/08/2015 13:48:31 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER VIEW [dbo].[vw_Hishop_GroupBuy]
+AS
+SELECT g.GroupBuyId, g.ProductId, p.ProductName, g.Status,g.StartDate,g.EndDate, g.NeedPrice,g.MaxCount,g.DisplaySequence,c.Price,g.Content,
+(SELECT COUNT(OrderId) FROM Hishop_Orders WHERE GroupBuyId = g.GroupBuyId) AS OrderCount,
+(SELECT COUNT(OrderId) FROM Hishop_Orders WHERE GroupBuyId = g.GroupBuyId) AS SoldCount,
+(SELECT SUM(Quantity) FROM Hishop_OrderItems WHERE OrderId IN (SELECT OrderId FROM Hishop_Orders WHERE GroupBuyId = g.GroupBuyId AND OrderStatus <> 1 AND OrderStatus <> 4)) AS ProdcutQuantity
+FROM Hishop_GroupBuy g JOIN Hishop_Products p ON g.ProductId = p.ProductId
+left join  Hishop_GroupBuyCondition  c on c.GroupBuyId = g.GroupBuyId
+
+GO

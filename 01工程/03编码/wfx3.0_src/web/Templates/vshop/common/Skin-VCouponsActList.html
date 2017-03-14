@@ -1,0 +1,30 @@
+﻿<hi:common_header runat="server" />
+
+<p class="text-center list-empty hide" id="empty">
+    没有优惠卷活动
+</p>
+<div class="pbox" id="articlelistContainer">
+   
+    <div class="articlelist clearfix" id="articlelist">
+            <hi:vshoptemplatedrepeater id="rptCouponsAct" templatefile="/Tags/skin-Common_CouponsActList.ascx"
+                                     runat="server" />
+    </div>
+</div>
+
+<hi:Common_Footer runat="server" />
+
+<script type="text/javascript">
+
+
+    $(function () {
+       
+        if ($('#articlelist').html()=="") {
+            $('#articlelistContainer').addClass('hide');
+            $('#empty').removeClass('hide');
+        }
+
+    });
+   
+
+
+</script>

@@ -1,0 +1,21 @@
+<?xml version="1.0" standalone="yes"?>
+<DocumentElement>
+  <log>
+    <OperTime>2015/8/24 12:20:34</OperTime>
+    <prepay_id>FAIL</prepay_id>
+    <param>&lt;xml&gt;
+&lt;appid&gt;&lt;![CDATA[abcd]]&gt;&lt;/appid&gt;
+&lt;body&gt;201508242680922&lt;/body&gt;
+&lt;mch_id&gt;112233&lt;/mch_id&gt;
+&lt;nonce_str&gt;3106833&lt;/nonce_str&gt;
+&lt;notify_url&gt;&lt;![CDATA[http://localhost/pay/wx_Pay.aspx]]&gt;&lt;/notify_url&gt;
+&lt;out_trade_no&gt;201508242680922&lt;/out_trade_no&gt;
+&lt;sign&gt;&lt;![CDATA[3CA390C396A3FF040C690C759002BDD3]]&gt;&lt;/sign&gt;
+&lt;spbill_create_ip&gt;&lt;![CDATA[127.0.0.1]]&gt;&lt;/spbill_create_ip&gt;
+&lt;total_fee&gt;15610&lt;/total_fee&gt;
+&lt;trade_type&gt;&lt;![CDATA[JSAPI]]&gt;&lt;/trade_type&gt;
+&lt;/xml&gt;
+</param>
+    <query>appid=abcd&amp;body=201508242680922&amp;mch_id=112233&amp;nonce_str=3106833&amp;notify_url=http://localhost/pay/wx_Pay.aspx&amp;out_trade_no=201508242680922&amp;sign=3CA390C396A3FF040C690C759002BDD3&amp;spbill_create_ip=127.0.0.1&amp;total_fee=15610&amp;trade_type=JSAPI</query>
+  </log>
+</DocumentElement>

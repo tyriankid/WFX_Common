@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <ProjectType>local</ProjectType>
+    <ProjectVersion>7.10.377</ProjectVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E593CEDB-98B4-43A8-B7B1-924F19E538C4}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <AssemblyName>Hishop.Alipay.OpenHome</AssemblyName>
+    <OutputType>Library</OutputType>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Compile Include="QuickPay\AlipayConfig.cs" />
+    <Compile Include="QuickPay\AlipayCore.cs" />
+    <Compile Include="QuickPay\AlipayNotify.cs" />
+    <Compile Include="QuickPay\AlipaySubmit.cs" />
+    <Compile Include="QuickPay\MD5.cs" />
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.IO.Log" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Xml" />
+    <Reference Include="AopSdk">
+      <HintPath>..\web\packages\AopSdk.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Global.cs" />
+    <Compile Include="Hishop\Alipay\OpenHome\OnUserFollow.cs" />
+    <Compile Include="Hishop\Alipay\OpenHome\AlipayOHClient.cs" />
+    <Compile Include="Hishop\Alipay\OpenHome\AlipayOHException\AlipayOpenHomeException.cs" />
+    <Compile Include="Hishop\Alipay\OpenHome\AlipayOHException\AliResponseException.cs" />
+    <Compile Include="Hishop\Alipay\OpenHome\AlipayOHException\RequestException.cs" />
+    <Compile Include="Hishop\Alipay\OpenHome\AlipayOHException\ResponseException.cs" />
+    <Compile Include="Hishop\Alipay\OpenHome\AlipayOHException\SignatureException.cs" />
+    <Compile Include="Hishop\Alipay\OpenHome\Handle\IHandle.cs" />
+    <Compile Include="Hishop\Alipay\OpenHome\Handle\UserFollowHandle.cs" />
+    <Compile Include="Hishop\Alipay\OpenHome\Handle\VerifyGateWayHandle.cs" />
+    <Compile Include="Hishop\Alipay\OpenHome\Model\AliRequest.cs" />
+    <Compile Include="Hishop\Alipay\OpenHome\Model\AliRequstWhenFollow.cs" />
+    <Compile Include="Hishop\Alipay\OpenHome\Model\AliUserTokenInfo.cs" />
+    <Compile Include="Hishop\Alipay\OpenHome\Model\Articles.cs" />
+    <Compile Include="Hishop\Alipay\OpenHome\Model\Button.cs" />
+    <Compile Include="Hishop\Alipay\OpenHome\Model\Message.cs" />
+    <Compile Include="Hishop\Alipay\OpenHome\Model\ErrorResponse.cs" />
+    <Compile Include="Hishop\Alipay\OpenHome\Model\IAliResponseStatus.cs" />
+    <Compile Include="Hishop\Alipay\OpenHome\Model\ModelBase.cs" />
+    <Compile Include="Hishop\Alipay\OpenHome\Model\Menu.cs" />
+    <Compile Include="Hishop\Alipay\OpenHome\Model\Item.cs" />
+    <Compile Include="Hishop\Alipay\OpenHome\Model\UserInfo.cs" />
+    <Compile Include="Hishop\Alipay\OpenHome\Request\IRequest.cs" />
+    <Compile Include="Hishop\Alipay\OpenHome\Request\AddMenuRequest.cs" />
+    <Compile Include="Hishop\Alipay\OpenHome\Request\GetMenuRequest.cs" />
+    <Compile Include="Hishop\Alipay\OpenHome\Request\OauthTokenRequest.cs" />
+    <Compile Include="Hishop\Alipay\OpenHome\Request\RequestBase.cs" />
+    <Compile Include="Hishop\Alipay\OpenHome\Handle\CommonHandle.cs" />
+    <Compile Include="Hishop\Alipay\OpenHome\Request\MessagePushRequest.cs" />
+    <Compile Include="Hishop\Alipay\OpenHome\Request\UpdateMenuRequest.cs" />
+    <Compile Include="Hishop\Alipay\OpenHome\Model\AliResponse.cs" />
+    <Compile Include="Hishop\Alipay\OpenHome\Model\AliResponseMessage.cs" />
+    <Compile Include="Hishop\Alipay\OpenHome\Model\BasicResponse.cs" />
+    <Compile Include="Hishop\Alipay\OpenHome\Response\MenuAddResponse.cs" />
+    <Compile Include="Hishop\Alipay\OpenHome\Response\MenuUpdateResponse.cs" />
+    <Compile Include="Hishop\Alipay\OpenHome\Model\ResponseMessage.cs" />
+    <Compile Include="Hishop\Alipay\OpenHome\Response\MessagePushResponse.cs" />
+    <Compile Include="Hishop\Alipay\OpenHome\Response\OauthTokenResponse.cs" />
+    <Compile Include="Hishop\Alipay\OpenHome\Utility\CData.cs" />
+    <Compile Include="Hishop\Alipay\OpenHome\Utility\RsaFileHelper.cs" />
+    <Compile Include="Hishop\Alipay\OpenHome\Utility\TimeHelper.cs" />
+    <Compile Include="Hishop\Alipay\OpenHome\Utility\XmlSerialiseHelper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ControlPanel\ControlPanel.csproj">
+      <Project>{fc8aed53-44fa-40a9-96ae-bbfc8c8effa7}</Project>
+      <Name>ControlPanel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hidistro.Core\Hidistro.Core.csproj">
+      <Project>{4f98dddb-c05a-4a71-8400-bc5f790cc8df}</Project>
+      <Name>Hidistro.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hidistro.Entities\Hidistro.Entities.csproj">
+      <Project>{71e1154b-e640-414d-aa73-57a7f4589ba2}</Project>
+      <Name>Hidistro.Entities</Name>
+    </ProjectReference>
+  </ItemGroup>
+</Project>

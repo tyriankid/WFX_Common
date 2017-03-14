@@ -1,0 +1,95 @@
+/* CSS Document */
+
+*{ margin:0; padding:0}
+html, body {height:100%;overflow:hidden;font-family:"宋体", arial;}
+body{font: 12px/1.5 Microsoft YaHei,Helvitica,Verdana,Arial,san-serif;}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,blockquote{padding:0; margin:0; font-size:12px; color:#585858; }
+table,td,tr,th{font-size:12px;}
+li{list-style-type:none;}
+img{border:0;}
+ol,ul {list-style:none;}   
+caption,th {text-align:left;}  
+h1,h2,h3,h4,h5,h6 {font-size:12px; font-weight:normal;}   
+a{ text-decoration:none; }
+.fB{font-weight:bold;}
+.fI{font-style: italic;}
+.f12px{font-size:12px;}
+.f14px{font-size:14px;}
+.left{float:left;}
+.right{float:right;}
+.hidden{display:none;}
+.martop10{ margin-top:10px;}
+.marbot10{ margin-bottom:10px;}
+.marleft10{ margin-left:10px;}
+.padtop8{ padding-top:10px;}
+.marlr8{ margin:0 8px;}
+.clean {clear:both; height:0px; overflow:hidden;}
+
+a{text-decoration:none;}
+a:hover{text-decoration:underline}
+
+
+/**** -------------------导航 ------------------- ****/
+.hishop_head{width:100%;height: auto; background: #131313; overflow:hidden; position:relative; }
+.hishop_logo{float:left;margin: 8px 0 0 0;overflow:hidden; width: 191px; }
+.hishop_banner{height: 50px;line-height:43px;color:#fff;overflow:hidden; }
+.hishop_banner .hishop_con2{float:left;width:100%;}
+.hishop_banneritem{color:#fff;float:right;white-space:nowrap; padding-right:20px; height: 50px;_height:48px;text-align: right; }
+.hishop_banneritem p img{margin-top:0px;margin-right:5px;vertical-align: middle;}
+.hishop_banneritem span{margin:0px 5px 0px 10px;}
+.hishop_banneritem b{width:1px;height:11px;}
+.hishop_banneritem strong{color:#C8ECFC}
+
+.hishop_banneritem a{color:#FFF;display:inline-block; height: 50px;cursor:pointer; line-height: 50px; text-align:center;color: #dddbdb;font-size:12px; padding: 0 10px;}
+.hishop_banneritem a:hover{ text-decoration: none; background-color: #555; color:#FFF; } 
+
+.hishop_menu{float: left;height: 50px;white-space:nowrap; }
+.hishop_menu div{float:right;margin-left:5px;width:83px;height:30px;}
+.hishop_menu a{color:#FFF;display: block;/* width:83px; */height: 50px;cursor:pointer; line-height: 50px; text-align:center;color: #dddbdb;font-size:14px; padding: 0 20px;font-weight: 700;margin: 0px;float: left;}
+.hishop_menu a:hover{ text-decoration: none; background-color: #555; color:#FFF; } 
+.hishop_menu a.hishop_curent{ background:#FFF; color: #333;}
+
+.open_arrow,.close_arrow{position:absolute;overflow: hidden;width: 30px; height:40px; cursor: pointer;z-index:99;height:100%; background: url(../images/leftmenu.png) center center no-repeat; left: 160px; top:0;}
+#menu_arrow:hover{ background-color: #555; }
+.open_arrow{ }
+.close_arrow{}
+ 
+/*** -------------------树左边菜单栏------------------- ***/
+
+.hishop_content{height:100%;}
+.hishop_menu_scroll{background: #FFF;height:100%;width: 190px;position: absolute;margin:0px 0px;overflow-x:hidden;overflow-y:hidden;display:none; border-right: 1px solid #CCC;}
+#menu_left{ position: absolute;margin:0px 0px;height:100%; }
+
+.hishop_menutitle, .hishop_menutitleEx{width: 200px;overflow:hidden; position:relative;}
+.hishop_menutitle span,.hishop_menutitleEx span{background: url(../images/menu_arrow.png) 150px center no-repeat;height: 40px;line-height: 40px;font-weight:700; display:block;padding-left: 50px;border: 1px solid #ececec;border-bottom:0;font-size: 14px;color: #333;}
+
+
+
+.hishop_menutitle span:hover, .hishop_menutitle:hover span,
+.hishop_menutitleEx span:hover, .hishop_menutitleEx:hover span{ background-color:#f2f2f2;}
+.hishop_menutitle em,
+.hishop_menutitleEx em{ display:block; width:40px; height:42px;  border-right: 1px solid #ececec; position:absolute; left:0; top:0; background-position:left top;  }
+.hishop_menutitle:hover em,.hishop_menutitle span:hover em:hover,
+.hishop_menutitleEx:hover em,.hishop_menutitleEx span:hover em:hover{  background-position:left -42px; background-color:#368ee0;}
+.hishop_menutitle i,
+.hishop_menutitleEx i{ display:none;}
+.hishop_menutitle a,
+.hishop_menutitleEx a{clear:both;color:#393939;text-decoration:none;height: 40px;line-height: 40px;/* margin-left: 40px; */ padding-left: 50px;cursor:pointer;color:#585858; background:url(../images/leftnav_bg.jpg) no-repeat; display:block;/* border-left: 1px solid #ececec; */border-top: 1px solid #ececec;font-size: 14px;}
+.hishop_menutitle a:first-child,
+.hishop_menutitleEx a:first-child{ border-top: 0;}
+/*.hishop_menutitle a:hover{ background-position:left -40px;}*/
+.hishop_menutitle a:hover,.hishop_menutitle a.curent,
+.hishop_menutitleEx a:hover,.hishop_menutitleEx a.curent{ zoom:1; background-position:left -40px;}
+.hishop_menutitle:last-child, .hishop_menutitleEx:last-child{ border-bottom: 1px solid #ececec;}
+
+ /*-------------------展开样式-------------------*/ 
+.hishop_menutitleEx em{  background-position:left -42px; background-color:#368ee0;}
+    .hishop_menutitleEx span{ background-color:#f2f2f2;}
+
+
+
+/*** -------------------中间iframe -------------------***/
+.hishop_content_r{overflow:hidden;position:absolute;left:7px;width:100%;height:100%}
+.framecontent{width:100%;height:100%;}
+
+

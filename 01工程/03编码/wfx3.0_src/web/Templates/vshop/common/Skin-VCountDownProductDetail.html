@@ -1,0 +1,253 @@
+﻿<hi:common_header runat="server" />
+<meta name="format-detection" content="telephone=no" />
+<div class="slides-collect-btn"  >
+    <a id="addF" href="javascript:AddFavorite();" class="">
+        <!-- <span class="glyphicon glyphicon-star-empty"></span> -->
+        <span class="star-null"></span>
+    </a>
+    <a id="addedF" href="javascript:;" class="hide">
+        <!-- <span class="glyphicon glyphicon-star"></span> -->
+        <span class="star-full"></span>
+    </a>
+</div>
+<div id="slides">
+    <hi:vshoptemplatedrepeater id="rptProductImages" templatefile="/Tags/skin-Common_Slide.ascx"
+        runat="server" />
+</div>
+<div class="pbox bgColor-white">
+    <div class="goods-info">
+        <div class="name font-lg">
+            <asp:literal runat="server" id="litProdcutName" />
+        </div>
+        <div class="intro text-danger font-s">
+            <asp:literal runat="server" id="litShortDescription" />
+        </div>
+        <div class="price clearfix">
+            <span class="title">当前价：</span>
+            <span class="spSalaPrice">¥<asp:literal runat="server" id="litSalePrice" /></span>
+            <del class="text-muted font-s">¥<asp:literal runat="server" id="litMarketPrice" /></del>
+            <!-- <span class="selled">已售：<asp:Literal ID="litSoldCount" runat="server" />件</span> -->
+        </div>
+        <div><asp:Literal ID="litActivities" runat="server" /></div>
+    </div>
+
+</div>
+
+<ul class="right-tags">
+    <li class="right-tags-service"><a href="/Vshop/SaleService.aspx"></a></li>
+</ul>
+
+<div class="well">
+    <hi:common_skuselector id="skuSelector" runat="server" />
+    <!--活动倒计时-->
+    <div class="time-box">
+        <asp:literal runat="server" id="litEndtime"></asp:literal>
+    </div>
+    <!-- 活动倒计时end -->
+    <div class="buy-num">
+        <div class="text-muted font-s">
+            购买数量</div>
+        <div class="list clearfix">
+            <div class="goods-num clearfix">
+                <div id="spSub" class="shopcart-minus">-</div>
+                <input type="tel" id="buyNum" class="form-control" value="1" />
+                <div id="spAdd" class="shopcart-add">+</div>
+                <div class="info font-s text-muted">限购：<span id="spStock"><asp:literal runat="server" id="litStock" /></span>件</div>
+            </div>
+        </div>
+    </div>
+</div>
+<ul class="nav nav-tabs product_detail font-m" role="tablist">
+  <li role="presentation" class="active"><a href="#product-detail" data-toggle="tab">商品详情</a></li>
+  <li role="presentation"><a href="#product-ask" data-toggle="tab"  onclick="javascript:location.href='ProductConsultations.aspx'+location.search;">商品咨询 (<asp:literal runat="server" id="litConsultationsCount" />)</a></li>
+  <li role="presentation"><a href="#product-eva" data-toggle="tab" onclick="gotoProductReview();">商品评价 (<asp:literal runat="server" id="litReviewsCount" />)</a></li>
+</ul>
+<div class="tab-content">
+    <div role="tabpanel" class="tab-pane fade in active" id="product-detail">
+        <div class="goods-detail bgColor-white btns-fixed-padding">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    属性
+                </div>
+                <table class="table" id="attrtable">
+                    <tbody>
+                        <hi:common_expandattributes id="ExpandAttributes" runat="server" />
+                    </tbody>
+                </table>
+            </div>
+            <asp:literal runat="server" id="litDescription" />
+        </div>
+    </div>
+      
+</div>
+
+<div class="btns-fixed">
+    <a class="link link-shop" href="Default.aspx"><i></i><span>店铺</span></a>
+    <button id="buyButton" type="shoppingBtn" class="btn-buy" style="width:80%;"> 立刻抢购</button>
+</div>
+<input type="hidden" runat="server" clientidmode="Static" id="litHasCollected" />
+<input type="hidden" runat="server"   id="litCategoryId" />
+<input type="hidden" runat="server"   id="litproductid" />
+ <%<hi:weixinset id="weixin" runat="server"></hi:weixinset>%>
+<span id="ItemParams" style="display:none">
+    <asp:literal id="litItemParams"
+                 runat="server"></asp:literal>
+</span>
+<script type="text/javascript">
+    function gotoProductReview() {
+        window.location.href = 'ProductReview.aspx?ProductId=' + getParam('ProductId');
+    }
+
+    function showMsg() {
+        alert_h("赶快点击立即购买吧!");
+        return false;
+    }
+
+    $(function () {
+        $('.price em').click(function () {
+            $('.price .actionnone').css('display', 'block');
+            $(this).css("display", "none");
+        })
+        var slidesImg = $('#slides img');
+        var width = 650, height = 650;
+        if (slidesImg.length > 1) {
+            $('#slides').slidesjs({
+                width: width,
+                height: height,
+                play: {
+                    active: true,
+                    auto: true,
+                    interval: 4000,
+                    swap: true
+                }
+            });
+            $(".slidesjs-play, .slidesjs-stop, .slidesjs-previous, .slidesjs-next").remove();
+            $(".slidesjs-pagination li").css("width", function () { return 100 / slidesImg.length + "%" });
+        }
+        else {
+
+            $('#slides').css('display', 'block').html('<div style="width:100%;"><a href="javascript:;"></a></div>');
+            $('#slides div a').append(slidesImg);
+        }
+    });
+
+    function getQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return unescape(r[2]); return null;
+    }
+
+    function AddFavorite() {
+        alert_h("施工中!");
+        return false;
+        var data = {};
+        data.ProductId = getQueryString("productId");
+
+        $.post("/api/VshopProcess.ashx?action=AddFavorite", data, function (json) {
+            if (json.success === true) {
+                $("#imgFavorite").hide().css('display', 'block').addClass('select');
+                $('#addF').addClass('hide');
+                $('#addedF').removeClass('hide');
+                alert_h('收藏成功！');
+
+            }
+            else {
+                alert_h('您当前还没有登录！', function () {
+                    location.replace('/vshop/MyFavorites.aspx?returnUrl=/vshop/ProductDetails.aspx?productId=' + getParam('productId'));
+                });
+            }
+        });
+    }
+    /*抢购页面不需要加入收藏,因为传递来的是countdownId而不是productid,待完善
+    $(function () {
+        var data = {};
+        data.ProductId = getQueryString("productId");
+
+        $.post("/api/VshopProcess.ashx?action=CheckFavorite", data, function (json) {
+            if (json.success === true) {
+                $("#imgFavorite").hide().css('display', 'block').addClass('select');
+
+            }
+        });
+
+        if ($('#litHasCollected').val() == "1") {
+            $('#addF').addClass('hide');
+            $('#addedF').removeClass('hide');
+        }
+
+        //包含多个规格时，首先禁用购买和加入购物车按钮
+        //if ($(".SKUValueClass").length > 0) disableShoppingBtn(true);
+
+    });
+    */
+    if ($("#attrtable tr").length <= 0) {
+        $("#attrtable").parent().hide();
+    }
+
+    //微信分享接口开始
+    var Items = $("#ItemParams").text();
+    var SetItems = Items.split('$')[0];
+    var NoSetItems = Items.split('$')[1];
+    var title;
+    var link;
+    var imgUrl;
+    var Dec;
+    if ($.trim(SetItems.split('|')[0]) != "") {
+        imgUrl = $.trim(SetItems.split('|')[0]);
+    }
+    else {
+        imgUrl = $.trim(NoSetItems.split('|')[0]);
+    }
+    if ($.trim(SetItems.split('|')[1]) != "") {
+        title = SetItems.split('|')[1];
+    }
+    else {
+        title = NoSetItems.split('|')[1];
+    }
+    if ($.trim(SetItems.split('|')[2]) != "") {
+        Dec = SetItems.split('|')[2];
+    }
+    else {
+        Dec = $.trim(NoSetItems.split('|')[2]);
+    }
+    link = NoSetItems.split('|')[3];
+    link = $.trim(link);//修复IOS空格问题
+    WinXinShareMessage(title, Dec, link, imgUrl);
+    //微信分享接口结束
+
+</script>
+<script>
+    var str = $(".time-box").html();
+    str = str.replace(/-/g, "/");
+    function timer() {
+            var ts = new Date(str) - (new Date());//计算剩余的毫秒数  
+            var dd = parseInt(ts / 1000 / 60 / 60 / 24, 10);//计算剩余的天数  
+            var hh = parseInt(ts / 1000 / 60 / 60 % 24, 10);//计算剩余的小时数  
+            var mm = parseInt(ts / 1000 / 60 % 60, 10);//计算剩余的分钟数  
+            var ss = parseInt(ts / 1000 % 60, 10);//计算剩余的秒数  
+            dd = checkTime(dd);
+            hh = checkTime(hh);
+            mm = checkTime(mm);
+            ss = checkTime(ss);
+            $(".time-box").eq(0).html("还剩：<b>" + dd + "</b>" + "天" + "<b>" + hh + "</b>" + "时" + "<b>" + mm + "</b>" + "分" + "<b>" + ss + "</b>" + "秒");
+            if (ts <= 0) {//如果时间到了
+                clearInterval(coundDown);//清除计时器
+            }
+        
+
+    }
+    function checkTime(i) {
+        if (i < 10) {
+            i = "0" + i;
+        }
+        return i;
+    }
+    var coundDown;
+    $(function () {
+        timer();
+        coundDown = setInterval("timer()", 1000);
+    });
+</script>
+<input type="hidden" runat="server" clientidmode="Static" id="litGroupbuyId" />
+<script src="/utility/vproduct.helper.js" type="application/javascript"> </script>
+<script src="/script/swipe.js"></script>

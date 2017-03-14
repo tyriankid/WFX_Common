@@ -1,0 +1,59 @@
+<hi:common_header runat="server" />
+		<!-- 顶部信息导航 -->
+		<div class="intergray-top-nav">
+			<ul>
+				<li><a href="Default.aspx"><i class="icon-home3"></i></a></li>
+				<li><a href="#">积分兑换</a></li>
+				<li><a href="MemberCenter.aspx"><i class="icon-user"></i></a></li>
+			</ul>
+		</div>
+		<!-- end顶部信息导航 -->
+
+		<!-- 页面内容 -->
+		
+			<!-- 积分信息 -->
+			<!-- <section class="intergray-info">
+				<ul>
+					<li>用户：<span>qwqwqw</span></li>
+					<li>总积分：<span>15000</span></li>
+					<li>可用积分：<span>10000</span></li>
+					<li>已用积分：<span>5000</span></li>
+				</ul>
+			</section> -->
+			<!-- end积分信息 -->
+
+			<!-- 轮播图
+			<section class="slider">
+				    <ul>
+				        <li><a href="#" target="_blank"><img src="/images/slider1.jpg" alt=""></a></li>
+			     	 	<li><a href="#" target="_blank"><img src="/images/slider2.jpg" alt=""></a></li>
+				 	</ul>
+			</section>
+
+			end轮播图 -->
+            <div class="intergray-bg">
+			<!-- 热兑品类 -->
+			<section class="intergray-hot">
+				<span class="intergray-txt">热兑品类</span>
+				<ul>
+					<!--<img src="/images/hot1.jpg" alt=""><span>果粉专区</span>-->
+                    <hi:vshoptemplatedrepeater id="rptGiftTop_Hot" templatefile="/Tags/skin-Common_DefaultGiftHot.ascx" runat="server" />
+				</ul>
+			</section>
+			<!-- end热兑品类 -->
+			
+			<!-- 商品列表 -->
+			<section class="intergray-products">
+				<span class="intergray-txt">商品列表</span>
+				<ul>
+						<hi:vshoptemplatedrepeater id="rptGiftTop_All" templatefile="/Tags/skin-Common_DefaultGiftAll.ascx" runat="server" />
+				</ul>
+			</section>
+			<!-- end商品列表 -->
+            </div>
+        <div class="pagination">
+            <%<UI:Pager runat="server" ShowTotalPages="false" DefaultPageSize="50" ID="pager" />%>
+        </div>
+		<!-- end页面内容 -->
+<hi:common_footer runat="server" />
+

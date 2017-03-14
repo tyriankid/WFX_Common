@@ -1,0 +1,56 @@
+body{font-family: "微软雅黑"}
+.area{width: 100%; height: 200px; border: #EEE 1px solid}
+
+.emoji-container{  
+  position: relative;
+}
+.emoji-container .emoji-tbtn{width: 20px; height: 20px; cursor: pointer;}
+.emoji-container .emoji-inner{
+  display:block;
+  width: 100%;
+  background-color: #fff;
+  z-index: 444;
+}
+.emoji-container .emoji-nav {
+  width: 100%;
+  background: #f8f8f8;
+  margin: 0; 
+  padding: 0;
+} 
+.emoji-container .emoji-nav li{
+  width:20%;
+  float:left;
+  text-align: center; 
+  list-style: none; 
+  display: block;
+  color: #666;
+  background-color: #fff;
+  font-size: 12px;
+  line-height: 38px;
+  cursor: pointer;
+}
+.emoji-container .emoji-nav li:last-child{border:0;}
+.emoji-container .emoji-nav li.on{
+  color: #666;
+  background: #e3e3e3;
+}
+.emoji-container .emoji-content {
+
+}
+.emoji-container .emoji-content > img{
+  float: left;
+  width: 25px;
+  height: 25px;
+  text-align: center;
+  cursor: pointer;
+  margin: 3px;
+  vertical-align:middle;
+  box-sizing: border-box;  
+}
+.emoji-container .emoji-content > img:hover{border: #FFF 1px solid}
+.emoji-img{  width: 25px;  height: 25px;}
+
+
+.emoji-container.no-bar .emoji-nav{width: 0;border: 0}
+.emoji-container.no-bar .emoji-content{margin-left: 5px;}
+

@@ -1,0 +1,34 @@
+﻿@charset "utf-8";
+/* CSS Document */
+.list-rank a { display: block; color: #999; width: 20%;      float: left; font-size: 16px; text-align: center;}
+.list-rank { position: relative; background-color: #FFF; margin-top: 10px; padding: 10px 50px 10px 0; border-bottom: 1px solid #F0F0F0;}
+.list-rank div { width: 100%; float: left; text-align: center; height: 22px; line-height: 22px; border-left: 1px solid #F0F0F0;}
+.list-rank a:first-child div{ border-left:0; }
+.list-rank div.sort-action { padding: 0; height: 42px;background:#f90 url(../images/icon-sousuo.png) center center no-repeat; background-size: 30px; width: 50px; border: 0;}
+.list-rank div span.glyphicon { display: none; }
+.list-rank div span.glyphicon { font-size: 12px; }
+.list-rank div.show { /* width: 100%; */ }
+.list-rank div.show span.glyphicon { display: inline; }
+.list-rank div.up, .list-rank div.down{ color:#f90; }
+.list-rank div span.glyphicon-arrow-up { display: inline; color:#F0F0F0; }
+.list-rank div.down span.glyphicon-arrow-up { display: none;}
+.list-rank div.up span.glyphicon-arrow-up { display: inline; color:#f90; }
+.list-rank div.down span.glyphicon-arrow-down { display: inline; color:#f90; }
+.list-sort-panel .panel-body { padding: 10px 10px 5px 10px; }
+.list-sort-panel .panel-body a { padding: 4px 15px; float: left; margin: 0 10px 10px 0; border: 1px solid #D8D8D8; /* background-color: #F0F0F0; */ font-size: 12px; border-radius: 23px; color: #434a54; }
+.list-sort-panel .panel-body a.active { border: 1px solid #F6BB42; }
+.list-sort-panel .jt { position: absolute; font-size: 30px; color: #fff; top: -18px; right:15px; }
+
+.list-rank a.search_soso{  width: 50px;  border:0; position:absolute; top:0; right:0; }
+.list-rank div span.glyphicon{ font-size:12px;  }
+.list-rank div span.glyphicon-search{ font-size:25px; color:#FFF; line-height:42px; }
+
+.input-group.form-search .search-query{ height: 35px; border:1px solid #f90; }
+
+
+@media only screen and (max-width:240px) {
+    .list-rank a {font-size: 12px; }
+}
+@media only screen and (max-width:400px) {
+    .list-rank a {font-size: 14px; }
+}

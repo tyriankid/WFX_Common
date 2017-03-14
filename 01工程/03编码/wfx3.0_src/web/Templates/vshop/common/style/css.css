@@ -1,0 +1,309 @@
+﻿/*HiShop-HiWeishang-2014*/
+/* 全局开始 */
+body { width: 100%; max-width: 650px; font-family: "Arial", "Microsoft YaHei", "Tahoma"; font-size: 12px; margin: 0 auto; padding-bottom: 50px; background-color: #EFEFEF; }
+hr { margin: 10px 0; }
+em { font-style: normal; }
+.mt10 { margin-top: 10px; }
+.mt20 { margin-top: 20px; }
+/*** title ***/
+ul.con-title li, ul.orders-title li { width: 50%; float: left; text-align: center; /* line-height: 40px; */ cursor: pointer; position: relative; bottom: -2px; padding: 8px 0; border-bottom: 2px solid #ddd; background-color: #fff; }
+ul.con-title li a, ul.orders-title li a { display: block; border-right: 1px solid #E5E5E5; height: 24px; line-height: 24px; font-size: 14px; position: relative; top: -2px; }
+ul.con-title li:last-child a, ul.orders-title li:last-child a { border-right: 0; }
+ul.orders-title li.activenum, ul.con-title li.activenum { border-bottom: 2px solid #da4453; }
+ul.orders-title li.activenum a, ul.con-title li.activenum a { color: #da4453; }
+
+ul.memberorders-title li{ width: 33.33333%;}
+/*** title ***/
+
+/*commission-details start*/
+.commissioninfo, .cash-records .recordinfo { padding-top: 10px; cursor: pointer; }
+.commissioninfo .left { float: left; font-size: 12px; margin-left: 5px; }
+.commissioninfo .left div, .commissioninfo .right div { line-height: 30px; }
+.commissioninfo .right em { font-style: normal; }
+.commissioninfo .right { float: right; margin-right: 13px; font-size: 12px; }
+.commissioninfo .right strong.text { color: #8cc152; }
+.cash-records .recordinfo { font-size: 12px; margin-left: 5px; }
+.cash-records .recordinfo p strong { font-size: 12px; font-weight: 400; }
+.cash-records .recordinfo p span { float: right; margin-right: 10px; }
+.cash-records .recordinfo p span em { font-size: 16px; font-style: normal; font-weight: 600; color: #8cc152; }
+/*commission-details end*/
+
+/*all-orders start*/
+ul.orders-title { }
+.active a { color: #da4453; }
+.ordersinfo p { font-size: 12px; padding-left: 5px; padding-bottom: 5px; margin: 0; }
+.ordersinfo strong { float: right; padding-right: 10px; }
+.ordersinfo strong em { font-style: normal; color: #8cc152; }
+.ordersinfo strong i { font-style: normal; color: #999; }
+/*all-orders end*/
+
+.memberCenter .user-photo { width: 65px; height: 65px; position: absolute; top: 10px; left: 10px !important; border-radius: 50%; background-size: 45%; text-align: center; line-height: 120px; border: 3px solid rgba(0,0,0,0.1); }
+.memberCenter .user-photo a { width: 100%; height: 100%; }
+.memberCenter .user-photo a img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 50%; }
+.memberCenter .user-photo span { width: 18px; height: 18px; background: #fb5959; position: absolute; bottom: 10px; right: -5px; border-radius: 50%; text-align: center; line-height: 20px; color: #fff; font-size: 12px; }
+.user-arrow { position: absolute; bottom: 23px; right: 10px; width: 30px; height: 30px; background: url(../images/icon-arrow.png) right center no-repeat; background-size: 15px; }
+.memberCenter .user-name { width: 100%; color: #666; /* text-align: center; */ font-size: 16px; /* margin-top: 115px; */ position: absolute; left: 85px; top: 20px; padding: 0; color: #FFF; font-weight: bold; }
+.memberCenter .user-name span { display: block; font-size: 14px; font-weight: normal; padding-top: 5px; }
+.jifen-box { position: absolute; right: 25px; top: 40px; color: #FFF; }
+.memberCenter .user-tags { width: 100%; height: 60px; background: #FFF; border-bottom: 1px solid #E2E2E2; position: absolute; bottom: 0; left: 0; margin-bottom: 0; }
+.memberCenter .user-tags li { width: 25%; height: 100%; border-left: 1px solid #E2E2E2; margin-left: -1px; float: left; }
+.memberCenter .user-tags li a { width: 100%; padding-top: 35px; float: left; line-height: 20px; text-align: center; color: #3333; background-size: 30px; background-position: center 5px; background-repeat: no-repeat; }
+.memberCenter .user-tags li a.order { background-image: url("../images/user-tags-1.png"); }
+.memberCenter .user-tags li a.pay { background-image: url("../images/user-tags-2.png"); }
+.memberCenter .user-tags li a.delivery { background-image: url("../images/user-tags-3.png"); }
+.memberCenter .user-tags li a.return { background-image: url("../images/user-tags-4.png"); }
+.memberBottom { width: 100%; padding-top: 10px; border-top: 1px solid #e1e1e1; border-bottom: 1px solid #e1e1e1; }
+.memberBottom .bottom-content { width: 100%; height: 50px; text-indent: 50px; line-height: 50px; font-size: 16px; }
+.memberBottom .bottom-content a { width: 100%; height: 100%; float: left; color: #323232; font-size: 2rem; border-bottom: 1px solid #e1e1e1; }
+.memberBottom .bottom-content a.border0 { border-bottom: 0; }
+.memberBottom .bottom-content a.userInfo { background: #fff url("../images/user-img-1.png") 15px center no-repeat; background-size: auto 56%; }
+.memberBottom .bottom-content a.collect { background: #fff url("../images/user-img-2.png") 15px center no-repeat; background-size: auto 56%; }
+.memberBottom .bottom-content a.refer { background: #fff url("../images/user-img-3.png") 15px center no-repeat; background-size: auto 56%; }
+.memberBottom .bottom-content a.service { background: #fff url("../images/user-img-4.png") 15px center no-repeat; background-size: auto 56%; }
+.memberBottom .bottom-content a.red { background: #fff url("../images/user-img-5.png") 15px center no-repeat; background-size: auto 56%; }
+.memberBottom .bottom-content a.address { background: #fff url("../images/user-img-6.png") 15px center no-repeat; background-size: auto 56%; }
+.memberBottom .bottom-content a.exit { background: #fff; color: #ccc; text-align: center; }
+.red-bg { background: #fff url("../images/red-bg.png") no-repeat; background-size: auto 100%; float: left; width: 100%; }
+.red-content { width: 100%; float: left; }
+.red-content li { float: left; overflow: hidden; }
+.red-content li .money { color: #ff223e; font-size: 16px; text-align: center; width: 100%; }
+.red-content li .money span { font-size: 32px; font-weight: bold; }
+.red-content li .money-info { text-align: center; color: #666666; }
+.red-content li .shop-info { width: 100%; padding-left: 30px; }
+.red-content li .shop-info h1 { width: 100%; line-height: 28px; color: #323232; float: left; font-size: 16px; }
+.red-content li .shop-info span { width: 100%; color: #666; float: left; }
+.red-content li .shop-info em { width: 100%; color: #aaa; float: left; }
+.distributor-head .order-money { width: 100%; height: 80px; position: absolute; bottom: 0; left: 0; background: #FFF; /* border-bottom: 1px solid #DDD; */ box-shadow: #DDD 1px 1px 2px; padding: 10px 0; margin-bottom: 0; }
+.distributor-head .order-money li { width: 33.33333%; height: 100%; float: left; text-align: center; border-left: 1px solid #EEEEEE; margin-left: -1px; }
+.distributor-head .order-money li a { width: 100%; text-align: center; font-size: 16px; padding-top: 10px; float: left; color: #888; }
+.distributor-head .order-money li a i { width: 100%; float: left; text-align: center; color: #FF6666; padding-top: 5px; font-style: normal; }
+.distributor-head .order-money li.yellow a i { color: #FFCC00; }
+.distributor-head .order-money li.blue a i { color: #6699CC; }
+
+
+.distributor-head2 .order-money { background: #CC3735; }
+.distributor-head2 .order-money li {  border-left: 1px solid #EEEEEE; width: 49.9%; }
+.distributor-head2 .order-money li a {  color: #FFF; }
+.distributor-head2 .order-money li a i { width: 100%; float: left; text-align: center; color: #FFF; padding-top: 5px; font-style: normal; }
+.distributor-head2 .order-money li.yellow a i { color: #FFF; }
+.distributor-head2 .order-money li.blue a i { color: #FFF; }
+
+
+.order-img-tags { width: 100%; background: #fff; margin: 10px 0; /* border-top: 1px solid #EEEEEE; */ box-shadow: #DDD 1px 1px 2px; display: inline-block; }
+.order-img-tags li { width: 33.3333333333%; height: 135px; border-left: 1px solid #EEEEEE; border-top: 1px solid #EEEEEE; margin-left: -1px; float: left; }
+.order-img-tags li a { width: 100%; float: left; text-align: center; padding-top: 78px; padding-bottom: 10px; font-size: 16px; background-size: 50px; background-position: center 18px; background-repeat: no-repeat; }
+.order-img-tags li a span { display: block; font-size: 12px; color: #CDCDCD; padding-top: 3px; }
+.order-img-tags li a span i { font-style: normal; color: #F60; }
+.order-img-tags li a.shop-info { background: url("../images/shop-img-1.png") center 18px no-repeat; background-size: 50px; }
+.order-img-tags li a.shop-underling { background-image: url("../images/shop-img-2.png"); /* background-size: 70px; */ }
+.order-img-tags li a.shop-brokerage { background: url("../images/shop-img-3.png") center 18px no-repeat; background-size: 50px; }
+.order-img-tags li a.shop-qr { background: url("../images/shop-img-4.png") center 18px no-repeat; background-size: 50px; }
+.order-img-tags li a.shop-card { background: url("../images/shop-img-5.png") center 18px no-repeat; background-size: 50px; }
+.order-img-tags li a.shop-order { background: url("../images/shop-img-6.png") center 18px no-repeat; background-size: 50px; }
+.order-img-tags li a.shop-friend { background: url("../images/shop-img-7.png") center 18px no-repeat; background-size: 50px; }
+.order-img-tags li a.shop-top { background: url("../images/shop-img-8.png") center 18px no-repeat; background-size: 50px; }
+.order-img-tags li a.shop-visit { background: url("../images/user-img-9.png") center 18px no-repeat; background-size: 50px; }
+.order-img-tags li a.shop-underorder { background: url("../images/user-img-10.png") center 18px no-repeat; background-size: 50px; }
+.order-img-tags li a.shop-no { background: url("../images/shop-img-10.png") center 18px no-repeat; background-size: 50px; color: #ccc; }
+.money-top { width: 100%; background: #ff2d4b; height: auto; position: relative; padding: 10px 0 10px 15px; /* padding-top: 20px; */ font-size: 16px; background: #FFF; box-shadow: #DDD 1px 1px 2px; }
+.money-top a { display: inline-block; /* width: 100%; */ /* height: 100%; */ color: #555; }
+.money-top a .show-money { /* width: 100%; */ /* float: left; */ margin-top: 20px; font-size: 28px; color: #CC3735; }
+.money-top a em { position: absolute; right: 30px; top: 40%; font-weight: bold; color: #77341e; font-size: 24px; font-family: "Lucia Console"; }
+.money-middle { /* height: 100px; */ /* padding-top: 15px; */ /* background: #FFF; */ }
+.money-middle a .show-money { /* margin-top: 15px; */ }
+.memberBottom .bottom-content a.other { background: #fff; color: #333333; line-height: 50px; position: relative; }
+.memberBottom .bottom-content a.other span { color: #eb533d; font-size: 30px; position: absolute; top: 10px; left: -40px; }
+.alipay { width: 100%; /* padding: 10px 20px; */ display: inline-block; /* padding: 0 20px; */ }
+.alipay h1 { font-size: 18px; margin: 0; padding: 20px 0 0 20px; }
+.alipay .alipay-info { width: 100%; background-color: #fff; overflow: hidden; }
+.alipay .alipay-info li { width: 100%; font-size: 16px; /* margin-top: 20px; */ height: 60px; line-height: 60px; float: left; border-bottom: 1px solid #E5E5E5; }
+.alipay .alipay-info li label { width: 36%; text-align: right; float: left; }
+.alipay .alipay-info li input { width: 64%; border: 0; float: left; /* border-bottom: 1px solid #999; */ background: none; text-indent: 10px; }
+.alipay .alipay-btn { width: 100%; height: 50px; line-height: 50px; text-align: center; float: left; margin-top: 10px; /* padding: 0 20px; */ }
+.alipay .alipay-btn a { width: 100%; height: 100%; background: #CC3734; float: left; color: #fff; font-size: 16px; border-radius: 3px; }
+.alipay .alipay-wechatpay { width: 100%; height: 50px; line-height: 50px; text-align: center; color: #fff; font-size: 16px; background: #3A8AD8; display: inline-block; margin-top: 15px; /* margin: 10px 20px 0 20px; */ border-radius: 3px; }
+.alipay p { width: 100%; /* height: 50px; */ /* line-height: 30px; */ /* text-indent: 10%; */ color: #999; padding: 10px 0 20px 20px; }
+/*--------------------店铺管理-----------------*/
+.tixian-box { background: #CC3735; color: #FFF; position: absolute; top: 70px; width: 100%; height: 130px; max-width: 650px; margin: 0 auto; padding: 20px 10px; font-size: 16px; }
+.tixian-box p { }
+.tixian-box p.tixian-mney { padding-top: 25px; font-size: 28px; }
+.tixian-mx { background: url(../images/icon-tixian.png) right top no-repeat; background-size: 20px; float: right; color: #FFF; padding-right: 30px; margin-right: 10px; }
+.tixian-btn { float: right; color: #E49593; border: 1px solid #E49593; text-align: center; padding: 8px 28px; border-radius: 5px; margin-right: 10px; font-size: 16px; }
+.withdraw-btn { float: right; color: yellow; border: 1px solid yellow; text-align: center; padding: 8px 28px; border-radius: 5px; margin-right: 10px; font-size: 16px; }
+.tixian-box-nopos { position: static; }
+/*--------------------佣金提现-----------------*/ 
+.yongjin-box, .table-nr-box { padding: 0 10px; background: #FFF; }
+.table-nr-left { width: 100%; font-size: 14px; background: #FFF; }
+.table-nr-left th { /*font-size:16px;*/ font-weight: bold; white-space: nowrap; }
+.table-nr-left th, .table-nr-left td { text-align: left; line-height: 40px; border-bottom: 1px solid #E5E5E5; }
+.table-nr-left td .money { color: #CF4846; }
+.alipay-btn-box { padding: 0 20px; }
+.empty { padding: 20px; }
+.red { color: #CF4846; }
+/*--------------------佣金提现-----------------*/ 
+
+ /*-----------店铺订单------*/
+.fenxiao-list { padding: 0 10px; background: #FFF; font-size: 14px; border-top: 2px solid #E5E5E5; border-bottom: 1px solid #E5E5E5; }
+.fenxiao-list li { position: relative; width: 100%; min-height: 50px; }
+.fenxiao-list li .imgbox { height: 50px; width: 50px; position: absolute; top: 15px; left: 0; }
+.fenxiao-list li .imgbox img { height: 50px; width: 50px; }
+.fenxiao-list li .nrbox {margin-left: 60px; height: auto; display: block; border-bottom: 1px solid #E5E5E5;padding: 15px 0;}
+.fenxiao-list li:last-child .nrbox { border-bottom: 0; }
+.fenxiao-list li .nrbox .tt { }
+.fenxiao-list li .nrbox .tt b { font-size: 16px; }
+.fenxiao-list li .nrbox .tt span { padding-left: 15px; color: #AEAEAE; }
+.fenxiao-list li .nrbox p { color: #8D8D8D; padding-top: 10px; }
+.fenxiao-list li .nrbox p span { padding-right: 10px; }
+.fenxiao-list li .nrbox p span:last-child { padding-right: 0; }
+/*-----------店铺订单------*/
+
+
+.ask-box { padding: 10px 0 0 0; }
+.ask-box .goods-box { border-bottom: 1px solid #E5E5E5; border-top: 1px solid #E5E5E5; }
+.ask-box .goods-box:last-child { margin-top: 0; padding-bottom: 10px; }
+.ask-box .goods-box a.link-del { background-position: top center; }
+.ask-answer { border-top: 1px solid #E5E5E5; }
+.ask-answer .ask, .ask-answer .answer { background-position: left 5px; background-repeat: no-repeat; background-size: 24px; height: auto; line-height: 24px; font-size: 14px; padding: 5px 0 5px 30px; }
+.ask-answer .ask { margin-top: 10px; background-image: url(../images/icon-ask.png); }
+.ask-answer .answer { background-image: url(../images/icon-answer.png); }
+.address-kuang { }
+.address-box { border-bottom: 1px solid #E5E5E5; border-top: 1px solid #E5E5E5; background: #FFF; padding: 15px; }
+.address-box .font-xl em { float: right; padding-right: 60px; }
+.font-m { padding-top: 10px; }
+.keu-list { }
+.keu-list li { border-bottom: 1px solid #E7E7E7; height: auto; font-size: 16px; position: relative; }
+.keu-list li a { display: block; height: 70px; line-height: 70px; width: 100%; background: #FFF url(../images/icon-qq.png) 10px center no-repeat; background-size: 35px; padding-left: 60px; }
+.keu-list li a em { width: 10px; height: 15px; display: inline-block; background: url(../images/icon-arrow2.png) right center no-repeat; position: absolute; top: 30px; right: 10px; }
+.kefu-btn-box { padding: 20px; }
+.kefu-btn-tell { display: block; width: 100%; height: 40px; line-height: 40px; text-align: center; background: #CC3734; float: left; color: #fff; font-size: 16px; border-radius: 3px; }
+/* tui-box */
+.tui-box { background: #FFF; height: auto; padding: 20px; clear: both; }
+.tui-self { border-bottom: 1px solid #E7E7E7; text-align: center; padding-bottom: 20px; }
+.tui-self a { display: block; }
+.tui-self .tt { color: #353535; font-size: 20px; padding: 10px 0; }
+.tui-self p { padding-bottom: 10px; font-size: 14px; color: #6C6C6C; }
+.tui-self .imgbox { }
+.tui-self .imgbox img { width: 80px; height: 80px; border-radius: 80px; }
+.ewm-box { position: relative; height: auto; text-align: center;  /* margin-top: 20px; */ padding: 30px 40px; }
+.ewm-box .ewm { width: 100%; }
+.ewm-box .ewm-logo { position: absolute; width: 15%; height: 15%; top: 50%; left: 50%; margin: -7.5% 0 0 -7.5%; background: #FFF; }
+/* tui-box */
+
+/* .share-box */
+.share-box { padding-bottom: 15px; }
+.share-box .tt { font-size: 14px; text-align: left; padding: 15px; }
+.share-box .friendscircle { background: #FFF; border-bottom: 1px solid #E5E5E5; }
+.share-box .firends-circle { border-bottom: 1px solid #E5E5E5; margin-bottom: 0; margin: 0 15px; padding: 10px 0 20px 0; }
+.share-box .firends-circle:last-child { border-bottom: 0; }
+.share-box .firends-circle .goods { font-size: 16px; line-height: 24px; color: #6C6C6C; padding: 10px 0; }
+/* share-box */
+/*-------------------------coupon-box-------------------------------*/
+.coupon-box { padding: 0 10px; }
+.coupon-list { }
+.coupon-list li { margin-bottom: 20px; background: #FFF; clear: both; position: relative; overflow: hidden; }
+.coupon-left { width: 50%; background: #CC3432 url(../images/juan-left.png) left center no-repeat; float: left; color: #FFF; background-size: 20px; height: 90px; }
+.coupon-left h1 { font-size: 10px; /* padding-left: 20px; */
+margin: 20px 0 0 20px; /* height: 60px; */
+white-space: nowrap; }
+.coupon-left h1 b { float: left; font-size: 24px; padding: 5px; font-family: fantasy; font-weight: normal; }
+.coupon-left h1 span { white-space: nowrap; font-weight: normal; padding-bottom: 5px; display: block; font-size: 12px; }
+.coupon-left h1 i { display: block; font-weight: normal; font-style: normal; }
+.coupon-left p { font-size: 10px; /* text-align: right; */
+padding-left: 20px; clear: both; }
+.coupon-right { width: 50%; float: left; background: url(../images/juan-right.png) left center repeat-y; height: 90px; }
+.coupon-right h2 { font-size: 14px; margin: 10px 0 5px 10px; }
+.coupon-right em {color: #CC3432;
+    font-size: 15px;line-height: 18px;
+    padding-left: 10px;
+    display: block;
+}
+.coupon-right i { font-style: normal; padding: 5px 0 0 10px; display: block; }
+.coupon-right i.red { color: #989898; }
+.coupon-list1 li {
+    margin-top: 10px;
+    clear: both;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 2px 2px 5px #BABABA;
+    -moz-box-shadow: 2px 2px 5px #BABABA;
+    -webkit-box-shadow: 2px 2px 5px #BABABA;
+}
+.coupon-list1 li p {
+    width: 100%;
+    height: 2em;
+    line-height: 2em;
+    background-color: #fff;
+    color: #464646;
+    padding-left: 10px;
+}
+
+@media only screen and (min-width:400px) {
+.coupon-left h1 b { font-size: 35px; padding: 0 5px; /* width:70px; */ text-align: center; }
+.coupon-left h1 span { /* padding-top: 5px; */ }
+.coupon-right h2 { font-size: 18px; }
+.coupon-left h1 i { font-size: 16px; font-weight: bold; }
+.coupon-left p { margin-top: 10px; font-size: 12px; }
+.coupon-right { padding-left: 10px; }
+}
+ @media only screen and ( min-width:500px) {
+.coupon-left { width: 40%; }
+.coupon-right { width: 60%; }
+}
+/*-------------------------coupon-box-------------------------------*/
+
+
+/*--------------------manager-box---------------*/
+.manager-box { }
+.manager-bg { height: 100px; width: 100%; background: url(../images/zhanggui_bg.png) no-repeat; background-size: cover; }
+.manager-photo { text-align: center; margin-top: -40px; }
+.manager-photo img { width: 80px; height: 80px; border-radius: 40px; border: 2px solid #FFF; }
+.manager-photo h1 { margin: 15px 0 30px 0; font-size: 16px; color: #555555; }
+.manager-data { padding: 0 15px 0 15px; margin: 0; background-color: #FFF; border-top: 1px solid #E5E5E5; border-bottom: 1px solid #E5E5E5; }
+.manager-data li { border-bottom: 1px solid #F3F3F3; height: 50px; line-height: 50px; background: url(../images/icon-arrow2.png) right center no-repeat; background-size: 9px; }
+.manager-data li:last-child { border-bottom: 0; }
+.manager-data li em { font-size: 14px; font-weight: 600; display: block; float: left; padding: 0 0 0 30px; }
+.manager-data li.phone em { background: url(../images/icon-tel.png) left center no-repeat; background-size: 25px; }
+.manager-data li.name em { background: url(../images/icon-name.png) left center no-repeat; background-size: 25px; }
+.manager-data li.wx em { background: url(../images/icon-wx.png) left center no-repeat; background-size: 25px; }
+.manager-data li.myqq em { background: url(../images/icon-myqq.png) left center no-repeat; background-size: 25px; }
+.manager-data li.code em { background: url(../images/icon-code.png) left center no-repeat; background-size: 25px; }
+.manager-data li input { float: right; width: 60%; padding: 0 20px 0 0; margin: 0; text-align: right; border: 0; color: #555; font-weight: 500; height: 50px; line-height: 50px; border-radius: 0; border-bottom: 1px solid #E5E5E5; background:none;}
+.manager-data li input:last-child{ border-bottom: 0; }
+.manager-data li input:focus{ border-bottom:1px solid #3BAFDA;}
+.btn-save-box { padding: 20px; }
+.btn-save { display: block; width: 100%; background-color: #CC3735; border: 0; font-size: 16px; font-weight: bold; padding: 10px; color: #FFF; border-radius: 5px;}
+
+ @media only screen and ( max-width:320px) {
+.manager-data li input { width: 50%; white-space: nowrap;}
+}
+
+
+.manager-mybox{border-top: 1px solid #E5E5E5; border-bottom: 1px solid #E5E5E5; margin:20px 0; padding:15px;background-size: 9px;  height: auto; background:#FFF;}
+.manager-my{ background: url(../images/icon-arrow2.png) right center no-repeat;background-size: 9px;  height: auto;}
+.manager-my .my-photo{
+    width: 60px;
+    height: 60px;
+    float: left;
+    margin-right: 15px;
+}
+.manager-my h1{
+    margin: 0;
+    font-size: 16px;
+    padding: 10px 0 8px 0;
+}
+.manager-my h1 em{
+    font-size: 14px;
+    color: #A0A0A0;
+    font-weight: normal;
+    padding-left: 5px;
+}
+.manager-my p{ color:#A0A0A0; font-size: 14px;}
+/*--------------------manager-box---------------*/
+
+
+/*BigWheel*/ 
+#content2{ background:red; padding:15px;}
+.wheel div{ width:260px; height:260px; overflow:hidden; margin:0 auto; background:url(../images/process/p_y.png) no-repeat 5px 215px;}
+.w_exp{ background:#fff8b2; border-radius:5px; padding:5px;moz-box-shadow:2px 2px 1px #cd7203; -webkit-box-shadow:2px 2px 1px #cd7203; box-shadow:2px 2px 8px #cd7203;margin-bottom:10px;}
+.w_exp .w_dashed{ border:1px dotted #e68906; border-radius:5px; padding:15px; }
+.w_exp .w_dashed h2{ font-size:16px;}

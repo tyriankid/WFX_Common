@@ -1,0 +1,6 @@
+C:\project\WFX_Common\01工程\03编码\wfx3.0_src\Hishop.Weixin.MP\bin\Debug\Hishop.Weixin.MP.dll
+C:\project\WFX_Common\01工程\03编码\wfx3.0_src\Hishop.Weixin.MP\bin\Debug\Hishop.Weixin.MP.pdb
+C:\project\WFX_Common\01工程\03编码\wfx3.0_src\Hishop.Weixin.MP\bin\Debug\Newtonsoft.Json.dll
+C:\project\WFX_Common\01工程\03编码\wfx3.0_src\Hishop.Weixin.MP\obj\x86\Debug\Hishop.Weixin.MP.csprojResolveAssemblyReference.cache
+C:\project\WFX_Common\01工程\03编码\wfx3.0_src\Hishop.Weixin.MP\obj\x86\Debug\Hishop.Weixin.MP.dll
+C:\project\WFX_Common\01工程\03编码\wfx3.0_src\Hishop.Weixin.MP\obj\x86\Debug\Hishop.Weixin.MP.pdb

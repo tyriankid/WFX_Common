@@ -1,0 +1,199 @@
+﻿ <hi:common_header runat="server"/>
+<style>  
+    .pbox-select .pbox-select-border{ border:1px solid #DEDEDE;}
+    .pbox.pbox-select{ margin:0 0 10px 0; background:#FFF; border-bottom:1px solid #DEDEDE; padding: 10px;} 
+     .btn-warning {background-color: #D40000;  border-color: #D40000;}
+     .pbox-select .pbox-select-border{ height: 30px; }
+     .input-group-btn .btn{    padding: 4px 12px;}
+     .lie .kbtn{ height:25px; border:1px solid #DEDEDE;}
+     .order-box{ padding-top:10px;}
+     .order-box i{ padding-left:10px; color:#666; font-style:normal; font-size:12px;}
+     .order-box i:first-child{ padding-left:0; }
+     .order-box i i{ color:green;}
+    .all-orders{ border-bottom:1px solid #DEDEDE;}
+    .well.member-orders-nav{ border-top:1px solid #DEDEDE; padding:10px; margin-bottom:0;}
+    .well.member-orders-nav .nav-title{ font-weight:normal; font-size:14px; line-height:24px; color:#666;}
+    .member-orders-nav p{ font-size:12px; line-height:20px; font-weight:normal; display:block; min-height:24px;}
+    .nav-title-left{ width:100%;}
+    .member-orders-nav p .fr-left{ float:left; }
+    .member-orders-nav p .fr-right{ float:right; text-align:right; font-size:12px; }
+     .nav-title{}
+    .member-orders-nav p.name-hr{ border-bottom:1px dashed #F0F0F0; padding-bottom:5px; white-space:normal; overflow:hidden;}
+</style>
+<div id="datePlugin"></div>
+
+  <ul class="clearfix orders-title title_bg">
+        <li class="activenum"><a href="?status=0">全部订单<asp:Literal ID="litallnum" runat="server"></asp:Literal></a></li>
+        <li><a href="?status=5">已成交<asp:Literal ID="litfinishnum" runat="server"></asp:Literal></a></li>
+      </ul>
+    <div class="pbox pbox-select">
+        <div class="pbox-select-border">
+            <input type="text" id="txtKeywords" placeholder="" />
+            <span class="input-group-btn">
+
+                <button type="submit" class="btn btn-warning"  data-type="last" onclick="searchs()" >搜索</button>
+            </span>
+            
+        </div>
+
+
+	    <div class="lie" style="margin:5px 0;height:20px;line-height:20px">
+            <input id="start" class="kbtn" style="float:left;width:45%" placeholder="起始日期"/>
+            <p style="float:left;margin-left:2.5%;">至</p>
+            <input id="end" class="kbtn" style="float:right;width:45%" placeholder="结束日期"/>
+        </div>
+    
+        <div class="order-box">
+            <p><i>订单总额：<i>￥<asp:literal runat="server" id="orderTotalPrice"></asp:literal></i></i> 
+                <i>订单数量：<i><asp:literal runat="server" id="orderTotalCount"></asp:literal></i></i>
+            <i>下属数量：<i><asp:literal runat="server" id="underDistributorsCount"></asp:literal></i></i></p>
+        </div>
+    </div>
+<!-- 日期弹出层-->
+
+
+     <div id="empty" style=" text-align:center;">
+        <img src="/Utility/pics/nonestore.gif" />
+     </div>
+
+      <div class="all-orders" id="products">
+       <hi:vshoptemplatedrepeater id="vshoporders" templatefile="/Tags/Skin-Common_UnderOrders.ascx" runat="server" />
+    </div>
+
+
+<div id="pager" style="margin-bottom:50px"></div>
+<input type="hidden" clientidmode="Static" value="" runat="server" id="txtTotal" />
+
+<link rel="stylesheet" href="/Utility/DateSelect/common.css">
+<script src="/Utility/DateSelect/iscroll.js"></script>
+<script src="/Utility/DateSelect/date.js"></script>
+
+<script src="/Utility/common.js" type="text/javascript"></script>
+<script src="/Utility/pager.js" type="text/javascript"></script>
+
+<script>
+    $('#start').date();
+    $('#end').date();
+
+        vshopPager('pager', $('#txtTotal').val(), 1, 5);
+        //禁用右上角菜单
+        document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+            WeixinJSBridge.call('hideOptionMenu');
+        });
+
+        function searchs() {
+            var key = $("#txtKeywords").val();
+            var str = window.location.search;
+            //根据空格过滤用户的搜索信息,并拼成参数的形式重新载入页面
+            key = trim(key);
+            var keys = key.split(/\s/);
+            var strs = "?keywords=";
+            if (key.length > 0) {
+                for (var i = 0; i < keys.length; i++) {
+                    strs += keys[i] + ",";
+                }
+            }
+            else {
+                strs = "";
+            }
+            strs = strs.substring(0, strs.length - 1);
+            //起始日期和结束日期
+            var dateStart = key.length > 0 ? "&dateStart=" : "?dateStart=";
+            if ($("#start").val().replace(/\s/g, "") != "") {
+                dateStart += $("#start").val();
+            }
+            else {
+                dateStart = "";
+            }
+            var dateEnd = key.length > 0 ? "&dateEnd=" : "?dateEnd=";
+            dateEnd = dateStart.length > 0 ? "&dateEnd=" : "?dateEnd=";
+            if ($("#end").val().replace(/\s/g, "") != "") {
+                dateEnd += $("#end").val();
+            }
+            else {
+                dateEnd = "";
+            }
+            
+            //将关键字用url传参形式刷新页面
+            var url = "/Vshop/UnderOrders.aspx" + strs+dateStart+dateEnd;
+
+            window.location.href = url;
+        }
+
+        $(document).ready(function () {
+            var str = window.location.search;
+            if (str.indexOf("keyWord=") != -1) {
+                var keyWord = str.substring(str.indexOf("keyWord=") + 8);
+                if (keyWord.length > 0) {
+                    $("#txtKeywords").val(keyWord);
+                }
+            }
+        });
+
+        function trim(str) { //删除左右两端的空格
+            return str.replace(/(^\s*)|(\s*$)/g, "");
+        }
+</script>
+
+    <script>
+        var temporderId=null;
+        var strparam = getParam('status');
+        if (strparam== "5") {
+            $(".orders-title li:eq(1)").addClass("activenum").siblings().removeClass("activenum");
+        }
+
+        $(function () {
+            if (!$.trim($('#products').html())) {
+                $('#empty').css('display', '');
+            }
+            else {
+                $('#empty').css('display', 'none');
+            }
+        });
+        function UpdatePrice(commissionmoney, orderId, productcode) {
+            $("#divprice em").text(commissionmoney);
+            temporderId = orderId + '|' + productcode;
+            ShowDialog('让利调整', '修改', 'divprice', vailidForm);
+            
+        }
+        function vailidForm(){
+            if($("#txtadjustprice").val().replace(/\s/g,"")==""){
+                alert('请输入调整金额');
+                return false;
+            }
+            if (isNaN($("#txtadjustprice").val())) {
+                alert('输入金额格式不正确！');
+                return false;
+            }
+            var emmoney = $("#divprice em").text();
+            if (parseFloat($("#txtadjustprice").val()) < 0 || parseFloat($("#txtadjustprice").val()) > parseFloat(emmoney)) {
+                alert('请输入0~' + emmoney + '元');
+                return false;
+            }
+            $.ajax({
+                url: "/API/VshopProcess.ashx",
+                type: 'post',
+                dataType: 'json',
+                timeout: 10000,
+                data: {
+                    action: "AdjustCommissions",
+                    orderId: temporderId.split('|')[0],
+                    skuId: temporderId.split('|')[1],
+                    adjustprice: $("#txtadjustprice").val(),
+                    commssionprice: $("#divprice em").text()
+                },
+                success: function (resultData) {
+                    if (resultData.success) {
+                        alert('改价成功！');
+                        location.href = location.href;
+                    }
+                    else {
+                        alert(resultData.msg);
+                    }
+                }
+            });
+            return true;
+        }
+
+    </script>
+<Hi:Common_Footer runat="server" />

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="gb2312"?>
+<JZT>
+  <Configs>
+    <BrandShow>true</BrandShow>
+  </Configs>
+<default>
+    <BrandShow>true</BrandShow>
+</default>
+</JZT>

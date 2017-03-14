@@ -1,0 +1,15 @@
+C:\project\WFX_Common\01工程\03编码\wfx3.0_src\Hidistro.Membership.Context\bin\Debug\Hidistro.Membership.Context.dll
+C:\project\WFX_Common\01工程\03编码\wfx3.0_src\Hidistro.Membership.Context\bin\Debug\Hidistro.Membership.Context.pdb
+C:\project\WFX_Common\01工程\03编码\wfx3.0_src\Hidistro.Membership.Context\bin\Debug\Hidistro.Core.dll
+C:\project\WFX_Common\01工程\03编码\wfx3.0_src\Hidistro.Membership.Context\bin\Debug\Hidistro.Membership.Core.dll
+C:\project\WFX_Common\01工程\03编码\wfx3.0_src\Hidistro.Membership.Context\bin\Debug\Hishop.Components.Validation.dll
+C:\project\WFX_Common\01工程\03编码\wfx3.0_src\Hidistro.Membership.Context\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+C:\project\WFX_Common\01工程\03编码\wfx3.0_src\Hidistro.Membership.Context\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+C:\project\WFX_Common\01工程\03编码\wfx3.0_src\Hidistro.Membership.Context\bin\Debug\System.Web.ApplicationServices.dll
+C:\project\WFX_Common\01工程\03编码\wfx3.0_src\Hidistro.Membership.Context\bin\Debug\Microsoft.Practices.ObjectBuilder2.dll
+C:\project\WFX_Common\01工程\03编码\wfx3.0_src\Hidistro.Membership.Context\bin\Debug\Hidistro.Core.pdb
+C:\project\WFX_Common\01工程\03编码\wfx3.0_src\Hidistro.Membership.Context\bin\Debug\Hishop.Components.Validation.pdb
+C:\project\WFX_Common\01工程\03编码\wfx3.0_src\Hidistro.Membership.Context\bin\Debug\zh-Hans\System.Web.ApplicationServices.resources.dll
+C:\project\WFX_Common\01工程\03编码\wfx3.0_src\Hidistro.Membership.Context\obj\x86\Debug\Hidistro.Membership.Context.csprojResolveAssemblyReference.cache
+C:\project\WFX_Common\01工程\03编码\wfx3.0_src\Hidistro.Membership.Context\obj\x86\Debug\Hidistro.Membership.Context.dll
+C:\project\WFX_Common\01工程\03编码\wfx3.0_src\Hidistro.Membership.Context\obj\x86\Debug\Hidistro.Membership.Context.pdb

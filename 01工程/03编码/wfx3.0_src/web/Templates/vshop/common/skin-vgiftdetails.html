@@ -1,0 +1,169 @@
+﻿<hi:common_header runat="server" />
+<meta name="format-detection" content="telephone=no" />
+<div class="slides-collect-btn"  >
+
+    <a id="addedF" href="javascript:;" class="hide">
+        <!-- <span class="glyphicon glyphicon-star"></span> -->
+        <span class="star-full"></span>
+    </a>
+</div>
+
+
+	<div class="intergray-top-nav">
+		<a class="back-home"  onclick="Javascript:window.history.go(-1)"></a>
+		<p class="pro-detail-tit">商品详情</p>
+	</div>
+<div class="pro-viewport">
+<div id="slides">
+    <hi:vshoptemplatedrepeater id="rptGiftImages" templatefile="/Tags/skin-Common_Slide.ascx" runat="server" />
+</div>
+
+
+
+		<div class="pro-detial-info">
+			<ul>
+				<li class="list1">
+					<p><asp:literal runat="server" id="litGiftName" /></p>
+				</li>
+				<li class="list2">
+					<p>所需积分：<span><asp:literal runat="server" id="litSalePrice" /></span></p>
+					<p>原价：<em><asp:literal runat="server" id="litMarketPrice" /></em>元</p>
+				</li>
+				<li class="list3">
+					<p>您的积分：<asp:literal runat="server" id="litMyPoint" /></p>
+				</li>
+				<li class="list4">
+					<p>积分礼品简单说明：<asp:literal runat="server" id="litShortDescription" /></p>
+				</li>
+			</ul>
+		</div>
+
+<form runat="server">
+<div class="well">
+    <hi:common_skuselector id="skuSelector" runat="server" />
+    <div class="buy-num">
+        <div class="text-muted font-s">
+            购买数量</div>
+        <div class="list clearfix">
+            <div class="goods-num clearfix">
+                <div id="spSub" class="shopcart-minus">-</div>
+                <input type="tel" id="buyNum" name="buyNum" class="form-control" value="1" />
+                <div id="spAdd" class="shopcart-add">+</div>
+                <div class="info font-s text-muted">库存：<span id="spStock"><asp:literal runat="server" id="litStock" /></span>件</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+		<div class="clear"></div>
+		<div class="pro-detial-pic">
+			<p class="pro-detial-pic-tit">图文详情</p>
+
+		</div>
+
+<div class="tab-content">
+    <div role="tabpanel" class="tab-pane fade in active" id="product-detail">
+        <div class="goods-detail bgColor-white btns-fixed-padding">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    属性
+                </div>
+                <table class="table" id="attrtable">
+                    <tbody>
+                        <hi:common_expandattributes id="ExpandAttributes" runat="server" />
+                    </tbody>
+                </table>
+            </div>
+            <asp:literal runat="server" id="litDescription" />
+        </div>
+    </div>
+      
+</div>
+<div class="pro-viewport">
+<div class="getIt">
+    <asp:Button id="buyButton" type="shoppingBtn" class="btn btn-danger" runat="server"/>
+</div>
+</form>
+<input type="hidden" runat="server" clientidmode="Static" id="litHasCollected" />
+<input type="hidden" runat="server"   id="litCategoryId" />
+<input type="hidden" runat="server"   id="litgiftid" />
+ <%<hi:weixinset id="weixin" runat="server"></hi:weixinset>%>
+<span id="ItemParams" style="display:none">
+    <asp:literal id="litItemParams"
+                 runat="server"></asp:literal>
+</span>
+<script type="text/javascript">
+    
+   
+  
+    function gotoProductReview() {
+        window.location.href = 'ProductReview.aspx?ProductId=' + getParam('ProductId');
+    }
+    
+    $(function () {
+        $('.price em').click(function () {
+            $('.price .actionnone').css('display', 'block');
+            $(this).css("display", "none");
+        })
+        var slidesImg = $('#slides img');
+        var width = 650, height = 650;
+        if (slidesImg.length > 1) {
+            $('#slides').slidesjs({
+                width: width,
+                height: height,
+                play: {
+                    active: true,
+                    auto: true,
+                    interval: 4000,
+                    swap: true
+                }
+            });
+            $(".slidesjs-play, .slidesjs-stop, .slidesjs-previous, .slidesjs-next").remove();
+            $(".slidesjs-pagination li").css("width", function(){return 100/slidesImg.length+"%"});
+        }
+        else {
+
+            $('#slides').css('display','block').html('<div style="width:100%;"><a href="javascript:;"></a></div>');
+            $('#slides div a').append(slidesImg);
+        }
+    });
+
+
+    function getQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return unescape(r[2]); return null;
+    }
+
+
+
+    $(function () {
+        var data = {};
+        data.ProductId = getQueryString("productId");
+
+
+
+        if ($('#litHasCollected').val() == "1") {
+            $('#addF').addClass('hide');
+            $('#addedF').removeClass('hide');
+        }
+
+        //包含多个规格时，首先禁用购买和加入购物车按钮
+        if ($(".SKUValueClass").length > 0) disableShoppingBtn(true);
+
+        
+    });
+
+    if ($("#attrtable tr").length <= 0) {
+        $("#attrtable").parent().hide();
+    }
+
+
+
+</script>
+<script src="/utility/vgift.helper.js" type="application/javascript"> </script>
+<script src="/script/swipe.js"></script>
+<hi:common_footer runat="server" />
+ </div>

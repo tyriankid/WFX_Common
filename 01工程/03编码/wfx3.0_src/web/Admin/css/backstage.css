@@ -1,0 +1,72 @@
+﻿/** CSS document **/
+body { font-size: 12px; line-height: 24px; font-family: "宋体", "Arial Narrow"; background: #fff; margin: 0px; border:0; }
+form, ul, li, ol, li, dl, dt, dd, img, p, h1, h2, h3, h4, h5, h6 { margin: 0; padding: 0; border: 0; list-style: none; }
+a { text-decoration: none; color: #0b5ba5; }
+a:hover { text-decoration: underline; }
+.clear { clear: both; }
+.leftR10 { float: left; margin-right: 10px; }
+.clear { clear: both; }
+.blank5 { height: 6px; overflow: hidden; }
+.blank12 { height: 12px; overflow: hidden; }
+.blank8 { height: 8px; overflow: hidden; height: 0; _height: 8px; }
+.fonts { font-size: 14px; color: #333; }
+.float { float: left; margin-right: 15px; }
+.qq { float: left; display: none; padding: 1px 0px 2px 0px; height: 21px; }
+.inbnt { display: block; }
+.line, .p { line-height: 18px; color: #333; word-break: break-all; }
+.p { border-top: 1px #EEE solid; border-bottom: 1px #EEE solid; background: #fdfcf8; padding:2px  5px; margin:5px 0; }
+.votelenth { background: url(../images/lenth.gif); height: 15px; margin-right:10px; }
+.currentcolor { background: #f6faf1; }
+.cstrong { font-weight: bold; }
+.nowrap { white-space: nowrap; }
+.formwidth { width: 300px; }
+
+.backstage-box{}
+.backstage{}
+.backstage .back{ float:left; box-shadow:#CCC 0px 0px 5px; margin:1%; width:18%;  *+width:17.8%; height:300px; overflow:hidden; *+border:1px solid #DDD;  }
+.backstage .back p{ line-height:22px; color:#666;  }
+.backstage .backtt{ background:#F4756E; color:#FFF; padding:10px; }
+.backstage .backtt h1{ font-size:24px; padding:5px 0;}
+.backstage .backtt p{ color:#FFF; }
+
+.backstage .one_row{}
+.backstage .one_row li{ width:100%; border-bottom:1px solid #DDD; }
+.backstage .one_row li a{ display:block; padding:10px; color:#333; }
+.backstage .one_row li a:nth-child(2n+1){ border-right:1px solid #DDD; text-decoration:none;  }
+.backstage .one_row li a:hover{ background:#E6EEF9; text-decoration:none; }
+.backstage .one_row li a b{ display:block; padding-top:5px; font-size:16px; }
+.backstage .one_row li a span{ display:block; }
+
+.backstage .three_row{}
+.backstage .three_row li{ float:left; width:50%;  *+width:49%; border-bottom:1px solid #DDD; }
+.backstage .three_row li a{ display:block; padding:10px; color:#333; }
+.backstage .three_row li a:nth-child(2n+1){ border-right:1px solid #DDD; text-decoration:none;  }
+.backstage .three_row li a:hover{ background:#E6EEF9; text-decoration:none; }
+.backstage .three_row li a b{ display:block; padding-top:7px; font-size:16px; }
+.backstage .three_row li a span{ display:block; color:#666; white-space:nowrap; text-overflow:ellipsis; overflow:hidden;  }
+.backstage .three_row li:nth-child(5){ border-bottom:0; }
+.backstage .three_row li:nth-child(6){ border-bottom:0; }
+
+
+.column_3hang{ padding:5px 10px;}
+.column_3hang p{ line-height:18px; }
+
+
+.backstage .back2 .backtt{ background:#4BB2DD; }
+.backstage .back3 .backtt{ background:#50D4D6; }
+.backstage .back4 .backtt{ background:#6C9BDF; }
+.backstage .back5 .backtt{ background:#88B74F; }
+.backstage .back6 .backtt{ background:#297FB8; }
+.backstage .back7 .backtt{ background:#D3E0F3; color:#24364D; }
+.backstage .back7 .backtt p{ color:#666; }
+.backstage .back8 .backtt{ background:#F4B251; }
+.backstage .back9 .backtt{ background:#2ABB9A; }
+.backstage .back10 .backtt{ background:#F9C116; }
+.backstage .back11 .backtt{ background:#72B6DD; }
+
+@media screen and ( max-width: 1200px) { 
+.backstage .back{ float:left; box-shadow:#CCC 0px 0px 5px; margin:1%; width:22.5%;  *+width:22%; height:300px; overflow:hidden;  }
+} 
+@media screen and ( max-width: 900px) { 
+.backstage .back{ float:left; box-shadow:#CCC 0px 0px 5px; margin:1%; width:30%; height:300px; overflow:hidden;  }
+} 

@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <ProjectType>local</ProjectType>
+    <ProjectVersion>7.10.377</ProjectVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4BDDC40F-40BD-4333-B3DB-8687EA04D2FE}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <AssemblyName>Hidistro.Membership.Context</AssemblyName>
+    <OutputType>Library</OutputType>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common">
+      <HintPath>..\lib\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data, Version=4.1.0.0, Culture=neutral, PublicKeyToken=7f2f4d7aece0749d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.ApplicationServices">
+      <HintPath>C:\Windows\Microsoft.NET\Framework\v4.0.30319\System.Web.ApplicationServices.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Configuration" />
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Global.cs" />
+    <Compile Include="Hidistro\Membership\Context\StoreAdmin.cs" />
+    <Compile Include="Hidistro\Membership\Context\UserEventArgs.cs" />
+    <Compile Include="Hidistro\Membership\Context\UserFactory.cs" />
+    <Compile Include="Hidistro\Membership\Context\StoreAdminFactory.cs" />
+    <Compile Include="Hidistro\Membership\Context\LicenseHelper.cs" />
+    <Compile Include="Hidistro\Membership\Context\CopyrightLicenser.cs" />
+    <Compile Include="Hidistro\Membership\Context\ExtensionContainer.cs" />
+    <Compile Include="Hidistro\Membership\Context\IExtension.cs" />
+    <Compile Include="Hidistro\Membership\Context\MemberFactory.cs" />
+    <Compile Include="Hidistro\Membership\Context\ManagerFactory.cs" />
+    <Compile Include="Hidistro\Membership\Context\UrlReWriterDelegate.cs" />
+    <Compile Include="Hidistro\Membership\Context\HiContext.cs" />
+    <Compile Include="Hidistro\Membership\Context\HiHttpModule.cs" />
+    <Compile Include="Hidistro\Membership\Context\LicenseChecker.cs" />
+    <Compile Include="Hidistro\Membership\Context\BizActorProvider.cs" />
+    <Compile Include="Hidistro\Membership\Context\SettingsManager.cs" />
+    <Compile Include="Hidistro\Membership\Context\SiteSettings.cs" />
+    <Compile Include="Hidistro\Membership\Context\Member.cs" />
+    <Compile Include="Hidistro\Membership\Context\SiteManager.cs" />
+    <Compile Include="Hidistro\Membership\Context\UserCookie.cs" />
+    <Compile Include="Hidistro\Membership\Context\Users.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Hidistro.Core\Hidistro.Core.csproj">
+      <Project>{4f98dddb-c05a-4a71-8400-bc5f790cc8df}</Project>
+      <Name>Hidistro.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hidistro.Membership.Core\Hidistro.Membership.Core.csproj">
+      <Project>{525a19c8-c27d-4a99-812b-f1cb3cdb92f8}</Project>
+      <Name>Hidistro.Membership.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hishop.Components.Validation\Hishop.Components.Validation.csproj">
+      <Project>{c83eb74c-5bad-48fe-92fc-2ca0c6d64ef1}</Project>
+      <Name>Hishop.Components.Validation</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="lib\Microsoft.Practices.EnterpriseLibrary.Common.dll" />
+    <Content Include="lib\Microsoft.Practices.EnterpriseLibrary.Data.dll" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,60 @@
+2016-01-26 10:02:11.370 DEBUG WxPayApi: MicroPay request : <xml><appid><![CDATA[wx06c3a007a4dc635e]]></appid><auth_code><![CDATA[123212321222222222]]></auth_code><body><![CDATA[Test]]></body><mch_id><![CDATA[112233]]></mch_id><nonce_str><![CDATA[35eb0ed8dec64c979e283f24d9ab7151]]></nonce_str><out_trade_no><![CDATA[201601269354210]]></out_trade_no><sign><![CDATA[0459C7136780754B15F3D8A242AE0F6F]]></sign><spbill_create_ip><![CDATA[8.8.8.8]]></spbill_create_ip><total_fee>1</total_fee></xml>
+2016-01-26 10:02:11.744 DEBUG WxPayApi: MicroPay response : <xml><return_code><![CDATA[FAIL]]></return_code>
+<return_msg><![CDATA[商户号mch_id或sub_mch_id不存在]]></return_msg>
+</xml>
+2016-01-26 10:02:54.555 DEBUG WxPayApi: MicroPay request : <xml><appid><![CDATA[wx06c3a007a4dc635e]]></appid><auth_code><![CDATA[111111111111111111]]></auth_code><body><![CDATA[Test]]></body><mch_id><![CDATA[112233]]></mch_id><nonce_str><![CDATA[9487c7df74f1462a874df245d4074889]]></nonce_str><out_trade_no><![CDATA[201601262695523]]></out_trade_no><sign><![CDATA[9AAD6C5644D745E584BC8C126B286C62]]></sign><spbill_create_ip><![CDATA[8.8.8.8]]></spbill_create_ip><total_fee>1</total_fee></xml>
+2016-01-26 10:02:57.550 DEBUG WxPayApi: MicroPay response : <xml><return_code><![CDATA[FAIL]]></return_code>
+<return_msg><![CDATA[商户号mch_id或sub_mch_id不存在]]></return_msg>
+</xml>
+2016-01-26 10:08:38.547 DEBUG WxPayApi: MicroPay request : <xml><appid><![CDATA[wx06c3a007a4dc635e]]></appid><auth_code><![CDATA[123123123111111111]]></auth_code><body><![CDATA[Test]]></body><mch_id><![CDATA[112233]]></mch_id><nonce_str><![CDATA[c30861d3ea5e4d2cbdd804967bbd0a6a]]></nonce_str><out_trade_no><![CDATA[201601265103227]]></out_trade_no><sign><![CDATA[5BEA575A5FBFD4A2E8DDB7FC2ECCD38C]]></sign><spbill_create_ip><![CDATA[8.8.8.8]]></spbill_create_ip><total_fee>1</total_fee></xml>
+2016-01-26 10:08:38.747 DEBUG WxPayApi: MicroPay response : <xml><return_code><![CDATA[FAIL]]></return_code>
+<return_msg><![CDATA[商户号mch_id或sub_mch_id不存在]]></return_msg>
+</xml>
+2016-01-26 10:35:36.779 DEBUG WxPayApi: MicroPay request : <xml><appid><![CDATA[wx06c3a007a4dc635e]]></appid><auth_code><![CDATA[122222222222222222]]></auth_code><body><![CDATA[Test]]></body><mch_id><![CDATA[112233]]></mch_id><nonce_str><![CDATA[34c34b131e7948cab61169d6b8dda715]]></nonce_str><out_trade_no><![CDATA[201601260452052]]></out_trade_no><sign><![CDATA[441E062EE40AF8DFDFDCC4C0CEA1B3B6]]></sign><spbill_create_ip><![CDATA[8.8.8.8]]></spbill_create_ip><total_fee>1</total_fee></xml>
+2016-01-26 10:35:37.100 DEBUG WxPayApi: MicroPay response : <xml><return_code><![CDATA[FAIL]]></return_code>
+<return_msg><![CDATA[商户号mch_id或sub_mch_id不存在]]></return_msg>
+</xml>
+2016-01-26 10:36:27.787 DEBUG WxPayApi: MicroPay request : <xml><appid><![CDATA[wx06c3a007a4dc635e]]></appid><auth_code><![CDATA[123123123123222222]]></auth_code><body><![CDATA[Test]]></body><mch_id><![CDATA[112233]]></mch_id><nonce_str><![CDATA[f0481eaa9c594edbb013fbe990f2867c]]></nonce_str><out_trade_no><![CDATA[201601264416150]]></out_trade_no><sign><![CDATA[E8AA6EECA40F4666F55A5C56FECF0BC7]]></sign><spbill_create_ip><![CDATA[8.8.8.8]]></spbill_create_ip><total_fee>1</total_fee></xml>
+2016-01-26 10:36:28.380 DEBUG WxPayApi: MicroPay response : <xml><return_code><![CDATA[FAIL]]></return_code>
+<return_msg><![CDATA[商户号mch_id或sub_mch_id不存在]]></return_msg>
+</xml>
+2016-01-26 11:57:09.813 DEBUG WxPayApi: MicroPay request : <xml><appid><![CDATA[wx06c3a007a4dc635e]]></appid><auth_code><![CDATA[666666666666666666]]></auth_code><body><![CDATA[Test]]></body><mch_id><![CDATA[112233]]></mch_id><nonce_str><![CDATA[41d57a5131f4465b969bd6e6a9be65df]]></nonce_str><out_trade_no><![CDATA[201601262073901]]></out_trade_no><sign><![CDATA[FFC44A4D367446D9FA0B96757A1280D5]]></sign><spbill_create_ip><![CDATA[8.8.8.8]]></spbill_create_ip><total_fee>1</total_fee></xml>
+2016-01-26 11:57:10.236 DEBUG WxPayApi: MicroPay response : <xml><return_code><![CDATA[FAIL]]></return_code>
+<return_msg><![CDATA[商户号mch_id或sub_mch_id不存在]]></return_msg>
+</xml>
+2016-01-26 11:58:17.249 DEBUG WxPayApi: MicroPay request : <xml><appid><![CDATA[wx06c3a007a4dc635e]]></appid><auth_code><![CDATA[666666666666666666]]></auth_code><body><![CDATA[Test]]></body><mch_id><![CDATA[112233]]></mch_id><nonce_str><![CDATA[ca2250c0c68f48d9bfd1d5c73192f751]]></nonce_str><out_trade_no><![CDATA[201601267773767]]></out_trade_no><sign><![CDATA[683740685D42C4286010BE99AAD750BC]]></sign><spbill_create_ip><![CDATA[8.8.8.8]]></spbill_create_ip><total_fee>1</total_fee></xml>
+2016-01-26 11:58:17.398 DEBUG WxPayApi: MicroPay response : <xml><return_code><![CDATA[FAIL]]></return_code>
+<return_msg><![CDATA[商户号mch_id或sub_mch_id不存在]]></return_msg>
+</xml>
+2016-01-26 11:59:36.469 DEBUG WxPayApi: MicroPay request : <xml><appid><![CDATA[wx06c3a007a4dc635e]]></appid><auth_code><![CDATA[123222222222222222]]></auth_code><body><![CDATA[Test]]></body><mch_id><![CDATA[112233]]></mch_id><nonce_str><![CDATA[486642ca92624ee3ba2b63bb5956f34c]]></nonce_str><out_trade_no><![CDATA[201601268315475]]></out_trade_no><sign><![CDATA[A55755EC94B8DCE522C3CC5ED962C71E]]></sign><spbill_create_ip><![CDATA[8.8.8.8]]></spbill_create_ip><total_fee>1</total_fee></xml>
+2016-01-26 11:59:36.673 DEBUG WxPayApi: MicroPay response : <xml><return_code><![CDATA[FAIL]]></return_code>
+<return_msg><![CDATA[商户号mch_id或sub_mch_id不存在]]></return_msg>
+</xml>
+2016-01-26 12:01:39.069 DEBUG WxPayApi: MicroPay request : <xml><appid><![CDATA[wx06c3a007a4dc635e]]></appid><auth_code><![CDATA[666666666666666666]]></auth_code><body><![CDATA[Test]]></body><mch_id><![CDATA[112233]]></mch_id><nonce_str><![CDATA[eb2249196ed84361889fd472e15cdaac]]></nonce_str><out_trade_no><![CDATA[201601263471881]]></out_trade_no><sign><![CDATA[5F479166C35ADD75423B6591FDE5C7AB]]></sign><spbill_create_ip><![CDATA[8.8.8.8]]></spbill_create_ip><total_fee>1</total_fee></xml>
+2016-01-26 12:01:39.272 DEBUG WxPayApi: MicroPay response : <xml><return_code><![CDATA[FAIL]]></return_code>
+<return_msg><![CDATA[商户号mch_id或sub_mch_id不存在]]></return_msg>
+</xml>
+2016-01-26 14:26:21.210 DEBUG WxPayApi: MicroPay request : <xml><appid><![CDATA[wx06c3a007a4dc635e]]></appid><auth_code><![CDATA[dfdsfsfdsfsdfsdfsd]]></auth_code><body><![CDATA[Test]]></body><mch_id><![CDATA[112233]]></mch_id><nonce_str><![CDATA[d4a413166e2d47a1b92c56cc134683c6]]></nonce_str><out_trade_no><![CDATA[201601264699886]]></out_trade_no><sign><![CDATA[739BCE302392F6D89D09FE11310F7AEE]]></sign><spbill_create_ip><![CDATA[8.8.8.8]]></spbill_create_ip><total_fee>1</total_fee></xml>
+2016-01-26 14:26:21.627 DEBUG WxPayApi: MicroPay response : <xml><return_code><![CDATA[FAIL]]></return_code>
+<return_msg><![CDATA[商户号mch_id或sub_mch_id不存在]]></return_msg>
+</xml>
+2016-01-26 14:30:49.313 DEBUG WxPayApi: MicroPay request : <xml><appid><![CDATA[wx06c3a007a4dc635e]]></appid><auth_code><![CDATA[144234234234234234]]></auth_code><body><![CDATA[Test]]></body><mch_id><![CDATA[112233]]></mch_id><nonce_str><![CDATA[3a1148b2fc514da8aa3e4c2e676466ce]]></nonce_str><out_trade_no><![CDATA[201601269819412]]></out_trade_no><sign><![CDATA[FFDB0CB91A25E8EA93563D39B673F48C]]></sign><spbill_create_ip><![CDATA[8.8.8.8]]></spbill_create_ip><total_fee>1</total_fee></xml>
+2016-01-26 14:30:49.534 DEBUG WxPayApi: MicroPay response : <xml><return_code><![CDATA[FAIL]]></return_code>
+<return_msg><![CDATA[商户号mch_id或sub_mch_id不存在]]></return_msg>
+</xml>
+2016-01-26 14:41:50.393 DEBUG WxPayApi: MicroPay request : <xml><appid><![CDATA[wx06c3a007a4dc635e]]></appid><auth_code><![CDATA[545454545454545454]]></auth_code><body><![CDATA[Test]]></body><mch_id><![CDATA[112233]]></mch_id><nonce_str><![CDATA[7513146fd8b740b09524e0a2d74bbbe0]]></nonce_str><out_trade_no><![CDATA[201601260086834]]></out_trade_no><sign><![CDATA[3DF5DA911517728175059EF99D08D60E]]></sign><spbill_create_ip><![CDATA[8.8.8.8]]></spbill_create_ip><total_fee>1</total_fee></xml>
+2016-01-26 14:41:50.775 DEBUG WxPayApi: MicroPay response : <xml><return_code><![CDATA[FAIL]]></return_code>
+<return_msg><![CDATA[商户号mch_id或sub_mch_id不存在]]></return_msg>
+</xml>
+2016-01-26 14:43:43.739 DEBUG WxPayApi: MicroPay request : <xml><appid><![CDATA[wx06c3a007a4dc635e]]></appid><auth_code><![CDATA[564654664464646464]]></auth_code><body><![CDATA[Test]]></body><mch_id><![CDATA[112233]]></mch_id><nonce_str><![CDATA[dcf33b5b9e9747988d961ea43ed83e69]]></nonce_str><out_trade_no><![CDATA[201601263095224]]></out_trade_no><sign><![CDATA[FBE35FFB3376D1ED9A99B44D26E50010]]></sign><spbill_create_ip><![CDATA[8.8.8.8]]></spbill_create_ip><total_fee>1</total_fee></xml>
+2016-01-26 14:43:43.941 DEBUG WxPayApi: MicroPay response : <xml><return_code><![CDATA[FAIL]]></return_code>
+<return_msg><![CDATA[商户号mch_id或sub_mch_id不存在]]></return_msg>
+</xml>
+2016-01-26 14:44:45.656 DEBUG WxPayApi: MicroPay request : <xml><appid><![CDATA[wx06c3a007a4dc635e]]></appid><auth_code><![CDATA[123123123123123123]]></auth_code><body><![CDATA[Test]]></body><mch_id><![CDATA[112233]]></mch_id><nonce_str><![CDATA[0f93048a42dd4bfcb4c77b3dc47ca65c]]></nonce_str><out_trade_no><![CDATA[201601265875725]]></out_trade_no><sign><![CDATA[C6F7C16D6F21E2E4D07007B20B22FCED]]></sign><spbill_create_ip><![CDATA[8.8.8.8]]></spbill_create_ip><total_fee>1</total_fee></xml>
+2016-01-26 14:44:45.849 DEBUG WxPayApi: MicroPay response : <xml><return_code><![CDATA[FAIL]]></return_code>
+<return_msg><![CDATA[商户号mch_id或sub_mch_id不存在]]></return_msg>
+</xml>
+2016-01-26 19:13:50.120 DEBUG WxPayApi: MicroPay request : <xml><appid><![CDATA[wx06c3a007a4dc635e]]></appid><auth_code><![CDATA[123121212121212121]]></auth_code><body><![CDATA[爽爽挝啡：测试商品1,]]></body><mch_id><![CDATA[112233]]></mch_id><nonce_str><![CDATA[159a208ed7b8472bbc1e26bd6d15afe2]]></nonce_str><out_trade_no><![CDATA[201601263357456]]></out_trade_no><sign><![CDATA[FAF5551754B144A6EBC10BF4AE88A6FA]]></sign><spbill_create_ip><![CDATA[8.8.8.8]]></spbill_create_ip><total_fee>1</total_fee></xml>
+2016-01-26 19:13:50.493 DEBUG WxPayApi: MicroPay response : <xml><return_code><![CDATA[FAIL]]></return_code>
+<return_msg><![CDATA[商户号mch_id或sub_mch_id不存在]]></return_msg>
+</xml>

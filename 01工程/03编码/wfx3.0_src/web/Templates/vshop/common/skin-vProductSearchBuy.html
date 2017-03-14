@@ -1,0 +1,295 @@
+﻿<hi:common_header runat="server" />
+
+<style>
+    .link-count{ float:left; padding:15px 10px 0 0; text-align:center; }
+    .link-count span{ display:block; font-size:1.2em; }
+    .link-count b{ color:#F60; font-size:1.3em;}
+    .skuDiv{
+        position:fixed;
+        bottom:0;
+        width:100% ;
+        max-width:650px;
+        background-color:white;
+        z-index:100;
+        background-color:#fff;
+        display:none;
+    }
+    .skuDiv b{
+        float: left;
+        height: 30px;
+        line-height: 30px;
+        font-size: 2.2em;
+        color: #F60;
+        margin-left: 20px;
+    }
+    .u-flyer {
+      display: block;
+      width: 50px;
+      height: 50px;
+      border-radius: 50px;
+      position: fixed;
+      z-index: 9999;
+    }
+
+#bg{background-color:#666;position:absolute;z-index:99;left:0;top:0;display:none;width:100%;height:100%;opacity:0.5;filter: alpha(opacity=50);-moz-opacity: 0.5;}
+.storeNow{
+    padding:10px 15px;;
+}
+.storeNow p{
+    font-size:13px;
+}
+.storeNow p .switch{
+    float:right;
+    display:block;
+    padding:5px 10px;
+    color:#00a1ff;
+    margin-top: -5px;
+}
+.mask {
+  display:none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 998;
+  -webkit-transition-duration: 300ms;
+  transition-duration: 300ms;
+}
+.chooseStore{
+    display:none;
+    position:fixed;
+    width:100%;
+    left:0;
+    bottom:-10px;
+    background-color:#d3d3d3;
+    z-index:999;
+}
+.chooseStore li{
+    line-height:50px;
+    font-size:16px;
+    text-align:center;
+    background:#fff;
+    border-bottom:1px solid #EAEAEA;
+}
+.chooseStore li:last-child{
+    border:none;
+    margin-top:10px;
+}
+</style>
+<!--
+    <div class="pbox pbox-select" >
+        <div class="pbox-select-border">
+            <input type="text" id="txtKeywords" placeholder="" />
+            <span class="input-group-btn">
+                <button type="submit" class="btn btn-warning"  data-type="last" onclick="searchs()">搜索</button>
+            </span>
+        </div>
+    </div>
+-->
+<div id="main">
+<div class="shop_infobox">
+    <div class="shop_name">
+        <asp:literal runat="server" id="litTitle"/><!--店铺名-->
+    </div>
+    <div class="shop_logo"><!--店铺logo-->
+        <a href="DistributorInfo.aspx"><hi:hiimage runat="server" id="imglogo" cssclass="img-circle" imageurl="/Utility/pics/headLogo.jpg" /></a>
+    </div> 
+    <p class="shop_des"><asp:literal runat="server" id="litDes" /><!--店铺描述--></p>
+    <p class="shop_rank"><asp:literal runat="server" id="litMemberGradeInfo" /><!--会员等级优惠描述--></p>
+</div>
+<div class="storeNow">
+    <p>所在门店：<span role="storeSelected">请选择门店</span><span class="switch" onclick="chooseStore()">切换</span></p>
+</div>
+<ul class="chooseStore">
+    <!--
+    <li storeId="2409">广州兴盛路店</li>
+    <li storeId="35">保利水城店</li>
+    <li storeId="1488">深圳翻身店</li>
+    <li storeId="1584">佛山九江店</li>
+    <li storeId="1772">广州番禺店</li>
+    <li storeId="1868">佛山瀚天店</li>
+    <li storeId="2546">铂顿店</li>
+    <li storeId="3102">奥斯迪工厂店</li>
+    <li storeId="3489">重庆丰都店</li>
+    <li onclick="cancel()">取消</li>
+    -->
+</ul>
+<div class="mask"></div>
+<link rel="stylesheet" href="../style/classify.css" rev="stylesheet" type="text/css">
+<div class="classify orders-list-classify clear" id="classify">
+  <div class="hd box">
+    <ul id="categoriArea">
+      <hi:vshoptemplatedrepeater id="rptCategories" templatefile="/Tags/skin-Common_NewCategoriesBuy.ascx" runat="server" />
+    </ul>
+  </div>
+  <div class="bd box">
+      <ul class="orders-rlistbox-ul">
+        <!--<li><a href=""> <img src="../images/pic.jpg"><span>时尚秋裤</span></a></li>-->
+        <hi:vshoptemplatedrepeater id="rptProducts" templatefile="/Tags/skin-Common_NewProdctsBuy.ascx" runat="server" />
+      </ul>
+    </div>
+  </div>
+
+
+<div class="btns-fixed">
+    <a class="link-count" style="width:44%;"href="javascript:void(0)"><b id="priceTotal">总计：￥0.00</b></a>
+    <a class="btn-car" style="width:28%;" href="/Vshop/ShoppingCart.aspx">购物车<span id="numTotal"></span></a>
+    <a class="btn-buy" style="width:28%;" href="/Vshop/SubmmitOrder.aspx">结 算</a>
+</div>
+
+</div>
+<div id="skuSelectorDiv" class="skuDiv" productId="0"></div> <div id="bg"></div>
+<input type="hidden" runat="server"   id="litCategoryId" />
+<script type="text/javascript" src="../script/jquery1.42.min.js"></script>
+<script src="../script/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="../script/jquery.SuperSlide.2.1.js"></script>
+<script type="text/javascript">jQuery("#classify").slide();</script>
+<script type="text/javascript" src="../script/jQuery.equalHeights.js"></script>
+<script type="text/javascript" src="../script/jquery.fly.min.js"></script>
+<script type="text/javascript" src="../script/MobileOrder.helper.js"></script>
+
+
+<script type="text/javascript">
+    $(function () {
+        $('#classify').equalHeights();
+        $(".classify .bd .orders-rlistbox-ul li img").height($(".classify .bd .orders-rlistbox-ul li a").height());
+        getStoreInfoList();
+    });
+</script>
+
+ 
+
+<script type="text/javascript">
+    function searchs() {
+        var key = $("#txtKeywords").val();
+        var str = window.location.search;
+        var categoryId = getParam("categoryId");;
+        if (-1 == str.indexOf("&keyWord=")) {
+            categoryId = str.substring(str.indexOf("categoryId=") + 11);
+        } else {
+            categoryId = str.substring(str.indexOf("categoryId=") + 11, str.indexOf("&keyWord="));
+        }
+        var url = "/Vshop/ProductList.aspx?categoryId=" + categoryId + "&keyWord=" + escape(key);
+        //机场店门店id url参数
+        var currentStoreId = localStorage.getItem("current_sswf_storeid");
+        if (currentStoreId) {
+            url = url + "&storeid=" + currentStoreId
+        }
+        window.location.href = url;
+    }
+
+    $(document).ready(function () {
+        var str = window.location.search;
+        if (str.indexOf("keyWord=") != -1) {
+            var keyWord = str.substring(str.indexOf("keyWord=") + 8);
+            if (keyWord.length > 0) {
+                $("#txtKeywords").val(keyWord);
+            }
+        }
+        $(".hd ul li").removeClass("on");
+        var liid = getParam("categoryId");
+        if (liid != "" && liid != null) {
+            $(".hd ul #" + liid).addClass("on");
+        } else {
+            $(".hd ul li").first().addClass("on");
+        }
+        $(".hd").height($(".bd").height() - 10);
+
+    });
+
+
+    $(".hfooter .glyphicon-refresh").click(function () {
+        location.reload();
+    })
+
+    $(".hfooter .glyphicon-arrow-left").click(function () {
+        history.go(-1);
+    })
+
+    //隐藏右上角菜单
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        WeixinJSBridge.call('hideOptionMenu');
+    });
+
+    //隐藏底部菜单
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        WeixinJSBridge.call('hideToolbar');
+    });
+
+    //门店选择点击
+    $("#main").on("click", ".chooseStore li", function () {
+        $.post("/api/VshopProcess.ashx?action=ClearShoppingCart");//清除购物车
+        localStorage.setItem("current_sswf_storeid",$(this).attr("storeId"));
+        location.href = "/Vshop/ProductSearchBuy.aspx?storeid=" + $(this).attr("storeId");
+    })
+
+
+    function getStoreInfoList() {
+        var ajaxUrl = "http://" + window.location.host + "/api/StoreHandler.ashx?action=getStoreInfoList";
+        $.ajax({
+            type: 'get', dataType: 'json', timeout: 10000,
+            url: ajaxUrl,
+            success: function (e) {
+                if (e.state === 0) {
+                    var ul = ""
+                    for (var i = 0; i < e.data.length; i++) {
+                        ul += "<li storeId='"+e.data[i].storeid+"'>"+e.data[i].storename+"</li>";
+                    }
+                    $(".chooseStore").append(ul);
+                    var currentStoreId = localStorage.getItem("current_sswf_storeid");
+                    if (currentStoreId) {
+                        $("#categoriArea li").each(function () {//给每个分类加上当前门店id的storeid属性
+                            //门店id url参数
+                            $(this).attr('onclick', "location.href='/Vshop/ProductSearchBuy.aspx?CategoryId=" + $(this).attr("id") + "&storeid=" + currentStoreId + "'");
+                        });
+                        $("[role='storeSelected'],.shop_name").html($("[storeId='" + currentStoreId + "']").html());//当前门店名字切换
+                        
+                        /*
+                        if (currentStoreId == 2409 && !getParam("storeid"))//如果是机场店,并且页面无参数
+                        {
+                            location.href = "/Vshop/ProductSearchBuy.aspx?storeid=" + currentStoreId;
+                        }
+                        */
+                    }
+                    
+                }
+                else {
+                    alert(e.errMsg);
+                }
+            }
+        });
+    }
+
+    function chooseStore() {
+        $(".mask,.chooseStore").show();
+    }
+
+    function cancel() {
+        $(".mask,.chooseStore").hide();
+    }
+
+    function goUrl(url) {
+        location.replace(url);
+    }
+
+    $(function () {
+        var categoryItems = $('a.categoryItem');
+        var cateogryId, url;
+        $.each(categoryItems, function (i, item) {
+            cateogryId = $(item).attr('value');
+            if ($(item).attr('name') == "True")
+                url = '?categoryId=' + cateogryId;
+            else
+                url = '/Vshop/ProductList.aspx?categoryId=' + cateogryId;
+
+            $(item).attr('onclick', 'goUrl("' + url + '")').attr('href', 'javascript:;');
+        });
+
+        $(".pbox-select-tags li .select-tags-img").height($(".pbox-select-tags li .select-tags-img").width());
+
+    });
+
+</script>
+

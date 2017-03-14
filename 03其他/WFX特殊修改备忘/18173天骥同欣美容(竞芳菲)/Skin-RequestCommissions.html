@@ -1,0 +1,49 @@
+﻿<hi:common_header runat="server" />
+<form>
+
+    <div class="alipay" id="alipay">
+        <h1>请填写提现账号信息</h1>
+        <p>提示：您此次可提现的最大金额为<span id="maxmoney"><asp:Literal ID="litmaxmoney" runat="server"></asp:Literal></span>元</p>
+        <ul class="alipay-info">
+            <li>
+                <label for="accounts">提现帐号：</label><input type="text" placeholder="请填写支付宝账号；银行卡、户名、开户银行" name="txtaccount" runat="server" id="txtaccount" />
+            </li>
+         
+            <li>
+                <label for="money">提现金额：</label><input name="txtmoney" runat="server" id="txtmoney" type="text" placeholder='提现金额'  />
+                <input id="hidmoney" type="hidden" runat="server" />
+                
+             </li>
+        </ul>
+        <div class="alipay-btn"><a   href="#" id="requestcommission1" onclick="return RequestCommissions(1)" runat="server">确认提现</a></div>
+        <div class="alipay-wechatpay" style="display:none"  id="alipay-btn">快捷提现</div>
+    </div>
+
+    <div class="alipay" id="shortcut" style="display: none;">
+        <h1>快捷提现——佣金将以红包的形式发放</h1>
+        <p>提示：发放后点击微信聊天窗口中领取红包即可到账</p>
+        <ul class="alipay-info">
+            <li>
+                <label for="moneyShortcut">提现金额：</label><input id="txtmoneyweixin" runat="server" type="text" placeholder="可提现金额180元" name="moneyShortcut" />
+            </li>
+        </ul>
+        <div class="alipay-btn"><a   id="requestcommission" onclick="return RequestCommissions(0)" runat="server">确认提现</a></div>
+        <div class="alipay-wechatpay" id="shortcut-btn">返回支付宝/银行卡提现</div>
+    </div>
+ 
+    <script type="text/javascript">
+
+        $(function(){
+            $("#alipay-btn").click(function(){
+                $("#alipay").hide();
+                $("#shortcut").show();
+            });
+
+            $("#shortcut-btn").click(function(){
+                $("#shortcut").hide();
+                $("#alipay").show();
+            });
+        })
+    </script>
+</form>
+<hi:common_footer runat="server" />

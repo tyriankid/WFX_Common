@@ -1,0 +1,104 @@
+﻿<hi:common_header runat="server" />
+<ul class="clearfix orders-title title_bg">
+    <li id="quickPayArea" runat="server" style="width: 33.33%;"><a onclick="changeType(this)" id="btn_wx" >快捷提现</a></li>
+    <li  style="width: 33.33%;"><a onclick="changeType(this)" id="btn_ali">支付宝提现</a></li>
+    <li  style="width: 33.33%;"><a onclick="changeType(this)" id="btn_bank">银行卡提现</a></li>
+</ul>
+<form>
+    <input type="hidden"  id="requestType"/>
+    <div class="alipay" id="alipay">
+        <h1>请填写提现账号信息</h1>
+        <p>提示：您此次可提现的最大金额为<span id="maxmoney"><asp:Literal ID="litmaxmoney" runat="server"></asp:Literal></span>元</p>
+        
+        <ul class="alipay-info">
+            <li>
+                <label for="accounts">提现账号：</label><input type="text" placeholder="提现银行卡号" name="txtaccount" runat="server" id="txtaccount" />
+            </li>
+            <!-- 新增输入框 -->
+            <li id="name">
+                <label for="accounts">姓名：</label><input type="text" placeholder="账号主人姓名" name="txtaccountname" runat="server" id="txtaccountname" />
+            </li>
+            <li id="bank">
+                <label for="accounts">收款银行：</label><input type="text" placeholder="银行卡所在银行名称" name="txtaccountbank" runat="server" id="txtaccountbank" />
+            </li>
+         
+            <li>
+                <label for="money">提现金额：</label><input name="txtmoney" runat="server" id="txtmoney" type="text" placeholder='提现金额'  />
+                <input id="hidmoney" type="hidden" runat="server" />
+                
+             </li>
+        </ul>
+        <div class="alipay-btn"><a   href="#" id="requestcommission1" onclick="return getPayType()" runat="server">确认提现</a></div>
+        
+    </div>
+
+    <div class="alipay" id="shortcut" style="display: none;">
+        <h1>快捷提现——佣金将以红包的形式发放</h1>
+        <p>提示：发放后点击微信聊天窗口中领取红包即可到账</p>
+        <ul class="alipay-info">
+            <li>
+                <label for="moneyShortcut">提现金额：</label><input id="txtmoneyweixin" runat="server" type="text" placeholder="可提现金额180元" name="moneyShortcut" />
+            </li>
+        </ul>
+        <div class="alipay-btn"><a   id="requestcommission" onclick="return getPayType()" runat="server">确认提现</a></div>
+    </div>
+ 
+    <style type="text/css">
+    ::-webkit-input-placeholder { color: #999; font-size: 12px;} 
+    :-moz-placeholder { color: #999; font-size: 12px;} 
+    ::-moz-placeholder { color: #999; font-size: 12px;} 
+    :-ms-input-placeholder { color: #999; font-size: 12px;} 
+    </style>
+
+    <script type="text/javascript">
+        $("#alipay").hide();
+        $("#shortcut").show();
+        $("#requestType").val("0");
+        $(function(){
+            $("#btn_wx").click(function () {
+                $("#alipay").hide();
+                $("#shortcut").show();
+                $("#requestType").val("0");
+            });
+
+            $("#btn_ali").click(function(){
+                $("#shortcut").hide();
+                $("#alipay").show();
+                $("#bank").hide();
+                $("#requestType").val("1");
+                $("#txtaccount").attr("placeholder", "支付宝账号");
+            });
+
+            $("#btn_bank").click(function () {
+                $("#shortcut").hide();
+                $("#alipay").show();
+                $("#bank").show();
+                $("#requestType").val("2");
+                $("#txtaccount").attr("placeholder", "银行卡账号");
+            });
+        })
+        
+    </script>
+    <script>
+        //点击后更改current样式
+        function changeType(e) {
+            $(e).parents("ul").find("li").attr("class", "");
+            $(e).parent().attr("class", "activenum");
+        }
+        //点击后获取当前支付方式类型并调用main.js的提交方法
+        function getPayType() {
+            //提交信息开始申请流程
+            RequestCommissions($("#requestType").val());
+        }
+        //根据页头的数量进行样式动态调整
+        $(function () {
+            var num = (100 / $(".orders-title").children().length).toFixed(2);
+            $(".orders-title").children().eq(0).addClass("activenum");
+            $(".orders-title").children().css("width", num+"%")
+            $("#btn_ali").trigger("click");
+        });
+
+        
+    </script>
+</form>
+<hi:common_footer runat="server" />

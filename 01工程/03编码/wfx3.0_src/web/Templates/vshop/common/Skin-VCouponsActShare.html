@@ -1,0 +1,36 @@
+﻿<hi:common_header runat="server" />
+<link rel="stylesheet" href="/style/UpImg.css?v=2">
+<form id="form1" runat="server">
+    <div id="bg"><img src="#"/></div>
+    <div class="box">
+        <div class="pic_edit">
+            <%<asp:image runat="server" id="uimg" width="100%" style=""></asp:image>%>
+        </div>
+        <div style="text-align: center; width: 100%; bottom: 32%; font-size: 1em; color: #FFBA15;">
+            <span style="font-size: 3.6rem"><%<asp:literal id="litMoney" runat="server"></asp:literal>%></span>元
+        </div>
+        <div style="text-align: center; width: 100%;">
+            <%<asp:button runat="server" id="btnlq" text="马上领取" />%>
+            <input type="button" id="btnfx" value="立即分享" />
+        </div>
+    </div>
+    <div class="fx" style="position: fixed; width: 100%; height: 100%; top: 0; left: 0; right: 0; bottom: 0; background: #191919; display: none; z-index: 99999999999999999999;">
+        <img src="/images/fx.jpg" style="width: 100%" />
+    </div>
+    <input type="hidden" id="txtBgImg" runat="server" />
+    <input type="hidden" id="txtID" runat="server" />
+</form>
+<hi:common_footer runat="server" />
+
+<script type="text/javascript">
+    $(function () {
+        $("#btnfx").click(function () {
+            $(".fx").show();
+        });
+        $(".fx").click(function () {
+            $(this).hide();
+        });
+
+        $("#bg img").attr("src", $("#VCouponsActShare_txtBgImg").val());
+    })
+</script>

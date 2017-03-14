@@ -1,0 +1,92 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+	<title>Document</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+	
+	<link rel="stylesheet" type="text/css" href="css/style.css"/>
+	<link rel="stylesheet" type="text/css" href="css/jquery.minicolors.css"/>
+	
+	<script src="js/jquery-2.1.4.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/jquery.draw.js" type="text/javascript" charset="utf-8"></script>
+	<!--------------拖拽效果---------------拖拽效果-------------拖拽效果-------------->
+	<link rel="stylesheet" type="text/css" href="css/jquery-ui.min.css"/>
+	<script src="js/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+	<!--<script src="js/jquery.gridly.js" type="text/javascript" charset="utf-8"></script>-->
+	<!--<link rel="stylesheet" type="text/css" href="css/jquery.gridly.css"/>-->
+	<!----------------颜色选择器-------------颜色选择器-----------------颜色选择器------------->
+	<script src="js/jquery.minicolors.min.js" type="text/javascript" charset="utf-8"></script>
+	<!---------幻灯片-----------------幻灯片-----------------幻灯片----------------------->
+	<script src="js/jquery.slides.min.js" type="text/javascript" charset="utf-8"></script>
+	<!----------------------------百度UEditor富文本编辑器-------------------------------------->
+	<script src="js/UEditor/ueditor.config.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/UEditor/ueditor.all.min.js" type="text/javascript" charset="utf-8"></script>
+	
+    <script src="js/Save.js"  type="text/javascript" charset="utf-8"></script>
+	<script>
+		$(function() {
+			$(".slides").slidesjs({
+		        width: 750,
+		        height: 400,
+		        //start: 3,
+		        navigation: { active: false, effect: "slide" },
+		        pagination: { active: true, effect: "fade" },
+		        effect: {
+		            slide: { speed: 1000 },
+		            fade: { speed: 1000, crossfade: true }
+		        },
+		        play: {
+		            active: false,
+		            effect: "slide",
+		            interval: 3000,
+		            auto: true,
+		            swap: false,
+		            pauseOnHover: true,
+		            restartDelay: 2000
+		        }
+		    });
+			
+			//jqueryUI拖动
+			$(".gridly").droppable().sortable().selectable();
+			
+//		    //模块拖动
+//		    $('.gridly').gridly({
+//			    base: 50, // px 
+//			    gutter:5, // px 沟槽
+//			    columns: 6
+		    //			});
+			
+		});
+	</script>
+    
+</head>
+<body>
+	<div class="draw">
+		<div class="draw_type">双击添加模块</div>
+		<ul>
+			<li class="signboard"><a href="javascript:;">店招</a></li>
+			<li class="navigation"><a href="javascript:;">导航</a></li>
+			<li class="text"><a href="javascript:;">文本</a></li>
+			<li class="notice"><a href="javascript:;">滚动<br />公告</a></li>
+			<li class="picture"><a href="javascript:;">图片</a></li>
+			<li class="slide"><a href="javascript:;">幻灯片</a></li>
+			<li class="search"><a href="javascript:;">搜索栏</a></li>
+			<li class="classify"><a href="javascript:;">商品<br />分类</a></li>
+			<li class="list"><a href="javascript:;">商品<br />列表</a></li>
+			<li class="video"><a href="javascript:;">视频</a></li>
+		</ul>
+	</div>
+	<div class="phone">
+		<div class="phone-top"><img src="img/phone-top.png"/></div>
+		<div class="gridly"></div>
+		<div class="phone-bottom"><img src="img/phone-bottom.png"/></div>
+	</div>
+	<div class="attribute_frame"></div>	
+	<div class="subBtn">
+		<button class="btn1">保存</button>
+		<button class="btn2">保存并预览</button>
+		<button class="btn3">还原到初始模板</button>
+	</div>
+</body>
+</html>

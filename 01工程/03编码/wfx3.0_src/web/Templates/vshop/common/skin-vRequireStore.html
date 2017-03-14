@@ -1,0 +1,63 @@
+﻿<hi:common_clearheader runat="server" />
+<link href="/style/SelectStore.css" rel="stylesheet" />
+<link href="/templates/vshop/common/src/FontAwesome/css/font-awesome.min.css" rel="stylesheet" />
+<script src="/script/SelectStore/RequireStore.Helper.js" type="text/javascript"></script>
+
+
+<form runat="server" id="mainForm">
+    <div id="main">
+        <img src="/images/requireStoreBanner.png"  />
+        <p id="myLocation">您的位置：正在获取中...</p>
+        <input type="text" runat="server" id="locationText" clientidmode="Static" placeholder="请输入附近楼宇名称" />
+        <div class="btnAddInfo">
+            <a id="AAddInfo" href="javascript:isVali()">希望<asp:literal runat="server" id="litStoreName"/>在此开店</a>
+        </div>
+        <ul id="requireStoreDiv">
+            <asp:literal runat="server" id="litRequireStoreInfo"></asp:literal>
+        </ul>
+    </div>
+    <%<asp:button  runat="server" style="display:none" id="btnAddInfo" clientidmode="Static"/>%>
+</form>
+
+
+<%<hi:weixinset id="weixin" runat="server"></hi:weixinset>%>
+
+<input type="hidden" runat="server" clientidmode="Static" id="hidAccess_token" />
+
+
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=AIhNTuZzyAq5RAAbd1xRZcwulju0K0pB"></script>
+<script type="text/javascript">
+    var ac = new BMap.Autocomplete(    //建立一个自动完成的对象
+    {
+        "input": "locationText"
+    });
+
+
+    function isVali() {
+        if ($("#locationText").val().length < 3) {
+            alert("请输入附近的楼宇名称!");
+            return false;
+        }
+        $("#btnAddInfo").click();
+    }
+   
+    // 百度地图API功能
+    var point = new BMap.Point(GetQueryString("lont"),GetQueryString("lat"));
+    var geoc = new BMap.Geocoder();
+
+
+    geoc.getLocation(point, function (rs) {
+        var addComp = rs.addressComponents;
+        $("#myLocation").html("您的位置：" + addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber);
+    });
+
+
+    function GetQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return unescape(r[2]); return null;
+    }
+</script>
+
+
+<hi:common_clearfooter runat="server" />

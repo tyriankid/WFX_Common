@@ -1,0 +1,18 @@
+﻿<hi:common_header runat="server" />
+<img src="/images/cutDown_title.jpg" class="img-responsive">
+<div class="kanjia-listbox">
+    <hi:vshoptemplatedrepeater id="rptCutDownProducts" templatefile="/Tags/skin-Common_CutDownProducts.ascx" runat="server" />
+        <div id="pager"></div>
+</div>
+<input type="hidden" id="txtTotal" runat="server" clientidmode="Static"/>
+<%<hi:weixinset id="weixin" runat="server"></hi:weixinset>%>
+<span id="ItemParams" style="display: none">
+    <asp:literal id="litItemParams"
+        runat="server"></asp:literal>
+</span>
+<hi:common_footer runat="server" />
+<script src="/Utility/common.js" type="text/javascript"></script>
+<script src="/Utility/pager.js" type="text/javascript"></script>
+<script type="text/javascript">
+    vshopPager('pager', $('#txtTotal').val(), 1, 10);
+</script>

@@ -1,0 +1,239 @@
+﻿@charset "UTF-8";
+
+/* ------------------------------------------
+  RESET
+--------------------------------------------- */
+
+*{
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+
+ul,li{
+	list-style: none;
+}
+
+img{
+	display: block;
+	width: 100%;
+}
+a{
+	text-decoration: none;
+}
+a:active,
+a:link,
+a:hover {
+	color:#454545;
+  outline: 0;
+  text-decoration: none;
+}
+
+@-webkit-viewport { width: device-width; }
+@-moz-viewport { width: device-width; }
+@-ms-viewport { width: device-width; }
+@-o-viewport { width: device-width; }
+@viewport { width: device-width; }
+
+input::-webkit-input-placeholder { /* WebKit browsers */ 
+color: #999; 
+} 
+input::-moz-placeholder { /* Mozilla Firefox 4 to 18 */ 
+color: #999; 
+} 
+input::-moz-placeholder { /* Mozilla Firefox 19+ */ 
+color: #999; 
+} 
+input::-ms-input-placeholder { /* Internet Explorer 10+ */ 
+color: #999; 
+} 
+input{
+    border:none;
+    outline:none;
+}
+/* ------------------------------------------
+  BASE DEMO STYLES
+--------------------------------------------- */
+body,html{
+    font-size:16px;
+}
+body {
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  color: #000;
+  background: #f9f9f9;
+  font-weight:normal;
+  font-family:Helvetica,STHeiti,"Microsoft YaHei",Verdana,Arial,Tahoma,sans-serif;
+}
+input,a{
+    font-family:Helvetica,STHeiti,"Microsoft YaHei",Verdana,Arial,Tahoma,sans-serif;
+}
+.search-pos{
+    width:100%;
+    padding:.5rem;
+    background: #fff;
+    border-bottom:1px solid #c0c0be;
+}
+.search-pos div{
+    position:relative;
+    width:inherit;
+    height:2rem;
+    line-height:2rem;
+    border:1px solid #c0c0be;
+    border-radius:5px;
+    overflow:hidden;
+}
+.search-pos div i{
+    position:relative;
+    color:#a1a1a1;
+    margin-left:.5rem;
+    z-index:2;
+}
+.search-pos div input{
+    position:absolute;
+    width:inherit;
+    line-height:inherit;
+    left:0;
+    font-size: .875rem;
+    text-indent:2rem;
+    z-index:1;
+}
+.location{
+    width:100%;
+    padding:1rem 0;
+    text-align: center;
+    color: #DA6518;
+    overflow:hidden;
+}
+.location i{
+    position:relative;
+    font-size:2rem;
+    vertical-align: middle;
+    margin-right: .5rem;
+}
+.location i.animation{
+    animation: myfirst 2s linear infinite;
+    -webkit-animation: myfirst 2s linear infinite;
+}
+@keyframes myfirst
+{
+    from {transform: rotate(0deg);}
+    to {transform: rotate(360deg);}
+}
+
+@-webkit-keyframes myfirst 
+{
+    from {transform: rotate(0deg);}
+    to {transform: rotate(360deg);}
+}
+.suggestion{
+    background: #fff;
+    padding: 1rem;
+    text-align: center;
+}
+.suggestion a{
+    display: inline-block;
+    line-height: 2rem;
+    color: #da6518;
+    margin-top: 1rem;
+    padding: 0 1rem;
+    border: 1px solid #da6518;
+    border-radius:5px;
+}
+.building{
+    width:100%;
+    padding:0 1rem;
+    background: #fff;
+    overflow:hidden;
+}
+.building li{
+    padding:.5rem 0;
+    border-bottom:1px dashed #A7A7A7;
+}
+.building li:last-child{
+    border-bottom:none;
+}
+.building li a{
+    display:block;
+    line-height:3rem;
+    color:#2f3130;
+    font-size: 1.375rem;
+    text-align: center;
+}
+.building li span{
+    display: inline-block;
+    margin: .5rem;
+    line-height: 2rem;
+    padding: 0 .5rem;
+    word-break:break-all;
+    white-space: nowrap;
+    color:#da6518;
+    border:1px solid #da6518;
+    border-radius:5px;
+}
+#streetsDiv {
+    position:absolute;
+    top:3rem;
+    right:0;
+    left:0;
+}
+#main{
+    background-color:#ebebeb;
+}
+#myLocation{
+    width:100%;
+    padding-left:.5rem;
+    font-size:0.875rem;
+}
+#locationText{
+    display: block;
+    width: 100%;
+    padding-left:.5rem;
+    line-height: 2.5rem;
+    margin: .5rem 0;
+}
+.btnAddInfo{
+    padding: 0 .5rem;
+    margin: 1rem 0;
+}
+.btnAddInfo a{
+    display:block;
+    width:100%;
+    color: #fff;
+    text-align:center;
+    background-color:#f49423;
+    line-height: 2.5rem;
+    border-radius:5px;
+}
+#requireStoreDiv li{
+    padding:.5rem;
+    overflow:hidden;
+    border-top:1px solid #d5d5d5;
+}
+#requireStoreDiv li img{
+    float:left;
+    width:3rem;
+    overflow:hidden;
+    position:relative;
+}
+#requireStoreDiv li div{
+    position:relative;
+    padding-left:.5rem;
+    overflow:hidden;
+}
+#requireStoreDiv li div p{
+    line-height:1.5rem;
+    font-size: 0.875rem;
+}
+#requireStoreDiv li div p:first-child span:last-child{
+    float:right;
+}
+#requireStoreDiv li div p:last-child{
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    overflow:hidden;
+}

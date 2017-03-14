@@ -1,0 +1,169 @@
+﻿/*HiShop-HiWeishang-2014*/
+/* 全局开始 */
+body { width: 100%; max-width: 650px; font-family: "Arial", "Microsoft YaHei", "Tahoma"; font-size: 14px; margin: 0 auto; /* padding-bottom: 50px; */ background-color: #2C1C31; color: #FFF; }
+em , i { font-style: normal; }
+ul{ margin: 0; list-style: none; padding: 0;}
+a{ text-decoration: none;}
+
+.kan-pro-box{ background: #433647; padding: 15px; clear: both; }
+.kan-pro{ width:100% ; height: 50px; clear: both;}
+.kan-pro img{ float: left; width: 50px; height: 50px; margin-right: 15px;}
+.kan-pro span{ /* float: left; */ height: 50px; padding-right: 15px; line-height: 25px;}
+.kan-pro span i{ padding: 0 2px; color: #FEAE0C;}
+
+.kanjia-box{ width: 300px; height:150px ; position: relative; background: url(../images/icon-kanjia.png) center top no-repeat; background-size: contain; margin: 20px auto;}
+.kanjia-box .money-now{
+    position: absolute;
+    left: 35px;
+    top: 85px;
+    width: 120px;
+    text-align: center;
+    color: #FDE37A;
+}
+.kanjia-box .money-jian{
+    position: absolute;      
+    right: 30px;      
+    top: 100px;      
+    width: 80px;      text-align: center;      
+    color: #C36A02; 
+    font-size: 12px;
+}
+
+.kanjia-btn-box{
+    clear: both;
+    /* overflow: hidden; */
+    min-height: 45px;
+    /* padding-bottom: 5px; */
+    z-index: 1;
+}
+.kanjia-btn{
+    width: 42.5%;
+    background-color: #FF5650;
+    color: #FFF;
+    display: block;
+    float: left;
+    text-align: center;
+    margin-left: 5%;
+    padding: 10px 0;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    -webkit-box-shadow: 0 5px 0 #AE3428;      
+    box-shadow:0 5px 0 #AE3428;
+}
+.kanjia-btn-kan{
+    background-color: #FEAE0B;
+    -webkit-box-shadow: 0 5px 0 #B37804;      
+    box-shadow: 0 5px 0 #B37804;
+}
+
+.kanjia-bang-ttbox{
+    position: relative;
+}
+.kanjia-bang-ttbox h1{
+    background-color: #1F0F25;
+    margin: 20px 15px;
+    font-size: 14px;
+    padding: 10px;
+    color: #FEAE0C;
+    border-radius: 5px;
+}
+.kanjia-bang-ttbox span{
+    position: absolute;
+    right: 30px;
+    top: 10px;
+    color: #FFF;
+    font-weight: normal;
+}
+
+.kanjia-bang-list{}
+.kanjia-bang-list li{
+    position: relative;
+    white-space: nowrap;
+    height: 35px;
+    font-size: 12px;
+}
+.kanjia-bang-list li b{
+    /*background-color: #664772;*/
+    width: 20px;
+    text-align: center;
+    position: absolute;
+    left: 10px;
+    top: 6px;
+    height: 22px;
+    line-height: 22px;
+}
+.kanjia-bang-list li b img{ display:block; width: 30px; height:30px;
+    border-radius: 30px; }
+.kanjia-bang-list li span{
+    display: block;
+    margin-left: 50px;
+    line-height: 40px;
+    border-bottom: 1px solid #35263A;
+}
+.kanjia-bang-list li i{
+    color: #90679D;
+    font-style: normal;
+    padding-left: 3px;
+    font-weight: bold;
+}
+/*.kanjia-bang-list li:first-child b{
+    background-color: #CC3735;
+}
+.kanjia-bang-list li:nth-child(2) b{
+    background-color: #F46200;
+}
+.kanjia-bang-list li:nth-child(3) b{
+    background-color: #FEAE0B;
+}
+.kanjia-bang-list li:first-child i{
+    color: #CC3735;
+}
+.kanjia-bang-list li:nth-child(2) i{
+    color: #F46200;
+}
+.kanjia-bang-list li:nth-child(3) i{
+    color: #FEAE0B;
+}*/
+
+@media only screen and (min-width:500px){
+.kanjia-box{ width: 500px; height:270px ; margin: 60px auto;}
+.kanjia-box .money-now{
+    position: absolute;
+    left: 45px;
+    top: 160px;
+    width: 200px;
+    text-align: center;
+    color: #FDE37A;
+    font-size: 20px;
+    font-weight: bold;
+}
+.kanjia-box .money-jian{
+    position: absolute;      
+    right: 35px;      
+    top: 180px;      
+    width: 140px;      text-align: center;      
+    color: #C36A02; 
+    font-size: 16px;
+    font-weight: bold;
+}
+.kanjia-btn-box{
+    height: 60px;
+}
+.kanjia-bang-ttbox h1{
+    padding: 15px;
+    margin-top: 40px;
+}
+.kanjia-bang-ttbox span{
+    /* padding: 15px; */
+    /* margin-top: 40px; */
+    top: 15px;
+}
+.kanjia-btn{padding: 15px 0;}
+.kanjia-bang-list li{ font-size: 16px; height: 55px;}
+.kanjia-bang-list li span{ line-height: 55px; margin-left: 60px;}
+.kanjia-bang-list li b{left: 15px; width: 30px;height: 30px;
+    line-height: 30px;top: 14px;}
+}
+
+.kanjia_nrbody *{ max-width:100% !important;}

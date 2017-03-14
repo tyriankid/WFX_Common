@@ -1,0 +1,322 @@
+新增留言表和视图
+
+视图
+
+GO
+
+/****** Object:  View [dbo].[vw_Hishop_StoreMessage]    Script Date: 02/01/2016 17:10:12 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE VIEW [dbo].[vw_Hishop_StoreMessage]
+AS
+SELECT     dbo.aspnet_Members.UserName, dbo.Vshop_StoreMessage.ID, dbo.Vshop_StoreMessage.DisUserID, dbo.Vshop_StoreMessage.MsgUserID, 
+                      dbo.Vshop_StoreMessage.MessaegeCon, dbo.Vshop_StoreMessage.MsgTime, dbo.Vshop_StoreMessage.Value1, dbo.Vshop_StoreMessage.Value2, 
+                      dbo.Vshop_StoreMessage.Value3, dbo.aspnet_Members.UserHead
+FROM         dbo.Vshop_StoreMessage LEFT OUTER JOIN
+                      dbo.aspnet_Members ON dbo.Vshop_StoreMessage.MsgUserID = dbo.aspnet_Members.UserId
+
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPane1', @value=N'[0E232FF0-B466-11cf-A24F-00AA00A3EFFF, 1.00]
+Begin DesignProperties = 
+   Begin PaneConfigurations = 
+      Begin PaneConfiguration = 0
+         NumPanes = 4
+         Configuration = "(H (1[40] 4[20] 2[20] 3) )"
+      End
+      Begin PaneConfiguration = 1
+         NumPanes = 3
+         Configuration = "(H (1 [50] 4 [25] 3))"
+      End
+      Begin PaneConfiguration = 2
+         NumPanes = 3
+         Configuration = "(H (1 [50] 2 [25] 3))"
+      End
+      Begin PaneConfiguration = 3
+         NumPanes = 3
+         Configuration = "(H (4 [30] 2 [40] 3))"
+      End
+      Begin PaneConfiguration = 4
+         NumPanes = 2
+         Configuration = "(H (1 [56] 3))"
+      End
+      Begin PaneConfiguration = 5
+         NumPanes = 2
+         Configuration = "(H (2 [66] 3))"
+      End
+      Begin PaneConfiguration = 6
+         NumPanes = 2
+         Configuration = "(H (4 [50] 3))"
+      End
+      Begin PaneConfiguration = 7
+         NumPanes = 1
+         Configuration = "(V (3))"
+      End
+      Begin PaneConfiguration = 8
+         NumPanes = 3
+         Configuration = "(H (1[56] 4[18] 2) )"
+      End
+      Begin PaneConfiguration = 9
+         NumPanes = 2
+         Configuration = "(H (1 [75] 4))"
+      End
+      Begin PaneConfiguration = 10
+         NumPanes = 2
+         Configuration = "(H (1[66] 2) )"
+      End
+      Begin PaneConfiguration = 11
+         NumPanes = 2
+         Configuration = "(H (4 [60] 2))"
+      End
+      Begin PaneConfiguration = 12
+         NumPanes = 1
+         Configuration = "(H (1) )"
+      End
+      Begin PaneConfiguration = 13
+         NumPanes = 1
+         Configuration = "(V (4))"
+      End
+      Begin PaneConfiguration = 14
+         NumPanes = 1
+         Configuration = "(V (2))"
+      End
+      ActivePaneConfig = 0
+   End
+   Begin DiagramPane = 
+      Begin Origin = 
+         Top = 0
+         Left = 0
+      End
+      Begin Tables = 
+         Begin Table = "Vshop_StoreMessage"
+            Begin Extent = 
+               Top = 6
+               Left = 38
+               Bottom = 125
+               Right = 194
+            End
+            DisplayFlags = 280
+            TopColumn = 0
+         End
+         Begin Table = "aspnet_Members"
+            Begin Extent = 
+               Top = 6
+               Left = 475
+               Bottom = 262
+               Right = 761
+            End
+            DisplayFlags = 280
+            TopColumn = 12
+         End
+      End
+   End
+   Begin SQLPane = 
+   End
+   Begin DataPane = 
+      Begin ParameterDefaults = ""
+      End
+   End
+   Begin CriteriaPane = 
+      Begin ColumnWidths = 11
+         Column = 1440
+         Alias = 900
+         Table = 2910
+         Output = 720
+         Append = 1400
+         NewValue = 1170
+         SortType = 1350
+         SortOrder = 1410
+         GroupBy = 1350
+         Filter = 1350
+         Or = 1350
+         Or = 1350
+         Or = 1350
+      End
+   End
+End
+' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'vw_Hishop_StoreMessage'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=1 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'vw_Hishop_StoreMessage'
+GO
+
+
+
+
+
+
+表
+GO
+
+/****** Object:  Table [dbo].[Vshop_StoreMessage]    Script Date: 01/28/2016 17:25:13 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Vshop_StoreMessage](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[DisUserID] [int] NOT NULL,
+	[MsgUserID] [int] NOT NULL,
+	[MessaegeCon] [nvarchar](500) NULL,
+	[MsgTime] [datetime] NULL,
+	[Value1] [nvarchar](50) NULL,
+	[Value2] [nvarchar](50) NULL,
+	[Value3] [nvarchar](50) NULL,
+ CONSTRAINT [PK_Vshop_StoreMessage] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'店铺用户' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Vshop_StoreMessage', @level2type=N'COLUMN',@level2name=N'DisUserID'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'留言用户' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Vshop_StoreMessage', @level2type=N'COLUMN',@level2name=N'MsgUserID'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'内容' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Vshop_StoreMessage', @level2type=N'COLUMN',@level2name=N'MessaegeCon'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'留言时间' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Vshop_StoreMessage', @level2type=N'COLUMN',@level2name=N'MsgTime'
+GO
+
+
+------------------------生成订单时兼容后台订单，区分门店订单Start  aspnet_Members Hishop_ShoppingCarts 删除强制约束--------------------
+Drop  PROCEDURE [dbo].[ss_CreateOrder];
+Go
+Create  PROCEDURE [dbo].[ss_CreateOrder]  
+(  
+ -- 基本信息  
+    @OrderId nvarchar(50),  
+ @OrderDate datetime,   
+ @UserId int,  
+    @UserName nvarchar(50),  
+    @Wangwang nvarchar(20),  
+    @RealName nvarchar(50),  
+    @EmailAddress nvarchar(255) = null,  
+    @Remark Nvarchar(4000) =null,  
+ @AdjustedDiscount money,  
+ @OrderStatus int,  
+ -- 配送信息  
+ @ShippingRegion Nvarchar(300) = null,  
+ @Address Nvarchar(300) = null,  
+ @ZipCode Nvarchar(20) = null,  
+ @ShipTo Nvarchar(50) = null,  
+ @TelPhone Nvarchar(50) = null,  
+ @CellPhone Nvarchar(50) = null,  
+ @ShipToDate Nvarchar(50) = null,  
+ @ShippingModeId int = null,  
+ @ModeName Nvarchar(50) = null,  
+ @RegionId int = null,  
+ @Freight money = null,  
+ @AdjustedFreight money = null,  
+ @ShipOrderNumber Nvarchar(50) = null,   
+    @Weight int = null,  
+ @ExpressCompanyName nvarchar(500),  
+    @ExpressCompanyAbb nvarchar(500),  
+    -- 支付信息  
+    @PaymentTypeId INT = null,  
+    @PaymentType Nvarchar(100) = null,   
+    @PayCharge money = null,  
+    @RefundStatus int,  
+ @Gateway nvarchar(200)=null,  
+    -- 统计字段  
+    @OrderTotal money = null,  
+    @OrderPoint int = null,  
+    @OrderCostPrice money = null,  
+    @OrderProfit money = null,  
+    @OptionPrice money = null,  
+    @Amount money = null,      
+    @DiscountAmount money=null,  
+ -- 促销信息  
+ @ReducedPromotionId int = null,  
+ @ReducedPromotionName nvarchar(100) = null,  
+ @ReducedPromotionAmount money = null,  
+ @IsReduced bit = null,  
+  
+ @SentTimesPointPromotionId int = null,  
+ @SentTimesPointPromotionName nvarchar(100) = null,  
+ @TimesPoint money = null,  
+ @IsSendTimesPoint bit = null,  
+  
+ @FreightFreePromotionId int = null,  
+ @FreightFreePromotionName nvarchar(100) = null,  
+ @IsFreightFree bit = null,  
+    -- 优惠券信息  
+    @CouponName nvarchar(100) = null,  
+ @CouponCode nvarchar(50) = null,  
+ @CouponAmount money = null,      
+ @CouponValue money = null,  
+    -- 红包信息  
+    @RedPagerActivityName nvarchar(100) = null,  
+ @RedPagerID int = null,  
+ @RedPagerOrderAmountCanUse money = null,      
+ @RedPagerAmount money = null,  
+ --团购活动信息  
+ @GroupBuyId int = null,  
+ @NeedPrice money = null,  
+ @GroupBuyStatus int = null,  
+ --限时抢购信息  
+ @CountDownBuyId int = null,  
+ --砍价购买信息  
+ @CutDownBuyId int = null,  
+  
+ --捆绑商品  
+ @Bundlingid int=null,  
+ --捆绑价格  
+    @BundlingPrice money = null,  
+ --税金相关  
+ @Tax money=null,  
+ @InvoiceTitle nvarchar(50),  
+ @ReferralUserId int,  
+    
+ @ActivitiesId nvarchar(50)=null,  
+ @ActivitiesName nvarchar(200)=null,  
+ @FirstCommission money =null,  
+ @SecondCommission money=null,  
+ @ThirdCommission money=null  ,  
+ @Sender nvarchar(50)=null  
+)  
+as   
+  IF EXISTS (SELECT OrderId  FROM Hishop_Orders WHERE OrderId = @OrderId)  
+    Return  
+  ELSE  
+  INSERT INTO Hishop_Orders  
+   (OrderId, OrderDate, UserId, Username,RealName, EmailAddress, Remark, AdjustedDiscount, OrderStatus,  
+   ShippingRegion, Address, ZipCode, ShipTo, TelPhone, CellPhone, ShipToDate, ShippingModeId, ModeName, RegionId, Freight, AdjustedFreight, ShipOrderNumber, 
+[Weight],   
+   PaymentTypeId,PaymentType, PayCharge, RefundStatus, OrderTotal, OrderPoint, OrderCostPrice, OrderProfit, OptionPrice, Amount,   
+   ReducedPromotionId,ReducedPromotionName,ReducedPromotionAmount,IsReduced,SentTimesPointPromotionId,SentTimesPointPromotionName,TimesPoint,IsSendTimesPoint,  
+   FreightFreePromotionId,FreightFreePromotionName,IsFreightFree,CouponName, CouponCode, CouponAmount, 
+CouponValue,RedPagerActivityName,RedPagerID,RedPagerOrderAmountCanUse,RedPagerAmount,GroupBuyId,NeedPrice,GroupBuyStatus,CountDownBuyId,CutDownBuyId,
+   
+Bundlingid,DiscountAmount,ExpressCompanyName,ExpressCompanyAbb,BundlingPrice,Tax,InvoiceTitle,Gateway,ReferralUserId,ActivitiesId,ActivitiesName,FirstCommission,Sec
+ondCommission,ThirdCommission,Sender  
+  )  
+  VALUES   
+  (@OrderId, @OrderDate, @UserId, @Username,@RealName, @EmailAddress, @Remark, @AdjustedDiscount, @OrderStatus,  
+   @ShippingRegion, @Address, @ZipCode, @ShipTo, @TelPhone, @CellPhone, @ShipToDate, @ShippingModeId, @ModeName, @RegionId, @Freight, @AdjustedFreight, 
+@ShipOrderNumber, @Weight,   
+   @PaymentTypeId,@PaymentType, @PayCharge, @RefundStatus, @OrderTotal, @OrderPoint, @OrderCostPrice, @OrderProfit, @OptionPrice, @Amount,   
+   
+@ReducedPromotionId,@ReducedPromotionName,@ReducedPromotionAmount,@IsReduced,@SentTimesPointPromotionId,@SentTimesPointPromotionName,@TimesPoint,@IsSendTimesPoint,  
+   @FreightFreePromotionId,@FreightFreePromotionName,@IsFreightFree,@CouponName, @CouponCode, @CouponAmount, 
+@CouponValue,@RedPagerActivityName,@RedPagerID,@RedPagerOrderAmountCanUse,@RedPagerAmount,@GroupBuyId,@NeedPrice,@GroupBuyStatus,@CountDownBuyId,
+   @CutDownBuyId,@Bundlingid,  
+   
+@DiscountAmount,@ExpressCompanyName,@ExpressCompanyAbb,@BundlingPrice,@Tax,@InvoiceTitle,@Gateway,@ReferralUserId,@ActivitiesId,@ActivitiesName,@FirstCommission,@Se
+condCommission,@ThirdCommission,@Sender  
+   )
+Go
+------------------------生成订单时兼容后台订单，区分门店订单End--------------------
+
+Insert Into YiHui_MenuInfo(MIID,MIName,Layout,MIUrl,Visible)
+values(NEWID(),'优惠券活动列表2','040403','promotion/CouponsAct.aspx',1)

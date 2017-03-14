@@ -1,0 +1,35 @@
+添加皮肤表及[YiHui_HomePage]和[YiHui_HomePage_Model]里面的2个skinid字段        
+GO
+
+/****** Object:  Table [dbo].[YiHui_HomePage_Skin]    Script Date: 12/23/2015 14:47:04 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[YiHui_HomePage_Skin](
+	[SkinID] [uniqueidentifier] NOT NULL,
+	[Name] [nvarchar](50) NULL,
+	[SkinType] [int] NOT NULL,
+	[SkinValue1] [nvarchar](50) NULL,
+	[SkinValue2] [nvarchar](50) NULL,
+ CONSTRAINT [PK_YiHui_HomePage_Skin] PRIMARY KEY CLUSTERED 
+(
+	[SkinID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'皮肤名称' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'YiHui_HomePage_Skin', @level2type=N'COLUMN',@level2name=N'Name'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'类型：0微官网官方皮肤，1微分销官方皮肤，2微官网2级一面' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'YiHui_HomePage_Skin', @level2type=N'COLUMN',@level2name=N'SkinType'
+GO
+
+ALTER TABLE [dbo].[YiHui_HomePage_Skin] ADD  CONSTRAINT [DF_YiHui_HomePage_Skin_SkinID]  DEFAULT (newid()) FOR [SkinID]
+GO
+
+Alter Table [dbo].[YiHui_HomePage] ADD SkinID uniqueidentifier
+Alter Table [dbo].[YiHui_HomePage_Model] ADD SkinID  uniqueidentifier

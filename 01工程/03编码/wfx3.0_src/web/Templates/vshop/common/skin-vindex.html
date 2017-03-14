@@ -1,0 +1,230 @@
+﻿<hi:common_header runat="server" />
+<link href="../style/style.css" rel="stylesheet" />
+<link href="/Templates/Vshop/common/src/fontAwesome/css/font-awesome.min.css" rel="stylesheet" />
+<link href="../style/swiper.min.css" rel="stylesheet" />
+<script src="../script/swiper.min.js"></script>
+<script>
+    $(function () {
+        $(".pitch").remove();
+
+        $(".splb ul li a img").each(function () {
+            $(this).width($(this).parent().width());
+            $(this).height($(this).parent().width());
+        });
+
+        var str = window.location.search;
+        if (str.indexOf("keyWord=") != -1) {
+            var keyWord = str.substring(str.indexOf("keyWord=") + 8);
+            if (keyWord.length > 0) {
+                $("#txtKeywords").val(keyWord);
+            }
+        }
+
+        //轮播
+        $("[name=HuanDeng]").each(function () {
+            $(this).addClass("swiper-container");
+            $(this).find("ul").removeClass("slides").addClass("swiper-wrapper");
+            $(this).find("ul li").addClass("swiper-slide");
+        })
+        
+        setTimeout(function () {
+            var swiper = new Swiper('.swiper-container', {
+                pagination: '.swiper-pagination',
+                paginationClickable: true,
+                centeredSlides: true,
+                autoplay: 2500,
+                autoplayDisableOnInteraction: false
+            });
+        },0)
+        
+        
+
+        //公告滚动
+        
+        var speed = 30;
+        var scroll_begin = document.getElementById("scroll_begin");
+        var scroll_end = document.getElementById("scroll_end");
+        var scroll_div = document.getElementById("scroll_div");
+        if (scroll_begin) {
+            scroll_end.innerHTML = scroll_begin.innerHTML;
+            function Marquee() {
+                if (scroll_end.offsetWidth - scroll_div.scrollLeft <= 0)
+                    scroll_div.scrollLeft -= scroll_begin.offsetWidth;
+                else
+                    scroll_div.scrollLeft++;
+            }
+            var MyMar = setInterval(Marquee, speed);
+            scroll_div.onmouseover = function () {
+                clearInterval(MyMar);
+            }
+            scroll_div.onmouseout = function () {
+                MyMar = setInterval(Marquee, speed);
+            }
+        }
+    });
+    function search(e) {
+        var key = $(e).prev("input").val();
+        var str = window.location.search;
+
+        var categoryId;
+        if (-1 == str.indexOf("&keyWord=")) {
+            categoryId = str.substring(str.indexOf("categoryId=") + 11);
+        } else {
+            categoryId = str.substring(str.indexOf("categoryId=") + 11, str.indexOf("&keyWord="));
+        }
+        var url = "/Vshop/ProductList.aspx?categoryId=" + categoryId + "&keyWord=" + escape(key);
+
+        window.location.href = url;
+    }
+</script>
+<%<asp:panel id="panelHomePage" cssclass="gridly" runat="server"></asp:panel>%>
+<!--悬浮窗-->
+<div class="fix_box" id="flowWindow" style="display:none">
+    <a href="/Vshop/SaleService.aspx" id="airlines"><img src="/images/airlines.png" /></a>
+    <a href="javascript:;" id="goTop"><img src="/images/goTop.png" /></a>
+</div>
+<input type="hidden" runat="server" id="hidFlowWindow" clientidmode="Static" />
+<%<hi:weixinset id="weixin" runat="server"></hi:weixinset>%>
+<span id="ItemParams" style="display: none">
+    <asp:literal id="litItemParams"
+        runat="server"></asp:literal>
+</span>
+<!--<script src="../script/slider.js"></script>-->
+<script type="text/javascript" charset="utf-8">$("div.index-content img").lazyload();</script>
+<hi:common_footer runat="server" />
+<script type="text/javascript">
+
+    $("#goTop").on("click", move);
+
+    $(window).on("scroll", function () {
+        checkPosition($(window).height());
+    });
+
+    if ($("#hidFlowWindow").val() == "1") {
+        $("#flowWindow").show();
+    }
+
+    checkPosition($(window).height());
+
+    function move() {
+        $("html,body").animate({
+            scrollTop: 0
+        },300);    
+    }
+    
+    function checkPosition(pos) {
+        if ($(window).scrollTop() > pos) {
+            $("#goTop").fadeIn();
+        }else{
+            $("#goTop").fadeOut();
+        }
+    }
+    
+    //微信分享接口开始
+    var Items = $("#ItemParams").text();
+    var SetItems = Items.split('$')[0];
+    var NoSetItems = Items.split('$')[1];
+    var title;
+    var link;
+    var imgUrl;
+    var Dec;
+
+    if ($.trim(SetItems.split('|')[0]) != "") {
+        imgUrl = $.trim(SetItems.split('|')[0]);
+    }
+    else {
+        imgUrl = $.trim(NoSetItems.split('|')[0]);
+    }
+    if ($.trim(SetItems.split('|')[1]) != "") {
+        title = SetItems.split('|')[1];
+    }
+    else {
+        title = $.trim(NoSetItems.split('|')[1]);
+    }
+    if ($.trim(SetItems.split('|')[2]) != "") {
+        Dec = SetItems.split('|')[2];
+    }
+    else {
+        Dec = $.trim(NoSetItems.split('|')[2]);
+    }
+    link = NoSetItems.split('|')[3];
+    //alert(link+"abc");
+    link = $.trim(link);//修复IOS空格问题
+    WinXinShareMessage(title, Dec, link, imgUrl);
+    
+    //微信分享接口结束
+    $(function () {
+        var storeid = localStorage.getItem("selectStoreId");
+        if (storeid != null) {
+            var data = {};
+            data.storeId = storeid;
+            $.post("/api/StoreHandler.ashx?action=getStoreName", data, function (json) {
+                if (json.success === true) {
+                    document.title = document.title.substr(0, document.title.indexOf('-')) + " - " + json.storeName;
+
+                    //alert(json.storeName);
+                }
+            });
+        }
+
+
+        if (!$.trim($('#products').html())) {
+            $('#empty').css('display', '');
+        }
+        else {
+            $('#empty').css('display', 'none');
+        }
+        if ($(".pagination").html() != "") {
+            if($(".pagination").html().replace(/\s/g, "").length <= 0)$("nav").remove();
+        }
+
+        $('.price em').click(function () {
+            $('.price .actionnone').css('display', 'block');
+            $(this).css("display", "none");
+        })
+        var slidesImg = $('#slides img');
+        var aherf = $('#ahref').attr("href");
+        var width = 650, height = 320;
+        if (slidesImg.length > 1) {
+            $('#slides').slidesjs({
+                width: width,
+                height: height,
+                play: {
+                    active: true,
+                    auto: true,
+                    interval: 4000,
+                    swap: true
+                }
+            });
+            $(".slidesjs-play, .slidesjs-stop, .slidesjs-previous, .slidesjs-next").remove();
+            $(".slidesjs-pagination li").css("width", function () { return 100 / slidesImg.length + "%" });
+        }
+        else {
+
+            $('#slides').css('display', 'block').html('<div style="width:100%;"><a href=' + aherf + '></a></div>');
+            $('#slides div a').append(slidesImg);
+        }
+
+        $(".firIndex").css({ "top": $("#slides").height() / 1.6 })
+        
+    });
+
+
+    if (InitDom != null) {
+        InitDom.prototype.foranimation = function (idx) {
+            var thisidx = idx.toString();
+            switch (thisidx) {
+                case '0':
+                    break;
+                case '1':
+                    break;
+            }
+        };
+        new InitDom({
+            warp: 'ulcsd'
+        });
+    }
+
+
+
+</script>

@@ -1,0 +1,175 @@
+﻿<hi:common_header runat="server" />
+<div id="shareDiv" style="position:absolute; width:100%; height:100%; z-index:30; background:rgba(0,0,0,.8); top:0; right:0;">
+    <img src="../images/shareDiv.png" width="100%" >
+</div>
+<link rel="stylesheet" href="../style/kanjia.css" rev="stylesheet" type="text/css">
+		<div class="kan-pro-box">
+			<div class="kan-pro">
+                <div class="user-photo">
+                    <a href="/Vshop/UserInfo.aspx?edit=true"><asp:image runat="server" ImageUrl="/images/user-img.png" id="image"></asp:image></a>
+                </div>
+				<span>启禀<i><asp:literal runat="server" id="litUserName"></asp:literal></i>陛下，本商品最低可砍至<asp:literal runat="server" id="litMinPrice"></asp:literal>元，继续找朋友帮你砍吧！</span>
+			</div>
+		</div>
+		<div class="kanjia-box">
+			<div class="money-now" id="currentPrice">
+				￥<asp:literal runat="server" id="litCurrentPrice"></asp:literal>
+			</div>
+			<div class="money-jian" id="cutDownPriceTotal">
+				￥<asp:literal runat="server" id="litCutDownPriceTotal"></asp:literal>
+			</div>
+		</div>
+		<div class="kanjia-btn-box">
+			<a id="buyButton" class="kanjia-btn">立即出手</a>
+			<a id="cutDownButton" href="javascript:;" class="kanjia-btn kanjia-btn-kan">找人帮砍价</a>
+		</div>
+		<div class="kanjia-bang-ttbox">
+			<h1><b id="btnCutdownList">砍价详情</b><span id="btnCutdownContent">活动详情</span></h1>
+		</div>
+        
+
+        <!--砍价详情列表-->
+        <div id="cutdownListArea">
+		    <ul id="cutDownDetails" class="kanjia-bang-list">
+
+		    </ul>
+        </div>
+        <!-- 活动详情描述-->
+        <div class="kanjia_nrbody" style="margin-left:5px;margin-right:5px;" id="cutdownContentArea"><asp:literal runat="server" id="litContent"/></div>
+        
+
+ <%<hi:weixinset id="weixin" runat="server"></hi:weixinset>%>
+<span id="ItemParams" style="display:none">
+    <asp:literal id="litItemParams"  runat="server"></asp:literal>
+</span>
+
+        
+<input type="hidden" runat="server" id="hidCutDownId"/>
+<input type="hidden" runat="server" id="hidIsAlreadyCut"/>
+<input type="hidden" runat="server" id="hidMemberId" />
+<input type="hidden" runat="server" id="hidCutDownDetailHtml" />
+
+<script src="/Utility/common.js" type="text/javascript"></script>
+
+<script>
+    $(function () {
+        var isAlreadyCut = $("#vCutDownDetail_hidIsAlreadyCut").val();//当前用户是否已经砍过
+        var cutDownId = $("#vCutDownDetail_hidCutDownId").val();//当前活动id
+        var memberId = $("#vCutDownDetail_hidMemberId").val();//当前用户id
+        $("#cutDownDetails").html($("#vCutDownDetail_hidCutDownDetailHtml").val());
+        //给立即购买按钮增加购买链接
+        $("#buyButton").attr("href", "CutDownProductDetails.aspx?cutDownId=" + cutDownId);
+        $("#cutDownButton").click(function () {
+            goCutDown(cutDownId, memberId);
+        });
+        //根据当前用户是否砍价来给砍价按钮动态赋值
+        if (isAlreadyCut == "False") {
+            $("#cutDownButton").html("立即砍价");
+        }
+        else {
+            $("#cutDownButton").html("找人帮砍价");
+        }
+        $("#shareDiv").hide();
+        $("#shareDiv").click(function () {
+            $("#shareDiv").hide();
+        });
+
+        $(function () {
+            refresh = setInterval("reFresh(" + cutDownId + ")", 10000);
+        });
+
+        $("#btnCutdownList").click(function () {
+            $("#cutdownListArea").show();
+            $("#cutdownContentArea").hide();
+        });
+
+        $("#btnCutdownContent").click(function () {
+            $("#cutdownListArea").hide();
+            $("#cutdownContentArea").show();
+        });
+        
+        $("#btnCutdownList").click();
+    });
+
+    //开始砍价
+    function goCutDown(cutdownid, memberid) {
+        var isAlreadyCut = $("#vCutDownDetail_hidIsAlreadyCut").val();
+        if (isAlreadyCut == "True") {
+            goGetFriends();
+            return;
+        }
+
+        var data = {};
+        data.cutDownId = cutdownid;
+        data.memberId = memberid;
+        $.post("/api/VshopProcess.ashx?action=cutDown", data, function (json) {
+            if (json.success === true) {//更新成功
+                //立即调用刷新方法
+                reFresh(cutdownid);
+                //改变按钮字样和再次砍价限制
+                $("#vCutDownDetail_hidIsAlreadyCut").val("True");
+                $("#cutDownButton").html("找人帮砍价");
+            }
+            else {
+                alert_h(json.success);
+            }
+        });
+
+    }
+
+    //拉人帮砍
+    function goGetFriends() {
+        //alert_h("点击右上角分享按钮让好友帮你一起砍价吧！");
+        $("#shareDiv").show();
+    }
+    //刷新页面元素
+    function reFresh(cutdownid) {
+        var data = {};
+        data.cutDownId = cutdownid;
+        $.post("/api/VshopProcess.ashx?action=reFreshCutDownInfo", data, function (json) {
+            if (json.success === true) {//刷新成功
+                //开始给控件html赋值
+                $("#currentPrice").html(json.currentPrice);
+                $("#cutDownPriceTotal").html(json.cutDownPriceTotal);
+                $("#cutDownDetails").html(json.detailList);
+            }
+            else {
+                alert_h("出错了!");
+            }
+        });
+
+    }
+
+
+    //微信分享接口开始
+    var Items = $("#ItemParams").text();
+    var SetItems = Items.split('$')[0];
+    var NoSetItems = Items.split('$')[1];
+    var title;
+    var link;
+    var imgUrl;
+    var Dec;
+    if ($.trim(SetItems.split('|')[0]) != "") {
+        imgUrl = $.trim(SetItems.split('|')[0]);
+    }
+    else {
+        imgUrl = $.trim(NoSetItems.split('|')[0]);
+    }
+    if ($.trim(SetItems.split('|')[1]) != "") {
+        title = SetItems.split('|')[1];
+    }
+    else {
+        title = NoSetItems.split('|')[1];
+    }
+    if ($.trim(SetItems.split('|')[2]) != "") {
+        Dec = SetItems.split('|')[2];
+    }
+    else {
+        Dec = $.trim(NoSetItems.split('|')[2]);
+    }
+    link = NoSetItems.split('|')[3];
+    link = $.trim(link);//修复IOS空格问题
+    WinXinShareMessage(title, Dec, link, imgUrl);
+    //微信分享接口结束
+
+</script>

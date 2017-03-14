@@ -1,0 +1,279 @@
+﻿<hi:common_header runat="server" />
+<script src="/Utility/regionSeletor.js" type="text/javascript"></script>
+<style type="text/css">
+		html,body,#allmap {width: 100%;height: 100%;overflow: hidden;margin:0 auto;}
+        .tangram-suggestion-main{z-index:9;}
+        .mapBox{position:relative;width:100%;height:50%;}
+        .mapBox .coordinate{position:absolute;top:48%;left:50%;transform:translate(-50%,-50%);-webkit-transform:translate(-50%,-50%);width: 25px;height: 25px;z-index:2;}
+        .mapBox .coordinate img{width:100%;}
+        .add-addrbox textarea{height:auto;resize:none;padding:0 10px;}
+        .btn-dangerbox{text-align:center;margin:10px 0;}
+        .btn-dangerbox .btn-danger{width:60%;}
+        .addBox{position:relative;}
+        .addBox span{position:absolute; font-size: 16px;top:13px;left:10px;}
+        .add-addrbox input[type=text], .add-addrbox input[type=tel], .add-addrbox .dropdown-toggle{text-indent:65px;}
+        .well-addrbox .btn, textarea.form-control{border:none;}
+        .btn-dangerbox {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+	</style>
+ 
+<div style="text-align: center;padding: 10px 0;font-size: 14px;background: #32353a;color: #fff;">请输入新地址</div>
+<div class="add-addr_bg">
+    <div class="well add-addrbox">
+        <div class="addBox">
+            <span>收货人：</span>
+            <input id="shipTo" type="text" class="form-control" placeholder="收货人姓名">
+        </div>
+        <div class="addBox">
+            <span>手机号：</span>
+            <input id="cellphone" type="tel" class="form-control bmargin" placeholder="收货人电话">
+        </div>
+        <div class="addBox" style="padding:13px 0 13px 45px;background: #fff;">
+            <span>地址：</span>
+            <textarea id="address" class="form-control bmargin" rows="2" placeholder=" 小区/写字楼/学校等"></textarea>
+            
+        </div>
+        <div class="addBox" style="padding:13px 0 13px 80px;background: #fff;">
+            <span>详细地址：</span>
+            <textarea id="addressDetail" class="form-control bmargin" rows="2" placeholder="详细地址(如门牌号等)"></textarea>
+        </div>
+    </div>
+</div>
+<div class="mapBox">
+    <div class="coordinate">
+        <img src="../images/ad/coordinate.png" /></div>
+    <div id="allmap"></div>
+</div>
+<div class="btn-dangerbox">
+        <button type="button" onclick="AddShippingAddress()" class=" btn-danger">保存收货地址</button>
+    </div>
+<input type="hidden" id="specialHideShow" runat="server" clientidmode="Static" />
+
+ <%<hi:weixinset id="weixin" runat="server"></hi:weixinset>%>
+
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=AIhNTuZzyAq5RAAbd1xRZcwulju0K0pB"></script>
+
+
+
+<script type="text/javascript">
+    var ac = new BMap.Autocomplete(    //建立一个自动完成的对象
+    {
+        "input": "address"
+    });
+
+    var map = new BMap.Map("allmap");
+    var geoc = new BMap.Geocoder();
+    var city = "";
+</script>
+<script type="text/javascript">
+    var isPc = true;
+    $(function () {
+        wx.ready(function () {
+            isPc = false;
+            //获取用户坐标信息
+            wx.getLocation({
+                type: 'wgs84', // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
+                success: function (res) {
+                    var speed = res.speed; // 速度，以米/每秒计
+                    var accuracy = res.accuracy; // 位置精度
+
+                    // 百度地图API功能
+                    var point = new BMap.Point(res.longitude, res.latitude);
+                    // 百度地图API功能
+                    map.centerAndZoom(point, 15);
+                    //var marker = new BMap.Marker(point);  // 创建标注
+                    //map.addOverlay(marker);               // 将标注添加到地图中
+                    map.addEventListener('moving', function () {    //移动结束后定位
+                        var centerPoint = map.getCenter();
+                        //marker.setPosition(centerPoint);
+                        geoc.getLocation(centerPoint, function (rs) {
+                            var addComp = rs.addressComponents;
+                            //alert("您的位置：" + addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber);
+                            $("#address").val(addComp.province + addComp.city + addComp.district + addComp.street + addComp.streetNumber);
+                            city = addComp.city;
+                        });
+                    });
+                    //map.addEventListener("click", showInfo);
+                    //map.addEventListener("dragend", showInfo);
+
+                    geoc.getLocation(point, function (rs) {
+                        var addComp = rs.addressComponents;
+                        //alert("您的位置：" + addComp.province + ", " + addComp.city + ", " + addComp.district + ", " + addComp.street + ", " + addComp.streetNumber);
+                        //$("#address").val(addComp.province + addComp.city + addComp.district + addComp.street + addComp.streetNumber);
+                    });
+
+
+                    var myValue;
+                    ac.addEventListener("onconfirm", function (e) {    //鼠标点击下拉列表后的事件
+                        var _value = e.item.value;
+                        myValue = _value.province + _value.city + _value.district + _value.street + _value.business;
+                        //G("searchResultPanel").innerHTML = "onconfirm<br />index = " + e.item.index + "<br />myValue = " + myValue;
+
+                        setPlace();
+                    });
+
+                    function setPlace() {
+                        map.clearOverlays();    //清除地图上所有覆盖物
+                        function myFun() {
+                            var pp = local.getResults().getPoi(0).point;    //获取第一个智能搜索的结果
+                            lat = pp.lat; lng = pp.lng;
+                            map.centerAndZoom(pp, 18);
+                            map.addOverlay(new BMap.Marker(pp));    //添加标注
+                        }
+                        var local = new BMap.LocalSearch(map, { //智能搜索
+                            onSearchComplete: myFun
+                        });
+                        local.search(myValue);
+                    }
+
+                },
+                cancel: function (res) {
+                    //$("#address").attr("placeholder", "请填写收货人详细地址");
+                }
+            });
+        });
+
+
+    });
+
+
+    //针对不同的用户进行不同的功能区域隐藏显示
+    var customName = "";
+    if ($("#specialHideShow").val()) {
+        customName = $("#specialHideShow").val();
+        switch (customName) {
+            case "sswk"://爽爽挝啡:用户第一次填写地址的时候,尽量简化(去掉详细地址的填写)
+                //$("#address").val("店内");
+                //$("#address").hide();
+                break;
+        }
+    }
+
+    var lat, lng; //地址的坐标
+    function AddShippingAddress() {
+        var isValite = true;
+
+        if ($("#shipTo").val() == "") {
+            $("#shipTo").focus();
+            $("#divShipToTip").show();
+            alert_h($("#shipTo").attr('placeholder'));
+            isValite = false;
+            return false;
+        }
+        else {
+            $("#divShipToTip").hide();
+        }
+        if ($("#address").val() == "") {
+            $("#divAddressTip").show();
+            $("#address").focus();
+            alert_h($("#address").attr('placeholder'));
+            isValite = false;
+            return false;
+        }
+        else {
+            $("#divAddressTip").hide();
+        }
+        if ($("#cellphone").val() == "") {
+            $("#divCellphoneTip").show();
+            alert_h($("#cellphone").attr('placeholder'));
+            $("#cellphone").focus();
+            isValite = false;
+            return false;
+        }
+        else {
+            $("#divCellphoneTip").hide();
+        }
+
+        if ($("#region").val() == "") {
+            $("#region").val(0);
+            /*
+            //判断详细地址
+            isValite = false;
+            alert_h('请选择省市区');
+            return false;
+            */
+        }
+
+        // 将地址解析结果显示在地图上,并调整地图视野
+        
+        if (city == "" && !isPc) {
+            //alert("请先点击地图获取地理位置！");
+            //isValite = false;
+            //return false;
+        }
+
+        if ($("#addressDetail").val().length < 1) {
+            alert_h("请填写详细地址!");
+            isValite = false;
+            return false;
+        }
+
+        if (isPc) {
+            goAddAddress(30.586924, 114.277157); return false;
+        }
+        if (!lat || !lng) {
+            alert_h("您选择地址没有解析到结果，请重新选择！");
+            return;
+        }
+        goAddAddress(lat, lng);
+        /*
+        geoc.getPoint($("#address").val(), function (point) {
+            if (point) {
+                map.centerAndZoom(point, 16);
+                //map.addOverlay(new BMap.Marker(point));
+                
+                lat = point.lat; lng = point.lng;
+                alert(lat + " " + lng); return;
+                goAddAddress(lat, lng);
+            } else {
+                alert("您选择地址没有解析到结果!");
+                isValite = false;
+                return false;
+            }
+        }, city);
+        */
+    }
+
+
+    function goAddAddress(lat, lng) {
+        $.ajax({
+            url: "/API/VshopProcess.ashx",
+            type: 'post',
+            dataType: 'json',
+            timeout: 10000,
+            data: {
+                action: "AddShippingAddress",
+                shipTo: $("#shipTo").val(),
+                address: $("#address").val() + " " + $("#addressDetail").val(),
+                cellphone: $("#cellphone").val(),
+                regionSelectorValue: $("#region").val(),
+                lat: lat,
+                lng: lng
+            },
+            success: function (resultData) {
+                if (resultData.success) {
+                    if (window.location.search.indexOf("returnUrl=") == -1) {
+                        location.href = "/Vshop/ShippingAddresses.aspx?type=choseAdd";
+                        return false;
+                    }
+                    var returnURL = window.location.search.substr(window.location.search.indexOf("returnUrl=") + 10);
+                    if (returnURL == undefined) {
+                        location.href = "/Vshop/ShippingAddresses.aspx?type=choseAdd";
+                        return false;
+                    }
+                    location.href = decodeURIComponent(returnURL);
+                }
+                else {
+                    alert_h("添加失败");
+                }
+            }
+        });
+    }
+
+</script>
+
+<hi:common_footer runat="server" />

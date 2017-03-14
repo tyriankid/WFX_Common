@@ -1,0 +1,38 @@
+﻿<hi:common_header runat="server"/>
+ <ul class="clearfix con-title">
+        <li><a href="CommissionDetails.aspx">佣金明细</a></li>
+        <li class="activenum"><a>提现结算列表</a></li>
+      </ul>
+    <div class="yongjin-box">
+    <table class="table-nr-left">
+      <thead>
+        <tr>
+          <th>提现日期</th>
+          <th>提现金额(元)</th>
+          <th>状态</th>
+        </tr>
+      </thead>
+      <tbody id="shopbalancedraw">
+
+      <hi:vshoptemplatedrepeater id="vshopbalancedraw" templatefile="/Tags/skin-Common_BalanceDrawRequest.ascx"
+        runat="server" />
+      </tbody>
+    </table>
+    <div class="empty" id="empty" style="text-align: center;">
+        <img src="/Utility/pics/nonestore.gif" />
+    </div>
+    </div>
+    <script>
+        $(function () {
+          
+            if (!$.trim($('#shopbalancedraw').html())) {
+                $('#empty').css('display', '');
+            }
+            else {
+                $('#empty').css('display', 'none');
+            }
+        });
+    </script>
+<Hi:Common_Footer runat="server" />
+
+

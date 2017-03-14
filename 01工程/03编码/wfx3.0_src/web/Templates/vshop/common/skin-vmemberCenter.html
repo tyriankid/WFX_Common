@@ -1,0 +1,203 @@
+﻿<hi:common_header runat="server" />
+<div class="home-head memberCenter">
+    <div class="user-photo-box">
+    <div class="user-photo">
+        
+        <a href="/Vshop/UserInfo.aspx?edit=true"><asp:image runat="server" ImageUrl="/images/user-img.png" id="image"></asp:image></a>
+        <!-- <span>V</span> -->
+    </div>
+    <div class="user-name" onclick="location.href = '/Vshop/UserInfo.aspx?edit=true'"><asp:literal runat="server" id="litUserName" /><span role="userType"><asp:literal id="litUserType" runat="server"></asp:literal></span></div>
+    <div class="user-arrow"></div>
+        <div class="jifen-box"><asp:literal id="litVantages" runat="server" ></asp:literal></div>
+    <div style="position:absolute;right:10px;top:10px; color:white" >
+      <asp:literal id="litHeadline" runat="server"   text=" 推荐人昵称："></asp:literal><asp:literal id="litRecommend" runat="server" ></asp:literal></div>
+    </div>
+    <style>
+        .memberCenter .user-tags li a{
+            position:relative;
+        }
+        .memberCenter .user-tags li a span{
+            display:none;
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            text-align: center;
+            line-height: 15px;
+            color: #fff;
+            top: 2px;
+            background: #ff6a00;
+            border-radius: 50%;
+            font-size: 10px;
+            right: 33%;
+            border: 1px solid #fff;
+        }
+    </style>
+    <ul class="user-tags">
+        <li>
+            <a class="order" href="/Vshop/MemberOrders.aspx?status=0">全部订单</a>
+        </li>
+        <li>
+            <a class="pay" href="/Vshop/MemberOrders.aspx?status=1">待付款<span id="obligation">2</span></a>
+        </li>
+        <li>
+            <a class="delivery" href="/Vshop/MemberOrders.aspx?status=3">配送中<span id="delivery">3</span></a>
+        </li>
+        <li runat="server" id="ReturnChangeGoodsArea">
+            <a class="return" href="/Vshop/MemberOrderReturn.aspx">退换货</a>
+        </li>
+    </ul>
+    <!-- 
+    <div class="info">
+         <div class="title"style="width: 220px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; margin-bottom:2px;">欢迎，【<asp:literal runat="server" id="litMemberGrade" />】</div>
+        <div class="presentExp font-m">
+            <span class="badge badge-danger">消费：¥<asp:literal runat="server" id="litExpenditure" /></span>
+            <a href="logout.aspx"><span class="badge badge-warning">退出登录</span></a>
+            <!--</div>
+    </div> -->
+</div>
+
+
+<ul class="member-img-tags">
+    <li>
+        <a class="member-userInfo" href="/Vshop/UserInfo.aspx?edit=true">个人资料</a>
+    </li>
+    <li> <a  class="member-collect" href="/Vshop/MyFavorites.aspx">我的收藏</a></li>
+    <li>
+        <a class="member-refer" href="/Vshop/MyConsultations.aspx">我的咨询</a>
+    </li>
+    <li>
+        <a class="member-service" href="/Vshop/SaleService.aspx">售后服务</a>
+    </li>
+    <li>
+        <a class="member-juan"  href="/Vshop/GetCoupons.aspx">领取优惠券</a>
+    </li>
+    <li>
+        <a class="member-juan"  href="/Vshop/myredpager.aspx">我的优惠券<asp:literal id="litMyCouponCount" runat="server" ></asp:literal></a>
+    </li>
+    <li>
+        <a class="member-jifen" href="/Vshop/myvantages.aspx">积分兑换</a>
+    </li>
+    <li>
+        <a  class="member-address" href="/Vshop/EditShippingAddress.aspx">收货地址</a>
+    </li>
+    <li>
+        <a class="member-msg" href="/Vshop/MystoreMessage.aspx">留言广场</a>
+    </li>
+    <li>
+        <a class="member-sign" href="/Vshop/Sign.aspx">签到</a>
+    </li>
+    <li style="display:none">
+        <a class="member-friend" href="/Vshop/FriendQRcode.aspx">推荐好友</a>
+    </li>
+    <li style="display:none">
+        <a class="member-store" href="/Vshop/StoreQRcode.aspx">推广门店</a>
+    </li>
+    <li style="display:none">
+        <a class="member-todayOrder" href="/Vshop/TodayOrder.aspx">日结单</a>
+    </li>
+    <li>
+         <a class="member-gift"  href="/Vshop/GetCouponsEx.aspx">微信活动</a>
+    </li>
+    <li>
+        <a class="exit" href="logout.aspx">退出</a>
+    </li>
+    <li><a class="shop-no">更多</a></li>
+
+</ul>
+
+<input type="hidden" id="specialHideShow" runat="server" clientidmode="Static" />
+<input type="hidden" id="isSignOn" runat="server" clientidmode="Static" />
+<script>
+    //禁用右上角菜单
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        WeixinJSBridge.call('hideOptionMenu');
+    });
+</script>
+<script type="text/javascript">
+
+    $(function () {
+        $(".memberCenter .user-photo").css({ "left": ($(".memberCenter").width() - $(".memberCenter .user-photo").width()) / 2 + "px" });
+
+        //针对不同的用户进行不同的功能区域隐藏显示
+        var customName = "";
+        if ($("#specialHideShow").val()) {
+            customName = $("#specialHideShow").val();
+            switch (customName) {
+                case "sswk"://爽爽挝啡:去掉 退换货,售后服务,我的咨询, 收货地址改名为我的地址
+                    $("#vMemberCenter_ReturnChangeGoodsArea").hide();
+                    $(".member-service").parent("li").eq(0).hide();
+                    $(".member-refer").parent("li").eq(0).hide();
+                    $(".member-address").html("我的地址");
+                    if ($("[role='userType']").html() == "分销商") //门店特殊功能显示与隐藏
+                    {
+                        $(".member-store").parent("li").eq(0).show();
+                        $(".member-todayOrder").parent("li").eq(0).show();
+                    }
+                    break;
+                case "proLa":
+                    //$(".delivery").html("待收货");
+                    $("#vMemberCenter_ReturnChangeGoodsArea").hide();
+                    $(".member-friend").parent("li").eq(0).show();
+                    if (GetQueryString("orderid")) { //如果支付成功跳转到该页面,则发送支付成功微信模板消息
+                        var orderid = GetQueryString("orderid");
+                        var uid = GetQueryString("uid");
+                        var ajaxUrl = "http://" + window.location.host + "/api/ProductsHandler.ashx?action=sendPaySuccessMsg&orderid="+orderid+"&uid="+uid;
+                        $.ajax({
+                            type: 'get', dataType: 'json', timeout: 10000,
+                            url: ajaxUrl,
+                            success: function (e) {
+                                
+                            }
+                        });
+                    }
+                    var ajaxUrl = "http://" + window.location.host + "/api/ProductsHandler.ashx?action=getMemberCenterOrderNums";
+                    $.ajax({
+                        type: 'get', dataType: 'json', timeout: 10000,
+                        url: ajaxUrl,
+                        success: function (e) {
+                            if (e.waitPay != 0) {
+                                $("#delivery").html(e.waitPay);
+                                $("#delivery").show();
+                            }
+                            if (e.paid != 0) {
+                                $("#obligation").html(e.paid);
+                                $("#obligation").show();
+                            }
+                        }
+                    });
+                    
+                    break;
+            }
+        }
+        //是否开启签到活动
+        if ($("#isSignOn").val() == "0") {
+            $(".member-sign").parent("li").eq(0).hide();
+        }
+
+        //如果按钮数量是三的倍数,隐藏[更多]
+        if ($(".member-img-tags").children("li:visible").length % 3 == 1) {
+            $(".shop-no").parent("li").eq(0).hide();
+        }
+        else if ($(".member-img-tags").children("li:visible").length % 3 == 2) {
+            $(".shop-no").closest("ul").append("<li><a class='shop-no'>更多</a></li>");
+        }
+
+
+        var c = $(".user-tags li").length - $(".user-tags li:hidden").length;
+        $(".user-tags li").each(function () {
+            var wid = (Math.round(100 / c) + "%");
+            $(this).css("width", wid);
+        });
+    });
+
+    function GetQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return unescape(r[2]); return null;
+    }
+
+
+
+
+</script>
+<Hi:Common_Footer runat="server" />

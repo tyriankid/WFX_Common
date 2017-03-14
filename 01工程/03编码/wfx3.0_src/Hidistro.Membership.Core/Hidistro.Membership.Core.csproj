@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <ProjectType>local</ProjectType>
+    <ProjectVersion>7.10.377</ProjectVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{525A19C8-C27D-4A99-812B-F1CB3CDB92F8}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <AssemblyName>Hidistro.Membership.Core</AssemblyName>
+    <OutputType>Library</OutputType>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Data" />
+    <Reference Include="System" />
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Global.cs" />
+    <Compile Include="Hidistro\Membership\Core\IUser.cs" />
+    <Compile Include="Hidistro\Membership\Core\AnonymousUser.cs" />
+    <Compile Include="Hidistro\Membership\Core\CreateUserException.cs" />
+    <Compile Include="Hidistro\Membership\Core\Enums\ClientType.cs" />
+    <Compile Include="Hidistro\Membership\Core\Enums\Gender.cs" />
+    <Compile Include="Hidistro\Membership\Core\Enums\UserRole.cs" />
+    <Compile Include="Hidistro\Membership\Core\IUserCookie.cs" />
+    <Compile Include="Hidistro\Membership\Core\MemberRoleProvider.cs" />
+    <Compile Include="Hidistro\Membership\Core\HiMembershipUser.cs" />
+    <Compile Include="Hidistro\Membership\Core\Enums\CreateUserStatus.cs" />
+    <Compile Include="Hidistro\Membership\Core\Enums\LoginUserStatus.cs" />
+    <Compile Include="Hidistro\Membership\Core\HiMembership.cs" />
+    <Compile Include="Hidistro\Membership\Core\HiRoles.cs" />
+    <Compile Include="Hidistro\Membership\Core\RoleHelper.cs" />
+    <Compile Include="Hidistro\Membership\Core\RoleInfo.cs" />
+    <Compile Include="Hidistro\Membership\Core\UserHelper.cs" />
+    <Compile Include="Hidistro\Membership\Core\MemberUserProvider.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Hidistro.Core\Hidistro.Core.csproj">
+      <Project>{6c7ebb48-5c53-48ba-8ddb-21598cf534ab}</Project>
+      <Name>Hidistro.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hishop.Components.Validation\Hishop.Components.Validation.csproj">
+      <Project>{c83eb74c-5bad-48fe-92fc-2ca0c6d64ef1}</Project>
+      <Name>Hishop.Components.Validation</Name>
+    </ProjectReference>
+  </ItemGroup>
+</Project>

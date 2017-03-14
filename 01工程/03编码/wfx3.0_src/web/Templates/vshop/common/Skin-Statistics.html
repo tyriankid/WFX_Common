@@ -1,0 +1,79 @@
+﻿<Hi:common_header runat="server"/>
+<style type="text/css">
+    .visity-img-tags{
+	width: 100%;
+	background: #fff;
+	margin: 10px 0;
+	border-top: 1px solid #e2e2e2;
+	display: inline-block;
+}
+    .visity-img-tags li{
+	width: 50%;
+	border-left: 1px solid #e2e2e2;
+	border-bottom: 1px solid #e2e2e2;
+	margin-left: -1px;
+	float: left; 
+    text-align:center;
+    padding:10px 0;
+}
+   .visity-img-tags li  i{
+       font-style:normal;
+	font-size: 26px;
+	text-align: center; color:#F60;
+   }
+.visity-img-tags li p{
+	width: 100%;
+	text-align: center;
+	font-size: 14px;
+     color:#555;
+}
+    .pbox-select .pbox-select-border{ border:1px solid #DEDEDE;}
+    .pbox.pbox-select{ margin:0 0 10px 0; background:#FFF; border-bottom:1px solid #DEDEDE; padding: 10px;} 
+     .btn-warning {background-color: #D40000;  border-color: #D40000;}
+     .pbox-select .pbox-select-border{ height: 30px; }
+     .input-group-btn .btn{    padding: 4px 12px;}
+     .lie .kbtn{ height:25px; border:1px solid #DEDEDE;}
+     .order-box{ padding-top:10px;}
+     .order-box i{ padding-left:10px; color:#666; font-style:normal; font-size:12px;}
+     .order-box i:first-child{ padding-left:0; }
+     .order-box i i{ color:green;}
+    .all-orders{ border-bottom:1px solid #DEDEDE;}
+    .well.member-orders-nav{ border-top:1px solid #DEDEDE;  margin-bottom:0;}
+    .well.member-orders-nav .nav-title{ font-weight:normal; font-size:14px; line-height:24px; color:#666;}
+    .member-orders-nav p{ font-size:12px; line-height:20px; font-weight:normal; display:block; min-height:24px;}
+    .nav-title-left{ width:100%;}
+    .member-orders-nav p .fr-left{ float:left; }
+    .member-orders-nav p .fr-right{ float:right; text-align:right; font-size:12px; }
+    .member-orders-nav p.p1{ padding:5px 0;}
+     .member-orders-nav p.p1 span{ padding:0 10px 0 0;}
+     .nav-title{}
+    .member-orders-nav p.name-hr{ border-bottom:1px dashed #F0F0F0; padding-bottom:5px; white-space:normal; overflow:hidden;}
+
+</style>
+<input type="hidden" runat="server" id="hiddenIsAgent" />
+<!--分销商展示个人属性 -->
+<ul class="visity-img-tags" >
+
+    <asp:Literal ID="visitCount" runat="server"></asp:Literal> <!-- 访问次数 -->
+    <asp:Literal ID="visitCountToday" runat="server"></asp:Literal> <!-- 今日访问量-->
+    <asp:Literal ID="memberCount" runat="server"></asp:Literal> <!-- 会员总数-->
+    <asp:Literal ID="memberAdd" runat="server"></asp:Literal> <!-- 今日新增会员-->
+    <asp:Literal ID="orderCount" runat="server"></asp:Literal> <!-- 订单总数-->
+    <asp:Literal ID="orderToday" runat="server"></asp:Literal> <!-- 今日订单-->
+    
+</ul>
+
+<!-- 代理商展示下级分销商列表属性 -->
+<div class="all-orders" id="products">
+    <hi:vshoptemplatedrepeater id="vStatisticsList" templatefile="/Tags/Skin-Common_Statistics.ascx" runat="server" />
+</div>
+<script>
+    $(function () {
+        if ($("#VStatistics_hiddenIsAgent").val() == 1)//代理商
+        {
+            $(".visity-img-tags").css("display","none");
+        }
+    });
+</script>
+
+<Hi:Common_Footer runat="server" />

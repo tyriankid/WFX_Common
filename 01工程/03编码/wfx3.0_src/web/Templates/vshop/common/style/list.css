@@ -1,0 +1,135 @@
+﻿@charset "utf-8";
+/* CSS Document */
+/* 全局 2012.7.11*/
+
+body { width: 100%; max-width: 650px; font-family: "Arial", "Microsoft YaHei", "Tahoma"; font-size: 12px; margin: 0 auto; padding-bottom: 50px; background-color: #EFEFEF; }
+hr { margin: 10px 0; }
+em { font-style: normal; }
+img, fieldset { border: 0; }
+ul, ol { list-style: none; }
+em, address, h1, h2, h3, h4, h5, h6 { font-style: normal; }
+a { color: #333; text-decoration: none; }
+table { border-collapse: collapse; }
+del { text-shadow: none }
+/*Public Styles*/
+.ui_mt15 { margin-top: 15px; }
+.qb_bfc:after { clear: both; }
+.hd_clear { clear: both; }
+.bfc_c { display: table-cell }
+.ui_color_strong, .mod_color_strong { color: #f34 }
+.hd_bold { font-weight: bold; }
+.qb_tar { text-align: right }
+.ui_p10 { padding: 10px; }
+.ui_bg_color_weak { background-color: #f6f6f6; }
+.ui_plr10 { padding-left: 10px; padding-right: 10px }
+.ui_plr0 { padding-left: 0!important; padding-right: 0!important; }
+.ui-bt { border-top: 1px solid #eaeaea; }
+.qb_fs_s { font-size: 12px }
+.qb_fs_s2 { font-size: 14px }
+.font16 { font-size: 16px }
+.font18 { font-size: 18px }
+.o-hidden { overflow: hidden; }
+.ui_mr30 { margin-right: 30px }
+.ui_pb10 { padding-bottom: 10px; }
+.ui_pt10, .qb_pt10 { padding-top: 10px; }
+.qb_pt8 { padding-top: 8px; }
+.qb_fr { float: right; }
+.qb_fl { float: left; }
+.ui_mb15 { margin-bottom: 15px; }
+.ui_color_weak, .mod_color_weak { color: #999; }
+.qb_flex { display: -webkit-box; }
+.mod_list .list_item, .ui_mb10, .qb_mb10 { margin-bottom: 10px; }
+.ui_align_right { text-align: right; }
+.w200 { width: 200px; }
+.mod_mb15 { margin-bottom: 15px; }
+.m_top5 { margin-top: 5px; }
+.line_hr { border-bottom: 1px solid #eaeaea; }
+.line_hr2 { border-top: 1px solid #eaeaea; border-bottom: 1px solid #fff; clear: both; }
+.max_height { max-height: 40px; overflow: hidden; }
+.s_color { color: #cb4047; }
+.dis_b a { display: block; }
+.qb_mt20 { margin-top: 20px; }
+/*header*/
+header { background: -webkit-gradient(linear, 0 0, 0 100%, from(#fefefe), to(#ebebeb)); }
+header a { display: block; text-align: center; }
+.hd_header a img { height: 20px; margin-top: 11px; }
+.hd_header .mod_btn { height: 44px; border-top: 0px; border-bottom: 1px solid #d6d6d6; border-left: 0px; }
+.menu_class { padding: 8px; overflow: hidden; }
+.menu_class ul li, .menu_class a, .menu_class a span { display: block; }
+.menu_class ul li { float: left; width: 25%; text-align: center; }
+.menu_class a { background: #fff; margin: 7px; border: 1px solid #e4e4e4; }
+.menu_class a span { height: 30px; line-height: 30px; overflow: hidden; font-size: 12px; }
+.menu_class a img { width: 100%; vertical-align: bottom }
+
+
+
+/*-----------------member-orders-nav----------------------*/
+.member-orders-nav { background: #fff; position: relative; padding: 0;  border-top: 2px solid #E5E5E5; border-bottom: 1px solid #E5E5E5;}
+.member-orders-nav p { margin: 0px; line-height: 20px; font-size: 14px; padding-top: 10px; color: #A9A9A9;}
+.member-orders-nav .nav-title { margin-bottom: 8px; position: relative; }
+.member-orders-nav .nav-title a { position: absolute; right: 0; top: 6px; }
+.member-orders-nav .nav-title .nav-title-left, .member-orders-nav .nav-title .nav-title-middle { /* float: left; */ }
+.member-orders-nav .nav-title .nav-title-left{ padding:10px 10px; border-bottom: 1px solid #E5E5E5;}
+.member-orders-nav .nav-title .nav-title-left{ font-size:14px; }
+.member-orders-nav .nav-title .nav-title-left em{ float:right; color:#AFAFAF;}
+.member-orders-nav .nav-title .nav-title-left p span.text-right, .member-orders-nav .nav-title .nav-title-middle p span.text-right { display: inline-block; padding-right: 5px; }
+.member-orders-nav button.nav-title-right { float: right; margin-top: 40px; }
+.member-orders-nav .nav-title .nav-title-middle { float: right; }
+.member-bottom { padding: 10px; }
+.member-orders-content { padding: 20px 0; position: relative; }
+.member-orders-nav hr:last-child { border: none; }
+
+.member-orders-nav .money-box{
+    text-align: right;
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+    border-top: 1px solid #E5E5E5;
+    color: # color:#A9A9A9;
+    color: #888;
+}
+.member-orders-nav .money-box span{ padding-right:15px;}
+.member-orders-nav .money-box .money-shouyi b{ color:#CC3735;}
+
+.member-right-box{ position:absolute; right:10px; bottom: 20px; }
+.member-right-box em{ display:block;}
+.member-right-box .red{ color:#CC3735; font-size:12px;}
+.member-right-box .gaijia{ /* padding:2px 15px; */ background:#CC3735; color:#FFF; font-size:14px; border-radius:3px; margin-top: 5px; display: block; text-align: center; height: 24px; line-height: 24px;}
+
+
+.member-orders-content img { position: absolute; width: 75px; height: 75px; top: 22px; left: 10px;}
+.member-orders-content p em { font-style: normal; padding-right: 5px; }
+.member-orders-content .info { margin-left: 95px; min-height: 50px; /* margin-top: 5px; */ /* margin-bottom: 5px; */ }
+.member-orders-content .info a.btn-have { float: right; margin-top: -13px; }
+.member-orders-content .info p b {  color:#CC3735; }
+.member-orders-content .info p del { padding-left: 5px; font-size:10px; color:#A9A9A9; }
+.member-orders-content .info p.num{ color:#A9A9A9;}
+.member-orders-content .info p.update-price a { padding: 0px 6px; background: #ed5565; color: #fff; float: right; cursor: pointer; }
+.member-orders-content .info .name { height: 20px; line-height: 20px; padding-right: 12px; text-overflow: -o-ellipsis-lastline; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; font-size:16px; line-height:22px;  }
+
+/*-----------------end member-orders-nav----------------------*/
+
+/*-----------.xianshi-list-----------------*/
+
+.xianshi-list{}
+.member-right-box .qianggou{ /* padding:2px 15px; */ background:#FF6600; color:#FFF; font-size:14px; border-radius:3px; margin-top: 5px; display: block; text-align: center; height: 24px; line-height: 24px;}
+.member-orders-content .info .price{ color:#FF6600;}
+.member-orders-content .info .price b {  color:#FF6600; font-size:16px; }
+.member-right-box .num{ color:#A8A8A8;  padding-top:10px; display:block; }
+.member-right-box .num i{ color:#FF6600; font-style:normal; }
+.member-orders-content .info p.num .orange{ color:#FF6600;}
+
+
+.member-orders-nav .time-box{
+    text-align: right;
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+    border-top: 1px solid #E5E5E5;
+    color: # color:#A9A9A9;
+    color: #888;
+}
+.member-orders-nav .time-box span{ padding-right:15px;}
+.member-orders-nav .time-box b{ background:#FF6600; color:#FFF; border-radius:3px; padding:2px 5px; margin:0 5px; font-weight:normal; font-family:Georgia;}
+
+/*-----------.xianshi-list-----------------*/

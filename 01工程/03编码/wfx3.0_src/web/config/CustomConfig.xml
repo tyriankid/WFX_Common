@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="gb2312"?>
+<JXJJ>
+  <Configs>
+    <regionalFunction>false</regionalFunction>
+  </Configs>
+<default>
+    <AutoShipping>true</AutoShipping>
+    <AnonymousOrder>true</AnonymousOrder>
+    <BusinessName>爽爽挝啡</BusinessName>
+</default>
+</JXJJ>

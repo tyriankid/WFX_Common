@@ -1,0 +1,66 @@
+﻿<hi:common_header runat="server" />
+
+<div class="manager-box">
+    <form id="form1" role="form" class="clearfix apply">
+    <div class="manager-bg"></div>
+    <div class="manager-photo">
+        <asp:image runat="server" ImageUrl="/images/user-img.png" id="image"></asp:image>
+        <h1><asp:literal runat="server" id="litUserName" /></h1>
+    </div>
+    <ul class="manager-data">
+        <li class="phone">
+            <em>手机号码</em><input id="txtPhone" type="text"  runat="server" clientidmode="Static" class="form-control" >
+        </li>
+        <li class="name">
+            <em>真实姓名</em><input id="txtRealName" type="text" runat="server" clientidmode="Static" class="form-control">
+        </li>
+        <li class="wx">
+            <em>微信号</em><input id="txtMicroSignal" type="text" runat="server" clientidmode="Static" class="form-control">
+        </li>
+    </ul>
+    <div class="pbox">
+    <button id="btnSetUserName" type="button" class="btn btn-danger btn-block">保存资料</button></div>
+</form>
+</div>
+
+
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $("#btnSetUserName").bind("click", function () { SetUserName(); });
+        if (getParam('edit'))
+            $('#firstLoginNote').hide();
+
+    });
+
+
+    function SetUserName() {
+        $.ajax({
+            url: "/API/VshopProcess.ashx",
+            type: 'post', dataType: 'json', timeout: 10000,
+            data: { action: "SetDistributorMsg", RealName: $("#txtRealName").val(), CellPhone: $("#txtPhone").val(), MicroSignal: $("#txtMicroSignal").val() },
+            success: function (resultData) {
+                if (resultData.Status == "OK") {
+                    alert_h("修改用户信息成功", function () {
+                        location.href = "/Vshop/DistributorCenter.aspx";
+                    });
+
+                }
+                else {
+                    alert_h("修改用户信息失败, 请重试");
+                }
+            }
+        });
+    }
+
+</script>
+<script>
+    //禁用右上角菜单
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        WeixinJSBridge.call('hideOptionMenu');
+    });
+</script>
+<hi:common_footer runat="server" />

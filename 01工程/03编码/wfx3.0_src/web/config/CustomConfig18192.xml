@@ -1,0 +1,10 @@
+<?xml version="1.0" standalone="yes"?>
+<Qipinhui>
+  <Configs>
+    <isQipinhui>true</isQipinhui>
+    <noCommOpenids>oQS0-wYze3YVm-sdr1v0AP521_Y0,oQS0-wQ4M1ftETl3BHPqiDA7yISk,oQS0-wYgKCEypaiM0PPr6oHDxzdE,oQS0-wbzC50ZfqYZ1Nar7faMYMuA</noCommOpenids>
+  </Configs>
+<default>
+    <isQuickGetCashOn>false</isQuickGetCashOn>
+</default>
+</Qipinhui>

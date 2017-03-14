@@ -1,0 +1,36 @@
+<?xml version="1.0" standalone="yes"?>
+<DocumentElement>
+  <log>
+    <OperTime>2016/2/3 10:49:51</OperTime>
+    <nonce_str>3577626</nonce_str>
+    <mch_billno>10329851201649030203104949</mch_billno>
+    <mch_id>10329851</mch_id>
+    <wxappid>wx06c3a007a4dc635e</wxappid>
+    <nick_name>易惠科技</nick_name>
+    <send_name>易惠科技</send_name>
+    <re_openid>oxEAFuHEoDBhcqEe4fbT4tGb8VCs</re_openid>
+    <total_amount>100</total_amount>
+    <min_value>100</min_value>
+    <max_value>100</max_value>
+    <total_num>1</total_num>
+    <wishing>1</wishing>
+    <client_ip>::1</client_ip>
+    <act_name>1</act_name>
+    <remark>1</remark>
+    <sign>FB34C76CFF95089C8396677544FD5E54</sign>
+    <Msg>&lt;xml&gt;
+&lt;return_code&gt;&lt;![CDATA[FAIL]]&gt;&lt;/return_code&gt;
+&lt;return_msg&gt;&lt;![CDATA[参数错误:client_ip必须是合法的IP字符串.]]&gt;&lt;/return_msg&gt;
+&lt;result_code&gt;&lt;![CDATA[FAIL]]&gt;&lt;/result_code&gt;
+&lt;err_code&gt;&lt;![CDATA[PARAM_ERROR]]&gt;&lt;/err_code&gt;
+&lt;err_code_des&gt;&lt;![CDATA[参数错误:client_ip必须是合法的IP字符串.]]&gt;&lt;/err_code_des&gt;
+&lt;mch_billno&gt;&lt;![CDATA[10329851201649030203104949]]&gt;&lt;/mch_billno&gt;
+&lt;mch_id&gt;10329851&lt;/mch_id&gt;
+&lt;wxappid&gt;&lt;![CDATA[wx06c3a007a4dc635e]]&gt;&lt;/wxappid&gt;
+&lt;re_openid&gt;&lt;![CDATA[oxEAFuHEoDBhcqEe4fbT4tGb8VCs]]&gt;&lt;/re_openid&gt;
+&lt;total_amount&gt;100&lt;/total_amount&gt;
+&lt;/xml&gt;</Msg>
+    <Sign>FB34C76CFF95089C8396677544FD5E54</Sign>
+    <Url>https://api.mch.weixin.qq.com/mmpaymkttransfers/sendredpack</Url>
+  </log>
+</DocumentElement>

@@ -1,0 +1,43 @@
+﻿<hi:common_header runat="server" />
+
+
+<div class="tui-box">
+    <div class="tui-self">
+    
+    <a class="imgbox" href="/Vshop/UserInfo.aspx?edit=true"><asp:image runat="server" id="image"></asp:image></a>
+
+    <a class="tt" href=""><asp:literal id="litstorename" runat="server"></asp:literal></a>
+    <p>长按下面的二维码，关注我们</p>
+    </div>
+    <div class="ewm-box">
+        <!--<img class="ewm" src="/images/pic.jpg" />-->
+        <asp:Image class="ewm" ID="litimgorcode" runat="server" width="200" height="200" />
+    </div>
+</div>
+
+ <%<hi:weixinset id="weixin" runat="server"></hi:weixinset>%>
+<span id="imageurl" style="display:none"><asp:literal id="litimage" runat="server"></asp:literal></span>
+<span id="ItemParams" style="display:none">
+    <asp:literal id="litItemParams"  runat="server"></asp:literal>
+</span>
+<script>
+    var Items = $("#ItemParams").text();
+    var title = $("title").text();
+    var link = $("#urlQrcode").attr("href");
+    var imgUrl = $("#imageurl").text();
+    var Dec = "零投入，轻松赚。";
+    if ($.trim(Items.split('|')[0]) != "" && $.trim(Items.split('|')[0]).length>0)
+    {
+        imgUrl = $.trim(Items.split('|')[0]);
+    }
+    if ($.trim(Items.split('|')[1]) != "") {
+        title = Items.split('|')[1];
+    }
+    if ($.trim(Items.split('|')[2]) != "") {
+        Dec = Items.split('|')[2];
+    }
+    link = $.trim(link);//修复IOS空格问题
+    WinXinShareMessage(title, Dec, link, imgUrl);
+</script>
+
+<hi:common_footer runat="server" />

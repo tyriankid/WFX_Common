@@ -1,0 +1,90 @@
+﻿ <hi:common_header runat="server"/>
+<img src="/images/countdown.jpg" class="img-responsive">
+ <link rel="stylesheet" href="/style/list.css" rev="stylesheet" type="text/css">
+<div class="xianshi-body">
+    <div class="all-orders xianshi-list" id="products">
+        <hi:vshoptemplatedrepeater id="vcountdownproducts" templatefile="/Tags/skin-Common_CountDownProductList.ascx" runat="server" />
+        <div id="pager"></div>
+    </div>
+    <div style="color:red" id="divTest"></div>
+</div>
+<%<hi:weixinset id="weixin" runat="server"></hi:weixinset>%>
+<span id="ItemParams" style="display: none">
+    <asp:literal id="litItemParams"
+        runat="server"></asp:literal>
+</span>
+<Hi:Common_Footer runat="server" />
+<input type="hidden" id="txtTotal" runat="server" clientidmode="Static"/>
+<script src="/Utility/common.js" type="text/javascript"></script>
+<script src="/Utility/pager.js" type="text/javascript"></script>
+<script type="text/javascript">
+    vshopPager('pager', $('#txtTotal').val(), 1, 10);
+</script>
+<script>
+    function timer() {
+        $("input[name='time']").each(function (e) {
+            var str = $("input[name='time']").eq(e).attr("text");
+            str = str.replace(/-/g, "/");
+            var ts = new Date(str) - (new Date());//计算剩余的毫秒数  
+            var dd = parseInt(ts / 1000 / 60 / 60 / 24, 10);//计算剩余的天数  
+            var hh = parseInt(ts / 1000 / 60 / 60 % 24, 10);//计算剩余的小时数  
+            var mm = parseInt(ts / 1000 / 60 % 60, 10);//计算剩余的分钟数  
+            var ss = parseInt(ts / 1000 % 60, 10);//计算剩余的秒数  
+            dd = checkTime(dd);
+            hh = checkTime(hh);
+            mm = checkTime(mm);
+            ss = checkTime(ss);
+            $(".time-box").eq(e).html("还剩：<b>" + dd + "</b>" + "天" + "<b>" + hh + "</b>" + "时" + "<b>" + mm + "</b>" + "分" + "<b>" + ss + "</b>" + "秒");
+            if (ts <= 0) {//如果时间到了
+                clearInterval(coundDown);//清除计时器
+                $(".qianggou").eq(e).attr("href", "javascript:;");
+                $(".qianggou").eq(e).css("background", "#ccc");
+            }
+        });
+
+    }
+    function checkTime(i) {
+        if (i < 10) {
+            i = "0" + i;
+        }
+        return i;
+    }
+    var coundDown;
+    $(function () {
+        coundDown = setInterval("timer()", 1000);
+    });
+
+
+
+    //微信分享接口开始
+    var Items = $("#ItemParams").text();
+    var SetItems = Items.split('$')[0];
+    var NoSetItems = Items.split('$')[1];
+    var title;
+    var link;
+    var imgUrl;
+    var Dec;
+
+    if ($.trim(SetItems.split('|')[0]) != "") {
+        imgUrl = $.trim(SetItems.split('|')[0]);
+    }
+    else {
+        imgUrl = $.trim(NoSetItems.split('|')[0]);
+    }
+    if ($.trim(SetItems.split('|')[1]) != "") {
+        title = SetItems.split('|')[1];
+    }
+    else {
+        title = $.trim(NoSetItems.split('|')[1]);
+    }
+    if ($.trim(SetItems.split('|')[2]) != "") {
+        Dec = SetItems.split('|')[2];
+    }
+    else {
+        Dec = $.trim(NoSetItems.split('|')[2]);
+    }
+    link = NoSetItems.split('|')[3];
+    //alert(link+"abc");
+    link = $.trim(link);//修复IOS空格问题
+    WinXinShareMessage(title, Dec, link, imgUrl);
+</script>

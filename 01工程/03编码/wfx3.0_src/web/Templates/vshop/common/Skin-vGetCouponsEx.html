@@ -1,0 +1,41 @@
+﻿<hi:common_header runat="server" />
+<form id="form1" runat="server">
+<p class="text-center list-empty hide" id="empty">
+    <span class="glyphicon glyphicon-star" style="margin-left: 6px;"></span>
+    <em>暂无微信活动</em>
+</p>
+
+<div class="coupon-box">
+    <div id="redpagerList">
+        <hi:vshoptemplatedrepeater id="rptUseableCouponList" templatefile="/Tags/skin-Common_GetCouponEx.ascx" runat="server" />
+        <hi:vshoptemplatedrepeater id="rptCouponsAct" templatefile="/Tags/skin-Common_CouponsActList.ascx" runat="server" />
+    </div>
+</div>
+
+<input type="hidden" clientidmode="Static" value="" runat="server" id="txtTotal" />
+<script src="/Utility/common.js" type="text/javascript"></script>
+<script src="/Utility/pager.js" type="text/javascript"></script>
+<script>
+    vshopPager('pager', $('#txtTotal').val(), 1, 20);
+    //禁用右上角菜单
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        WeixinJSBridge.call('hideOptionMenu');
+    });
+</script>
+<script type="text/javascript">
+    var temporderId = null;
+    var strparam = getParam('status');
+    if (strparam == "2") {
+        $(".orders-title li:eq(1)").addClass("activenum").siblings().removeClass("activenum");
+    }
+    $(function () {
+        if (!$.trim($('#redpagerList').html())) {
+            $('.pbox').addClass('hide');
+            $('#empty').removeClass('hide');
+        }
+        var list_h = (document.documentElement.clientHeight - 49 - $('.list-empty').height()) * .5 + 'px';
+        $('.list-empty').css('margin-top', list_h);
+    });
+</script>
+    </form>
+<hi:common_footer runat="server" />

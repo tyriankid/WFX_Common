@@ -1,0 +1,44 @@
+﻿<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="http://libs.baidu.com/jquery/1.9.0/jquery.min.js"></script>
+    <script src="../../internal.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/emoji.css">
+  </head>
+  <body>
+    <div id="emoji2"  class="emoji-container">
+        
+      </div>
+    
+    <script type="text/javascript" src="js/underscore-min.js"></script>
+    <script type="text/javascript" src="js/editor.js"></script>
+    <script type="text/javascript" src="js/emojis.js"></script>
+
+    <script type="text/javascript">
+      $(function(){
+
+          var em2 = $('#emoji2').emoji({
+              trigger: 'mouseover',
+              insertAfter: function(item){
+                  /*editor.execCommand('insertimage', {
+                      src: "/UEditor/dialogs/emotion/emoji/" + item.src,
+                      width:"25px",height:"25px"
+                  });*/
+                  var imgHtml = '<img src="/UEditor/dialogs/emotion/emoji/' + item.src + '" width="25px" height="25px" style="width:25px;height:25px">';
+                  editor.execCommand('inserthtml', imgHtml);
+                  //style="width:25px;height:25px"
+                  dialog.popup.hide();
+              }
+          });
+
+        $('#close').click(function(){
+          em3.hide()
+          return false;
+        })
+      })
+    </script>
+  </body>
+</html> 
+    
+
+

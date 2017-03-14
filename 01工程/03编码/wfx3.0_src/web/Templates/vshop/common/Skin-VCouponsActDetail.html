@@ -1,0 +1,145 @@
+﻿<hi:common_header runat="server" />
+<link rel="stylesheet" href="/style/UpImg.css?v=2">
+<div id="bg">
+    <img src="#" />
+</div>
+<div class="box">
+    <div class="lazy_tip" id="lazy_tip">
+        <span>1%</span><br>
+        载入中......
+    </div>
+    <div class="lazy_cover"></div>
+    <div class="resource_lazy hide"></div>
+    <div class="pic_edit">
+        <!--<h2 style="color:#4eaf7a;">双指旋转和双指缩放</h2>-->
+        <div id="clipArea"></div>
+        <button id="upload2">选择图片</button>
+        <button id="clipBtn">点击上传</button>
+        <input type="file" id="file" style="opacity: 0; position: fixed; bottom: -100px">
+        <div id="plan" style="display: none">
+            <canvas id="myCanvas"></canvas>
+            <!--<h2 onClick="Close();" style="cursor:pointer; display:inline-block">关闭</h2>-->
+        </div>
+    </div>
+    <img src="" filename="" id="hit" style="display: none; z-index: 9">
+
+    <div id="cover"></div>
+    <div style="height: 150px"></div>
+</div>
+<input type="hidden" id="txtID" runat="server" />
+<input type="hidden" id="txtBgImg" runat="server" />
+<script src="/Utility/UpImg/jquery-2.1.0.min.js"></script>
+<script src="/Utility/UpImg/sonic.js"></script>
+<script src="/Utility/UpImg/comm.js"></script>
+<script src="/Utility/UpImg/hammer.js"></script>
+<script src="/Utility/UpImg/iscroll-zoom.js"></script>
+<script src="/Utility/UpImg/jquery.photoClip.js?v=1"></script>
+
+
+<hi:common_footer runat="server" />
+
+<script type="text/javascript">
+    var hammer = '';
+    var currentIndex = 0;
+    var body_width = $('body').width();
+    var body_height = $('body').height();
+
+    $("#clipArea").photoClip({
+        width: body_width * 0.8,
+        height: body_width * 0.8,
+        file: "#file",
+        view: "#hit",
+        ok: "#clipBtn",
+        loadStart: function () {
+            //console.log("照片读取中");
+            $('.lazy_tip span').text('');
+            $('.lazy_cover,.lazy_tip').show();
+        },
+        loadComplete: function () {
+            //console.log("照片读取完成");
+            $('.lazy_cover,.lazy_tip').hide();
+        },
+        clipFinish: function (dataURL) {
+            $('#hit').attr('src', dataURL);
+            saveImageInfo();
+        }
+    });
+
+    //图片上传
+    function saveImageInfo() {
+        var filename = $('#hit').attr('fileName');
+        var hz = getFileExt(filename);
+        hz = (hz + "").replace(".", "");
+        var img_data = $('#hit').attr('src');
+        if (img_data == "") { alert('null'); }
+        //alert(filename+'|'+img_data);
+        render(img_data);
+        var ID = $("#VCouponsActDetail_txtID").val();
+        $.post("/API/CouponsImg.ashx", { image: img_data, ID: ID, hz: hz }, function (data) {
+            if (data != '') {
+                if (data == "false") {
+                    alert("服务器繁忙，请稍候重试！");
+                    window.location = "MemberCenter.aspx";
+                } else {
+                    alert("上传成功！");
+                    window.location = "CouponsActShare.aspx?ID=" + data;
+                }
+            }
+        });
+    }
+
+    /*获取文件拓展名*/
+    function getFileExt(str) {
+        var d = /\.[^\.]+$/.exec(str);
+        return d;
+    }
+
+    //图片上传结束
+    $(function () {
+        $("#bg img").attr("src", $("#VCouponsActDetail_txtBgImg").val());
+        $('#upload2').on('click', function () {
+            //图片上传按钮
+            $('#file').trigger("click");
+        });
+    })
+
+
+    function Close() { $('#plan').hide(); }
+
+    // 渲染 Image 缩放尺寸  
+    function render(src) {
+        var MAX_HEIGHT = 256;  //Image 缩放尺寸 
+        // 创建一个 Image 对象  
+        var image = new Image();
+
+        // 绑定 load 事件处理器，加载完成后执行  
+        image.onload = function () {
+            // 获取 canvas DOM 对象  
+            var canvas = document.getElementById("myCanvas");
+            // 如果高度超标  
+            if (image.height > MAX_HEIGHT) {
+                // 宽度等比例缩放 *=  
+                image.width *= MAX_HEIGHT / image.height;
+                image.height = MAX_HEIGHT;
+            }
+            // 获取 canvas的 2d 环境对象,  
+            // 可以理解Context是管理员，canvas是房子  
+            var ctx = canvas.getContext("2d");
+            // canvas清屏  
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            canvas.width = image.width;        // 重置canvas宽高  
+            canvas.height = image.height;
+            // 将图像绘制到canvas上  
+            ctx.drawImage(image, 0, 0, image.width, image.height);
+            // !!! 注意，image 没有加入到 dom之中  
+
+            var dataurl = canvas.toDataURL("image/jpeg");
+            var imagedata = encodeURIComponent(dataurl);
+            $('#plan').attr('data-src', dataurl);
+            $('#plan').show();
+        };
+        // 设置src属性，浏览器会自动加载。  
+        // 记住必须先绑定render()事件，才能设置src属性，否则会出同步问题。  
+        image.src = src;
+    };
+</script>

@@ -1,0 +1,7 @@
+
+1:所有皮肤下的skin-vmemberCenter.html  
+(个人中心页面 [申请开店] 字样改为[申请VIP] )
+
+2:所有皮肤下的Skin-VApplicationDescription.html 
+(申请开店页面 [马上成为分销商] 按钮text改为[马上成为vip])
+(点击[马上成为vip]按钮后,自动获取一张最新的优惠券)

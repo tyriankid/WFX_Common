@@ -1,0 +1,168 @@
+﻿<hi:common_header runat="server" />
+<p class="text-center list-empty hide" id="empty">
+    <span class="glyphicon glyphicon-shopping-cart"></span>
+    <em>购物车为空</em>
+</p>
+<div id="cart" class="car-box">
+    <!--<div class="shoppingStepBar clearfix">
+        <div class="step active text-left"><em style="margin-left: -8px;">购物车</em><div class="glyphicon glyphicon-ok"></div><i></i></div>
+        <div class="step text-center"><em>确认订单</em><div class="glyphicon glyphicon-ok"></div></div>
+        <div class="step text-right"><em style="margin-right: -14px;">下单成功</em><div class="glyphicon glyphicon-ok"></div><i></i></div>
+    </div>
+    <hr />-->
+
+    <asp:literal runat="server" id="littext" />
+    
+    <div class="car-listbox" id="products" runat="server" style="display: inline-block; width: 100%;">
+        <h1>商品信息</h1>
+        <hi:vshoptemplatedrepeater id="rptCartProducts" templatefile="/Tags/skin-Common_CartProducts.ascx" runat="server" />
+    </div>
+
+    
+    <div class="car-listbox" id="gifts" runat="server" style="display: inline-block; width: 100%;">
+        <h1>礼品信息</h1>
+        <hi:vshoptemplatedrepeater id="rptCartGifts" templatefile="/Tags/skin-Common_CartGifts.ascx" runat="server" />
+    </div>
+
+
+         
+            <!--<li>总计 <span><asp:literal runat="server" id="litStoreMoney" /></span></li>-->
+    <div class="pbox youhui-box" style="display: inline-block;">
+        <ul class="pbox-bottom-left">
+            <li>优惠：<span id="Exemption" style="font-size: 14px;"><asp:literal runat="server" id="litExemption" /></span>（含减免，现金券）</li>
+            <li><label id="jifen">需要积分：</label><span id="totalPoint"><asp:literal runat="server" id="litTotalPoint" /></span> </li>
+        </ul>
+        <div id="pointL">(还有<span id="pointLeft"><asp:literal runat="server" id="litPointLeft" /></span>点积分可用)</div>
+         
+    </div>
+   <!-- <div class="pbox">
+        <a runat="server" id="aLink" onclick="return isPointEnough()" style="color: #fff; margin-top: 5px; float: left;" href="/Vshop/SubmmitOrder.aspx" class="btn btn-danger btn-block">
+            去结算
+        </a>
+    </div>-->
+
+
+    <div class="account-car">
+        <div class="account-xx">
+            <div class="money"><span class="num">共<b><asp:literal runat="server" id="litcount" /></b>件</span><span>合计：<b><span id="totalPrice"><asp:literal runat="server" id="litTotal" /></span></b></span></div>
+            <div class="yunfei">不含运费</div>
+        </div>
+        <a class="btn-jiesuan" id="aLink" onclick="return isPointEnough()" <!--href="/Vshop/SubmmitOrder.aspx"-->结 算</a>
+    </div>
+</div>
+<input type="hidden" id="specialHideShow" runat="server" clientidmode="Static" />
+<script type="text/javascript">
+
+    function isPointEnough() {
+        var flag = false;
+
+        
+        if ($('#pointLeft').html() - $('#totalPoint').html() >= 0) {
+            flag = true;
+        }
+        else {
+            alert_h("剩余积分不足!");
+            flag = false;
+        }
+
+        if(flag)
+        {
+            location.href = "SubmmitOrder.aspx?distributorId=" + getParam("distributorId");
+        }
+
+    }
+
+    $(function () {
+        //针对不同的用户进行不同的功能区域隐藏显示
+        var customName = "";
+        if ($("#specialHideShow").val()) {
+            customName = $("#specialHideShow").val();
+            switch (customName) {
+                case "sswk"://爽爽挝啡:用户第一次填写地址的时候,尽量简化(去掉详细地址的填写)
+                    $("footer").hide();//footer
+                    $(".account-car").addClass("account-car2");
+                    break;
+            }
+        }
+        //如果都为空,显示暂无商品
+        if ($.trim($('#totalPrice').text()) == "￥0.00" && $('#totalPoint').html()=="0") {
+            $('#cart').addClass('hide');
+            $('#empty').removeClass('hide');
+        }
+        //如果积分为空,只显示商品区域
+        if ($('#totalPoint').html() == "0") {
+            $('#totalPoint').hide();
+            $('#jifen').hide();
+            $('#pointL').hide();
+        }
+        //如果商品为空,只显示积分区域
+        if ($.trim($('#totalPrice').text()) == "￥0.00") {
+            $("#vShoppingCart_products").hide();
+        }
+
+
+        $('div[name="spAdd"]').bind("click", function () {
+            var number = $(this).parent().find('[name="buyNum"]');
+            number.val(parseInt(number.val()) + 1);
+            chageCartProductQuantity(number);
+        });
+        $('div[name="spSub"]').bind("click", function () {
+            var number = $(this).parent().find('[name="buyNum"]');
+
+            var num = parseInt(number.val()) - 1;
+            if (num > 0) number.val(parseInt(number.val()) - 1);
+            chageCartProductQuantity(number);
+
+        });
+        $('[name="buyNum"]').unbind('blur').blur(function () {
+            chageCartProductQuantity(this);
+        });
+
+
+        var skuInputs = $('.specification input');
+        $.each(skuInputs, function (j, input) {
+            var text = '';
+            $.each($(input).val().split(';'), function (i, sku) {
+                if ($.trim(sku))
+                    text += '<span class="property">' + sku.split('：')[1] + '</span>';
+            });
+            $(input).parent().html(text);
+
+        });
+
+
+        var list_h = (document.documentElement.clientHeight - 49 - $('.list-empty').height()) * .5 + 'px';
+        $('.list-empty').css('margin-top', list_h);
+
+    });
+
+
+
+
+
+    function chageCartProductQuantity(obj) {
+        $.ajax({
+            url: "/API/VshopProcess.ashx",
+            type: 'post', dataType: 'json', timeout: 10000,
+            data: { action: "ChageQuantity", skuId: $(obj).attr("skuId"),giftId:$(obj).attr("giftId"), quantity: parseInt($(obj).val()) },
+            success: function (resultData) {
+                if (resultData.Status != "OK") {
+                    alert("最多只可购买" + resultData.Status + "件");
+
+                }
+                else {
+                    $('#totalPrice').html('¥' + parseFloat(resultData.TotalPrice).toFixed(2));
+                    location.reload();
+                }
+            }
+        });
+    }
+</script>
+<script src="/utility/vshoping.helper.js" type="text/javascript"></script>
+<script>
+    //禁用右上角菜单
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        WeixinJSBridge.call('hideOptionMenu');
+    });
+</script>
+<hi:common_footer runat="server" />

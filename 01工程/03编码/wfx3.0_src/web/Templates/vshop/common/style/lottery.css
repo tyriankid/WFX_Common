@@ -1,0 +1,165 @@
+﻿@charset "utf-8";
+
+*{ margin: 0; padding: 0;}
+html{/*-webkit-text-size-adjust: 100%;*/ margin: 0; padding: 0; background-color: #F2F2F2; font-size: 62.5%;width: 100%; height: 100%;}
+body{font-family:"Microsoft Yahei",helvetica,arial; color:#666;width: 100%; height: 100% !important; padding-bottom: 0; }
+table{border-collapse: collapse;}
+li{ list-style: none;}
+input{ background: #FFF; border: 1px solid #D1D1D1; }
+button{ background: #FFF; border: 0; }
+a{ text-decoration: none; color: #555; -webkit-tap-highlight-color:transparent !important; -webkit-tap-highlight-color:none !important;-webkit-appearance:none !important;}
+a:active{ background-color: none !important; background-color: transparent !important; -webkit-tap-highlight-color:none !important;}
+.clearfix:after{ content:"."; display:block; clear:both; visibility:hidden; line-height:0; height:0; font-size:0;}
+.clearfix{ zoom:1;}
+.hide{ display: none;}
+.h10{ height: 1rem;}
+.h20{ height: 2rem;}
+.brad5{background: #FFF; border-radius: .5rem;}
+.img40{ width: 4rem; height: 4rem; border-radius: 4rem;}
+.img50{ width: 5rem; height: 5rem; border-radius: 5rem;}
+.img60{ width: 6rem; height: 6rem; border-radius: 6rem;}
+.whitebg{ padding: 1rem 1rem;background: #FFF; border-bottom: 1px solid #EEE; font-size: 1.4rem; color: #555; margin-bottom: 1rem;}
+
+.wrap{ width: 100%; min-height: 100% !important;/* max-width: 65rem;*/ margin: 0 auto;  overflow:hidden;/*position: fixed; top: 0; left: 0;*//*background: url(../images/test_bg.jpg) no-repeat;*/ background-repeat: no-repeat; background-image: url(../images/lottery/chai_bg.png); background-position: center center;  background-size: cover; background-attachment: scroll;  }
+
+/*.wrap:before {content: ' ';
+  position: fixed;
+  z-index: -1;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: url(path/to/image) center 0 no-repeat;
+  background-size: cover;
+}*/
+
+.test_front{ padding: 2rem 2rem 3rem 2rem; color: #FFF;}
+.test_front .imgbox{ text-align: center;}
+.test_front img{ display: inline-block; width: 100%; max-width: 65rem;}
+.test_front h1{ font-size: 1.8rem; /* height: 0; */ text-align: center; padding: 1rem 0;}
+.test_front p{ font-size: 1.4rem; line-height: 2rem; text-align: center; margin: 2rem 0; text-shadow: 0 0 3px #666;}
+.sign{ color: #FFFE00; padding: 0 .5rem;}
+.sign2{ color: #f8e692;}
+
+
+.test_dati{ padding: 3rem 2rem; }
+.bar_box{ position: relative; height: 2rem;}
+.bar_box .bar{ position: absolute; top: .8rem; left: 0; width: 100%; height: .3rem; background: #FFF; z-index: 2; border-radius: .3rem;}
+.bar_box ul{ z-index: 5; width: 100%; height: 1rem; position: absolute; top:0; left: 0;}
+.bar_box li{ float: left; text-align: center; width: 10%;}
+.bar_box li .num{ display: inline-block; background: #FFF; color: #888; width: 30%; height: 30%; border-radius: 3rem; width: 1.5rem; height: 1.5rem; line-height: 1.5rem; border: 1px solid #DDD; }
+.bar_box li.tested .num{background: #F90; color: #FFF;  font-size: .8rem;}
+
+.ttbox, .nrbox{ padding: 1rem; margin-top: 1rem;}
+.ttbox h1, .nrbox h1{font-size: 1.4rem; color: #666; font-weight: normal;}
+.ttbox img{ width: 100%; height: auto; margin-bottom: .6rem;}
+
+.chai_btnbox{ padding-top:2rem; }
+.chai_btn,.chai_btn2{  display: block; width: 100%; text-align: center; }
+.chai_btn img，.chai_btn2 img{ width: 100%; max-width: 65rem;}
+
+input, button, textarea{ outline:none;}
+.star_btn, .shezhi_btn, .news_btn{ display: block; width: 100%; height: 4rem; line-height: 4rem; text-align: center; color: #FFF; border-radius: .6rem; margin-top: 1rem; background: #F90; font-size: 1.6rem;}
+
+.shezhi_btn, .news_btn{display: block; width: 48%; height: 4rem; line-height: 4rem; float: left; text-align: center; border-radius: .6rem; margin-top: 1rem; background: #F90; color: #FFF; font-size: 1.6rem; }
+
+.btnbox{}
+.shezhi_btn{margin-right: 2%; background: #FFF; color: #F90;}
+.news_btn{ margin-left: 2%; position: relative;}
+.news_btn i{ position: absolute; top: .6rem; width: 1.2rem; height: 1.2rem; line-height: 1.2rem; text-align: center; font-style: normal; background: #F00; color: #FFF;font-size: 1rem; border-radius: 1.2rem;}
+
+.chai_linkbox{ border-bottom: 1px solid #FFF; padding: 1rem 0;text-align: center; max-width: 40rem; margin: 0 auto;}
+.chai_linkbox a{ display: inline-block; color: #FFF; padding: .2rem 1rem .2rem 2.5rem; background: url(../images/lottery/ico-jiangbei.png) left center no-repeat; background-size: 2.5rem; font-size: 1.8rem; margin:0 .5rem; /* -webkit-box-shadow: 0 0 0px 5px #555; */      -moz-box-shadow:0 0 10px 15px #0CC;      /* box-shadow:0 0 10px 15px #0CC; */  text-shadow: 0 0 3px #666;}
+.chai_linkbox a.chai_guize{ background: url(../images/lottery/ico-biaodan.png) left center  no-repeat; background-size: 2.5rem; /* -webkit-box-shadow: 0 0 0px 5px #555; */      -moz-box-shadow: 0 0 10px 15px #0CC;      /* box-shadow: 0 0 10px 15px #0CC; */;}
+
+.chai_yiling{ text-align: center; padding-top: 1rem;}
+.chai_yiling p{ margin-bottom:0;}
+
+
+
+.result_front{ padding: 3rem 2rem 2rem 2rem; color: #FFF;}
+.result_front .imgbox{ text-align: center;}
+.result_front img{ display: inline-block; border: 3px solid #FFF;}
+.result_front h1{ font-size: 2.2rem; line-height: 3.2rem; text-align: center; padding: 1rem 0;}
+.result_front p{ font-size: 1.4rem; line-height: 2rem; text-align: center; padding-bottom: 1rem;}
+
+.result_front .jindubox{ text-align: center;}
+.result_front .jindubox .quan{ display: inline-block; border: 3px solid #FFF;width: 7rem; height: 7rem; border-radius: 7rem; line-height: 7rem; font-size: 2.2rem;}
+
+.result_box{ padding: 0 2rem;}
+.re_ans{ padding: .5rem 1rem 1rem 1rem;  margin-bottom:2rem;}
+.result_box table{ width: 100%; }
+.result_box tr{ border-bottom: 1px solid #DDD ;  }
+.result_box td{font-size: 1rem;  padding: .5rem 0; }
+.result_box td:nth-child(1){ text-align: center; }
+/*.result_box td:nth-child(1) img{width: 3rem; height: 3rem; border-radius: 3rem;}*/
+.result_box td:nth-child(2){font-size: 1rem;}
+
+.result_box td:nth-child(2) h2, .result_box td:nth-child(2) p{font-size: 1rem; white-space: nowrap;text-overflow: ellipsis; overflow: hidden; padding:0; margin:0; text-align:left;}
+.result_box td:nth-child(2) p{ padding-top: .5rem;}
+.result_box td:nth-child(3){font-size: 2rem; color: #F60; text-align: center;}
+
+
+
+
+/*还款弹出层*/
+.popup_layer-bg{ background:rgba(0,0,0,.8) ; width: 100%; height: 100%; position: fixed; top: 0; left: 0; z-index: 9000;}
+.popup_layer-box{width: 100%; height: 100%;  position:relative; }
+.popup_layer{ width: 80%; height: 30rem; background: #FFF; padding:20px 30px; color: #333333; position: absolute; top: 50%; left: 50%; margin: -100px 0 0 -330px;}
+.popup_txt{ text-align: center; font-size: 14px; line-height: 22px;}
+.popup_txt .popup_right{ display: inline-block; width: 25px; height: 22px; background: url(../images/lottery/icon-right.png) no-repeat; vertical-align:bottom ; margin-right: 10px;}
+/*弹出层*/
+.popup_layer-box .close{ width: 45px; height: 45px; position: absolute; right: 0; top: 0;background: url(../images/lottery/icon-close2.png) center center no-repeat;}
+.popup_layer-box .close:hover{ filter:alpha(opacity=80); opacity:0.8;}
+.popup-nrbox{ width: 80%; height: 30rem;/* background: #FFF;*/ border-radius: .5rem; position: absolute; top: 50%; left: 10%; margin-top: -15rem; }
+
+.my_tab_box{ /*padding: 1rem;*/}
+.my_tab_tt{ font-size: 1.6rem; color:#333; height:40px; line-height:40px; /* overflow:hidden; */ position:relative;}
+.my_tab_tt ul{ position:absolute; top:0; width: 99.999999%; }
+.my_tab_tt ul li{float:left ; background: #FFF; width: 50%; border-radius: .5rem; text-align: center; color: #666; border-bottom: 2px solid #EEE; overflow: hidden;}
+
+.my_tab_tt ul li:first-child{ border-radius:.5rem 0 0 0;}
+.my_tab_tt ul li:first-child a{ display: block; border-right:.1rem solid #EEE ; margin-left: -.1rem; }
+.my_tab_tt ul li:last-child{ border-radius:0 .5rem 0 0;}
+.my_tab_tt ul li.hover{color: #F60; font-weight:bold; border-bottom: 2px solid #F60;}
+.my_tab_tt ul li.hover a{color: #F60;}
+
+.del_nr_box{ background: #FFF;padding: 1rem; border-radius:0 0 .5rem  .5rem ;}
+
+.closebtn_box{text-align: center;}
+.closebtn_box .closebtn{display:inline-block ; width: 10rem; background: #FF6D00; color: #FFF; border: 0; margin-top: 30px; font-size: 16px; height: 4.4rem; line-height: 4.4rem; font-weight: bold;  border-radius: .5rem;}
+.closebtn_box .closebtn:hover{filter:alpha(opacity=80); opacity:0.8; color: #FFF;}
+
+.tabstyle{ width: 100%; font-size: 1.4rem; color: #999;}
+.tabstyle th{ color: #555;}
+.tabstyle th,
+.tabstyle td{ text-align: center; border-bottom: 1px solid #EEE; line-height: 2.5rem;}
+
+.dls1{padding: 1rem 0 2rem 0;}
+.dls1 dt,.dls2 dt{ font-size: 1.8rem; color: #555; padding-bottom: 1rem;}
+.dls1 dd,.dls2 dd{ font-size: 1.4rem; color: #999;}
+.dls2{ }
+
+
+.popup-nrbox2{width: 70%; height: 25rem; background: #FFF; border-radius: .5rem; position: absolute; top: 50%; left: 10%; margin-top: -15rem; padding: 2rem; }
+.popup-nrbox2 .ptt p{ text-align: center; color: #999; border-bottom: 1px solid #EEE; line-height: 2.5rem; padding-bottom: 1.5rem;}
+
+.inpdlbox{}
+.inpdlbox dl{ position: relative; padding-left: 6rem; font-size: 1.6rem; margin: 1rem 0;}
+.inpdlbox dt{ width: 5rem; height: 4rem; line-height: 4rem; text-align: right; position: absolute; top: 0; left: 0; }
+.inpdlbox dd{}
+.inpdlbox dd input{border:0; border-bottom: 1px solid #999; background: none; width: 100%; padding: 1rem 0; text-indent: 1rem;}
+
+.twobtn_box{text-align: center;}
+.twobtn_box a{ width: 48%; float: left;background: #FF6D00; color: #FFF; border: 0; margin-top: 30px; font-size: 16px; height: 4.4rem; line-height: 4.4rem; font-weight: bold;  border-radius: .5rem; display:inline-block ; }
+.twobtn_box a:last-child{ float: right;}
+.twobtn_box .closebtn{background: #999;}
+.twobtn_box a:hover{filter:alpha(opacity=80); opacity:0.8; color: #FFF;}
+
+
+
+@keyframes tongAnimation{0%,40%,80%{transform:rotate(0)}100%,20%{transform:rotate(15deg)}60%{transform:rotate(-15deg)}}
+.tongRotate {
+    -webkit-animation: tongAnimation .4s 1;
+    animation: tongAnimation .4s 1;
+}

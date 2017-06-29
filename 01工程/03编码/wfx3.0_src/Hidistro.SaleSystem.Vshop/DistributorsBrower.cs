@@ -18,7 +18,11 @@
     using Hidistro.Entities.Commodities;
     using Hidistro.ControlPanel.Config;
     using Hidistro.ControlPanel.Commodities;
-
+    using System.Net;
+    using System.IO;
+    using System.Text;
+    using Newtonsoft.Json.Linq;
+    using Newtonsoft.Json;
 
     public class DistributorsBrower
     {
@@ -155,12 +159,14 @@
 
         public static DistributorsInfo GetCurrentDistributors(int userId)
         {
-            DistributorsInfo distributorInfo = HiCache.Get(string.Format("DataCache-Distributor-{0}", userId)) as DistributorsInfo;
+            /*
+            DistributorsInfo distributorInfo =HiCache.Get(string.Format("DataCache-Distributor-{0}", userId)) as DistributorsInfo;
             if ((distributorInfo == null) || (distributorInfo.UserId == 0))
             {
-                distributorInfo = new DistributorsDao().GetDistributorInfo(userId);
-                HiCache.Insert(string.Format("DataCache-Distributor-{0}", userId), distributorInfo, 360, CacheItemPriority.Normal);
-            }
+            */
+            DistributorsInfo distributorInfo = new DistributorsDao().GetDistributorInfo(userId);
+            HiCache.Insert(string.Format("DataCache-Distributor-{0}", userId), distributorInfo, 360, CacheItemPriority.Normal);
+            //}
             return distributorInfo;
         }
 
@@ -556,14 +562,8 @@
                             #endregion 上一级、上二级返佣
 
                             //三级向上存在代理时进行设置
-                            if (!string.IsNullOrEmpty(info4.AgentPath) && CustomConfigHelper.Instance.SelectServerAgent==false)
+                            if (!string.IsNullOrEmpty(info4.AgentPath) )
                             {
-                                /*20160424,by 迪蔓。后期服务门店类时可通用
-                                1.消费者购买时可选择服务门店(天使,下拉框列表)
-                                1.1如果服务门店选择无，则按正常三级返佣(三级之外的不参与返佣，如无限级代理)
-                                1.2如果选择了服务门店，正常三级返佣不变(同1.1规则)，额外10%的比例给服务门店(同时支持天使的返佣)
-                                1.3店铺订单，列表中额外查出服务订单
-                                */
 
                                     System.Data.DataView defaultViewAgent = DistributorGradeBrower.GetAllAgentGrade().DefaultView;  //当前系统中所有代理商等级
                                     #region 设置无限代理返佣
@@ -592,196 +592,18 @@
                                         commTatalList.Add(num);
                                         orderTotalList.Add(num2);
                                         userIdList.Add(infoAgent.UserId);
-
-                                        //齐品汇的代理商特殊返佣算法,此处为代理商在三级分佣之外时的情况:实际返佣=商品售价-出货折扣-三级返佣
-                                        if (CustomConfigHelper.Instance.IsQipinhui)
-                                        {
-                                            decimal num_new = 0m;
-                                            foreach (LineItemInfo info in order.LineItems.Values)
-                                            {
-                                                if (info.OrderItemsStatus.ToString() == OrderStatus.SellerAlreadySent.ToString())
-                                                {
-                                                    int categoryId = int.Parse(info.MainCategoryPath.TrimEnd('|'));//分类id
-                                                    string specialName = "";//当前代理商的名字
-                                                    specialName = DistributorGradeBrower.GetAgentGradeInfo(infoAgent.AgentGradeId).AgentGradeName;
-
-                                                    //通过分类id和代理商名字获取特殊的分佣比例
-                                                    decimal currentRate = Convert.ToDecimal(CatalogHelper.GetSpecialCategoryRent(categoryId, specialName));
-                                                    string noCommOpenids = CustomConfigHelper.Instance.NoCommOpenids != "" ? CustomConfigHelper.Instance.NoCommOpenids.ToLower() : "";//先获取不参加返佣的4个openid
-                                                    decimal currentSubTotal = CatalogHelper.isSpecialRateExist(categoryId) ? info.GetSubTotal() * currentRate : info.GetSubTotalByCostPrice();//根据当前分类id判断当前是用特殊比例计算还是使用成本价计算
-
-                                                    if (infoAgent.OpenId != null && noCommOpenids.IndexOf(infoAgent.OpenId.ToLower()) >= 0)
-                                                    {
-                                                        num_new = 0;
-                                                    }
-                                                    else
-                                                    {
-                                                        num_new = info.GetSubTotal() - currentSubTotal - (info.ItemsCommission + info.SecondItemsCommission + info.ThirdItemsCommission);
-                                                    }
-                                                    /*if (infoAgent.OpenId != null)
-                                                        num_new = noCommOpenids.IndexOf(infoAgent.OpenId.ToLower()) >= 0 ? 0 : (info.GetSubTotal() - currentSubTotal - (info.ItemsCommission + info.SecondItemsCommission + info.ThirdItemsCommission));
-                                                    else
-                                                    {
-                                                        num_new = info.GetSubTotal() - currentSubTotal - (info.ItemsCommission + info.SecondItemsCommission + info.ThirdItemsCommission);
-                                                    }
-                                                    */
-                                                }
-                                            }
-
-
-                                            commTatalList[commTatalList.Count - 1] = num_new;
-                                            break;
-                                        }
-
-
                                     }
 
                                     #endregion 设置无限代理返佣
 
                             }
 
-                            #region 迪蔓,只返一次无限级
-                            if (CustomConfigHelper.Instance.SelectServerAgent) {
-                                if (isAgent1 == false && isAgent2 == false && isAgent3 == false)
-                                { 
-                                    //三级之外存在店铺时，向上找最近的代理商
-                                    while (!string.IsNullOrEmpty(info4.ReferralPath))
-                                    { 
-                                        string[] arrayReferralPath = info4.ReferralPath.Split(new char[] { '|' });
-                                        info4 = GetUserIdDistributors(int.Parse(arrayReferralPath[arrayReferralPath.Length-1]));
-                                        if (info4.IsAgent == 1)
-                                        {
-                                            System.Data.DataView defaultViewAgent = DistributorGradeBrower.GetAllAgentGrade().DefaultView;  //当前系统中所有代理商等级
-                                            defaultViewAgent.RowFilter = " AgentGradeId=" + info4.AgentGradeId;
-                                            if (defaultViewAgent.Count == 0) break;
-                                            num = 0M;
-                                            num2 = 0M;
-                                            foreach (LineItemInfo info in order.LineItems.Values)
-                                            {
-                                                if (info.OrderItemsStatus.ToString() == OrderStatus.SellerAlreadySent.ToString())
-                                                {
-                                                    if (!SettingsManager.GetMasterSettings(false).EnableProfit)
-                                                        num += decimal.Parse(defaultViewAgent[0]["FirstCommissionRise"].ToString()) / 100m * info.GetSubTotal();
-                                                    else
-                                                        num += decimal.Parse(defaultViewAgent[0]["FirstCommissionRise"].ToString()) / 100m * info.GetSubTotalProfit();
-
-                                                    num2 += info.GetSubTotal();
-                                                }
-                                            }
-                                            commTatalList.Add(num);
-                                            orderTotalList.Add(num2);
-                                            userIdList.Add(info4.UserId);//添加无限级代理商佣金
-                                            break;
-                                        }
-                                    }
-                                }
-                            }
-                            #endregion 
+                            
                         }
-                        #region 51跟单特殊处理,如果是分销商在自己店铺购买商品,三级佣金往上推一层(直接佣金为0推至第四级佣金)
-                        if (CustomConfigHelper.Instance.Is51gendan && order.UserId == order.ReferralUserId)
-                        {
-                            commTatalList = new ArrayList();
-                            userIdList = new ArrayList();
-                            orderTotalList = new ArrayList();
-                            num = 0m; num2 = 0m;
-                            //获取第四级分销商id
-                            string[] strArrayNew = userIdDistributors.ReferralPath.Split(new char[] { '|' });
-                            DistributorsInfo user4 = new DistributorsInfo();
-                            if (strArrayNew.Length == 2)
-                            {
-                                user4 = GetUserIdDistributors(GetUserIdDistributors(strArrayNew[0].ToInt()).ReferralUserId);//第四级的分销商为当前分销商的第三级的上一级分销商
-                            }
 
+                        //点睛教育:收到佣金的同时,收到5/100的积分
 
-                            //一级返佣为0
-                            DistributorsInfo user1 = GetUserIdDistributors(order.ReferralUserId);
-                            if (user1.ReferralStatus == 0)
-                            {
-                                foreach (LineItemInfo item1 in order.LineItems.Values)
-                                {
-                                    if (item1.OrderItemsStatus.ToString() == OrderStatus.SellerAlreadySent.ToString())
-                                    {
-                                        num += 0;//一级不加返佣
-                                        num2 += item1.GetSubTotal();
-                                    }
-                                }
-                                commTatalList.Add(num); num = 0m;
-                                orderTotalList.Add(num2); num2 = 0m;
-                                userIdList.Add(user1.UserId);
-                            }
-                            //一共有二级的返佣处理
-                            if (strArrayNew.Length == 1)
-                            {
-                                DistributorsInfo user2 = GetUserIdDistributors(int.Parse(strArray[0]));
-                                if (user2.ReferralStatus == 0)
-                                {
-                                    foreach (LineItemInfo item2 in order.LineItems.Values)
-                                    {
-                                        if (item2.OrderItemsStatus.ToString() == OrderStatus.SellerAlreadySent.ToString())
-                                        {
-                                            num += item2.ItemsCommission;
-                                            num2 += item2.GetSubTotal();
-                                        }
-                                    }
-                                    commTatalList.Add(num);
-                                    orderTotalList.Add(num2);
-                                    userIdList.Add(user2.UserId);
-                                }
-                            }
-                            //一共有三级的返佣处理
-                            if (strArray.Length == 2)
-                            {
-                                DistributorsInfo user2 = GetUserIdDistributors(int.Parse(strArrayNew[0]));
-                                if (user2.ReferralStatus == 0)
-                                {
-                                    foreach (LineItemInfo item2 in order.LineItems.Values)
-                                    {
-                                        if (item2.OrderItemsStatus.ToString() == OrderStatus.SellerAlreadySent.ToString())
-                                        {
-                                            num += item2.SecondItemsCommission;
-                                            num2 += item2.GetSubTotal();
-                                        }
-                                    }
-                                    commTatalList.Add(num); num = 0M;
-                                    orderTotalList.Add(num2); num2 = 0M;
-                                    userIdList.Add(user2.UserId);
-                                }
-                                DistributorsInfo user3 = GetUserIdDistributors(int.Parse(strArrayNew[1]));
-                                if (user3.ReferralStatus == 0)
-                                {
-                                    foreach (LineItemInfo item3 in order.LineItems.Values)
-                                    {
-                                        if (item3.OrderItemsStatus.ToString() == OrderStatus.SellerAlreadySent.ToString())
-                                        {
-                                            num += item3.ItemsCommission;
-                                            num2 += item3.GetSubTotal();
-                                        }
-                                    }
-                                    commTatalList.Add(num); num = 0m;
-                                    orderTotalList.Add(num2); num2 = 0m;
-                                    userIdList.Add(user3.UserId);
-                                }
-                            }
-                            //四级返佣
-                            if (user4 != null && user4.ReferralStatus == 0)
-                            {
-                                foreach (LineItemInfo item4 in order.LineItems.Values)
-                                {
-                                    if (item4.OrderItemsStatus.ToString() == OrderStatus.SellerAlreadySent.ToString())
-                                    {
-                                        num += item4.ThirdItemsCommission;
-                                        num2 += item4.GetSubTotal();
-                                    }
-                                }
-                                commTatalList.Add(num);
-                                orderTotalList.Add(num2);
-                                userIdList.Add(user4.UserId);
-
-                            }
-                        }
-                        #endregion
-
+                        
                         flag = new DistributorsDao().UpdateTwoCalculationCommission(userIdList, referralUserId, orderId, orderTotalList, commTatalList);
                         for (int i = 0; i < userIdList.Count; i++)
                         {
@@ -851,7 +673,119 @@
             }
             return new DistributorsDao().UpdateDistributorMessage(query);
         }
+        #region 点睛教育傻逼需求
+        private static string GetResponseResult(string url)
+        {
+            using (HttpWebResponse response = (HttpWebResponse)WebRequest.Create(url).GetResponse())
+            {
+                using (Stream stream = response.GetResponseStream())
+                {
+                    using (StreamReader reader = new StreamReader(stream, Encoding.UTF8))
+                    {
+                        return reader.ReadToEnd();
+                    }
+                }
+            }
+        }
+       
+        /// <summary>        /// 判断用户有没有关注公众号        /// </summary>        /// <returns></returns>        public static bool WxSubscribe(string openid)        {
+            //开启微信才开始判断
+            SiteSettings masterSettings = SettingsManager.GetMasterSettings(true);            if (!masterSettings.IsValidationService)                return true;
 
+            //获取access_token
+
+            string responseResult = GetResponseResult("https://api.weixin.qq.com/cgi-bin/token?appid=" + masterSettings.WeixinAppId + "&secret=" + masterSettings.WeixinAppSecret + "&grant_type=client_credential");
+            if (responseResult.Contains("access_token"))
+            {
+                JObject obj2 = JsonConvert.DeserializeObject(responseResult) as JObject;
+                string wxUserInfoStr = GetResponseResult("https://api.weixin.qq.com/cgi-bin/user/info?access_token=" + obj2["access_token"].ToString() + "&openid=" + openid + "&lang=zh_CN");
+                if (wxUserInfoStr.Contains("subscribe"))
+                {
+                    JObject wxUserInfo = JsonConvert.DeserializeObject(wxUserInfoStr) as JObject;
+
+                    if (Convert.ToInt32(wxUserInfo["subscribe"].ToString()) != 0)
+                    {
+                        return true;
+                    }
+                }
+            }            return false;        }
+
+        //点睛教育需求:返佣同时得积分
+        public static bool UpdateDistributorPoints(OrderInfo order)
+        {
+            bool flag = false;
+
+            //代理商的积分
+            DistributorsInfo currentDistributor = GetDistributorInfo(order.ReferralUserId);//当前1级分销商分销信息
+            DistributorsInfo currentAgent = GetDistributorInfo(currentDistributor.AgentPath.ToInt());//当前代理商分销信息
+            MemberInfo distributorLevel1Info = MemberProcessor.GetMember(currentDistributor.UserId);//当前1级分销商用户信息
+            MemberInfo agentInfo = MemberProcessor.GetMember(currentAgent.UserId);//当前代理商用户信息
+
+            //获取一级返佣和代理商返佣
+            decimal commision = 0m;
+            foreach (LineItemInfo info in order.LineItems.Values)
+            {
+                commision += info.ItemsCommission;
+            }
+
+            //一级分销商可得的积分
+            int pointLevel1 = Convert.ToInt32(commision / 20);
+            int agentCommisionRate = Convert.ToInt32(DistributorGradeBrower.GetAgentGradeInfo(currentAgent.AgentGradeId).FirstCommissionRise);//当前代理商的分佣百分比
+            //当前代理商可得的积分
+            int pointAgent = Convert.ToInt32((order.GetTotal() / 100 * agentCommisionRate) / 20);
+            //判断该用户是否关注了公众号,如果没有关注,则积分给代理商.
+            if ( !(distributorLevel1Info!=null && WxSubscribe(distributorLevel1Info.OpenId)))
+            {
+                pointAgent = pointAgent + pointLevel1;
+            }
+
+
+            //给1级分销商增加积分
+            MemberDao dao4 = new MemberDao();
+            distributorLevel1Info.Points = distributorLevel1Info.Points + pointLevel1;
+            PointDetailInfo pointDistributorLevel1 = new PointDetailInfo
+            {
+                OrderId = order.OrderId,
+                UserId = order.ReferralUserId,
+                TradeDate = DateTime.Now,
+                TradeType = PointTradeType.Bounty,
+                Increased = pointLevel1,
+                Points = distributorLevel1Info.Points
+            };
+            if ((pointDistributorLevel1.Points > 0x7fffffff) || (pointDistributorLevel1.Points < 0))
+            {
+                pointDistributorLevel1.Points = 0x7fffffff;
+            }
+            PointDetailDao dao5 = new PointDetailDao();
+            dao5.AddPointDetail(pointDistributorLevel1);
+            dao4.Update(distributorLevel1Info);
+
+            //给代理商增加积分
+
+            MemberDao dao6 = new MemberDao();
+            agentInfo.Points = agentInfo.Points + pointAgent;
+            PointDetailInfo pointAgentInfo = new PointDetailInfo
+            {
+                OrderId = order.OrderId,
+                UserId = order.ReferralUserId,
+                TradeDate = DateTime.Now,
+                TradeType = PointTradeType.Bounty,
+                Increased = pointAgent,
+                Points = agentInfo.Points
+            };
+            if ((pointAgentInfo.Points > 0x7fffffff) || (pointAgentInfo.Points < 0))
+            {
+                pointAgentInfo.Points = 0x7fffffff;
+            }
+            PointDetailDao dao7 = new PointDetailDao();
+            dao5.AddPointDetail(pointAgentInfo);
+            dao4.Update(agentInfo);
+
+            return flag;
+        }
+
+
+        #endregion
         public static DataTable GetDistributorsByWhere(string where)
         {
             return new DistributorsDao().SelectDistributorsByWhere(where);

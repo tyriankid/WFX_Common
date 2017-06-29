@@ -9,14 +9,15 @@
     <div class="user-name" onclick="location.href = '/Vshop/UserInfo.aspx?edit=true'"><asp:literal runat="server" id="litUserName" /><span role="userType"><asp:literal id="litUserType" runat="server"></asp:literal></span></div>
     <div class="user-arrow"></div>
         <div class="jifen-box"><asp:literal id="litVantages" runat="server" ></asp:literal></div>
-    <div style="position:absolute;right:10px;top:10px; color:white" >
+    <div style="position:absolute;right:10px;top:20px; color:white" >
       <asp:literal id="litHeadline" runat="server"   text=" 推荐人昵称："></asp:literal><asp:literal id="litRecommend" runat="server" ></asp:literal></div>
     </div>
     <style>
+       body {background: #dddddd !important; }
         .memberCenter .user-tags li a{
             position:relative;
         }
-        .memberCenter .user-tags li a span{
+        .memberCenter .user-tags li a p{
             display:none;
             position: absolute;
             width: 15px;
@@ -31,79 +32,111 @@
             right: 33%;
             border: 1px solid #fff;
         }
+        .memberCenter .user-tags li a span{
+                    position: absolute;
+                    width: 20px;
+                    height: 20px;
+                    text-align: center;
+                    line-height: 15px;
+                    color: #e4393c;
+                    top: 12px;
+                    background: #fff;
+                    border-radius: 50%;
+                    font-size: 10px;
+                    right: 30%;
+                    border: 2px solid #e4393c;
+        }
+        .jifen-box {top: 48px;}
+        .user-arrow {bottom: 30px;}
     </style>
     <ul class="user-tags">
         <li>
-            <a class="order" href="/Vshop/MemberOrders.aspx?status=0">全部订单</a>
+            <a class="order" href="/Vshop/MemberOrders.aspx?status=1">待付款<asp:Label id="dfk" runat="server" ></asp:Label></a>
+             
         </li>
         <li>
-            <a class="pay" href="/Vshop/MemberOrders.aspx?status=1">待付款<span id="obligation">2</span></a>
+            <a class="delivery" href="/Vshop/MemberOrders.aspx?status=2">待发货 <asp:Label id="dfh" runat="server" ></asp:Label><p id="Span1">1</p></a>
+           
         </li>
         <li>
-            <a class="delivery" href="/Vshop/MemberOrders.aspx?status=3">配送中<span id="delivery">3</span></a>
+            <a class="pay" href="/Vshop/MemberOrders.aspx?status=3">待收货  <asp:Label id="dsh" runat="server" ></asp:Label><p id="obligation">2</p></a>
+           
+        </li>
+        <li>
+            <a class="pay1" href="/Vshop/MemberOrders.aspx?status=4">待评论<asp:Label id="dpj" runat="server" ></asp:Label><p id="delivery">3</p></a>
+             
         </li>
         <li runat="server" id="ReturnChangeGoodsArea">
-            <a class="return" href="/Vshop/MemberOrderReturn.aspx">退换货</a>
+            <a class="return" href="/Vshop/MemberOrderReturn.aspx">退款/售后</a>
         </li>
     </ul>
-    <!-- 
-    <div class="info">
-         <div class="title"style="width: 220px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; margin-bottom:2px;">欢迎，【<asp:literal runat="server" id="litMemberGrade" />】</div>
+     
+    <!--<div class="info">-->
+         <!--<div class="title"style="width: 220px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; margin-bottom:2px;">欢迎，【<asp:literal runat="server" id="litMemberGrade" />】</div>
         <div class="presentExp font-m">
             <span class="badge badge-danger">消费：¥<asp:literal runat="server" id="litExpenditure" /></span>
             <a href="logout.aspx"><span class="badge badge-warning">退出登录</span></a>
-            <!--</div>
+            </div>
     </div> -->
 </div>
 
 
 <ul class="member-img-tags">
-    <li>
-        <a class="member-userInfo" href="/Vshop/UserInfo.aspx?edit=true">个人资料</a>
+    <li   style="display:none">
+        <a class="member-userInfo" href="/Vshop/UserInfo.aspx?edit=true">我的拼团<span style="float: right;margin-right: 20px;">></span></a><!--个人资料改为我的拼团-->
     </li>
-    <li> <a  class="member-collect" href="/Vshop/MyFavorites.aspx">我的收藏</a></li>
-    <li>
-        <a class="member-refer" href="/Vshop/MyConsultations.aspx">我的咨询</a>
-    </li>
-    <li>
-        <a class="member-service" href="/Vshop/SaleService.aspx">售后服务</a>
+    <li> <a  class="member-collect" href="/Vshop/MyFavorites.aspx">我的收藏<span style="float: right;margin-right: 20px;">></span></a></li>
+    <li  style="display:none">
+        <a class="member-refer" href="/Vshop/MyConsultations.aspx">浏览记录<span style="float: right;margin-right: 20px;">></span></a><!--我的咨询改为浏览记录-->
     </li>
     <li>
-        <a class="member-juan"  href="/Vshop/GetCoupons.aspx">领取优惠券</a>
+        <a class="member-service" href="/Vshop/SaleService.aspx">售后服务<span style="float: right;margin-right: 20px;">></span></a>
     </li>
     <li>
-        <a class="member-juan"  href="/Vshop/myredpager.aspx">我的优惠券<asp:literal id="litMyCouponCount" runat="server" ></asp:literal></a>
+        <a class="member-juan"  href="/Vshop/GetCoupons.aspx">领取优惠券<span style="float: right;margin-right: 20px;">></span></a>
     </li>
     <li>
-        <a class="member-jifen" href="/Vshop/myvantages.aspx">积分兑换</a>
-    </li>
-    <li>
-        <a  class="member-address" href="/Vshop/EditShippingAddress.aspx">收货地址</a>
-    </li>
-    <li>
-        <a class="member-msg" href="/Vshop/MystoreMessage.aspx">留言广场</a>
-    </li>
-    <li>
-        <a class="member-sign" href="/Vshop/Sign.aspx">签到</a>
+        <a class="member-juan1"  href="/Vshop/myredpager.aspx">我的优惠券<span style="float: right;margin-right: 20px;">></span><asp:literal id="litMyCouponCount" runat="server" ></asp:literal></a>
     </li>
     <li style="display:none">
-        <a class="member-friend" href="/Vshop/FriendQRcode.aspx">推荐好友</a>
-    </li>
-    <li style="display:none">
-        <a class="member-store" href="/Vshop/StoreQRcode.aspx">推广门店</a>
-    </li>
-    <li style="display:none">
-        <a class="member-todayOrder" href="/Vshop/TodayOrder.aspx">日结单</a>
+        <a class="member-jifen" href="/Vshop/myvantages.aspx">我要开店<span style="float: right;margin-right: 20px;">></span></a><!--积分兑换改为我要开店-->
     </li>
     <li>
-         <a class="member-gift"  href="/Vshop/GetCouponsEx.aspx">微信活动</a>
+        <a  class="member-address" href="/Vshop/EditShippingAddress.aspx">收货地址<span style="float: right;margin-right: 20px;">></span></a>
+    </li>
+    <li style="display:none">
+        <a class="member-msg" href="/Vshop/MystoreMessage.aspx">留言广场<span style="float: right;margin-right: 20px;">></span></a>
+    </li>
+    <li style="display:none">
+        <a class="member-sign" href="/Vshop/Sign.aspx">签到<span style="float: right;margin-right: 20px;">></span></a>
+    </li>
+    <li style="display:none" >
+        <a class="member-friend" href="/Vshop/FriendQRcode.aspx">推荐好友<span style="float: right;margin-right: 20px;">></span></a>
+    </li>
+    <li style="display:none">
+        <a class="member-store" href="/Vshop/StoreQRcode.aspx">推广门店<span style="float: right;margin-right: 20px;">></span></a>
+    </li>
+    <li style="display:none">
+        <a class="member-todayOrder" href="/Vshop/TodayOrder.aspx">日结单<span style="float: right;margin-right: 20px;">></span></a>
     </li>
     <li>
+         <a class="member-gift"  href="/Vshop/GetCouponsEx.aspx">微信活动<span style="float: right;margin-right: 20px;">></span></a>
+       
+    </li>
+    <li>
+         <a class="member-gift1"  href="/Vshop/PromotionRedcket.aspx">推广红包<span style="float: right;margin-right: 20px;">></span></a>
+    </li>
+    <li >
+         <a class="member-userInfo"  href="/Vshop/GroupBuying.aspx"  style="display:none">我的团购<span style="float: right;margin-right: 20px;">></span></a>
+    </li>
+
+    <li  style ="display :none">
         <a class="exit" href="logout.aspx">退出</a>
     </li>
-    <li><a class="shop-no">更多</a></li>
+    <li style ="display :none !important;"><a class="shop-no">更多</a></li>
 
 </ul>
+
 
 <input type="hidden" id="specialHideShow" runat="server" clientidmode="Static" />
 <input type="hidden" id="isSignOn" runat="server" clientidmode="Static" />
@@ -115,7 +148,25 @@
 </script>
 <script type="text/javascript">
 
+
+
+
+
     $(function () {
+        ;
+        if ($("#vMemberCenter_dfk").text() == "0") {
+            $("#vMemberCenter_dfk").remove();
+        }
+        if ($("#vMemberCenter_dfh").text() == "0") {
+            $("#vMemberCenter_dfh").remove();
+        }
+        if ($("#vMemberCenter_dsh").text() == "0") {
+            $("#vMemberCenter_dsh").remove();
+        }
+        if ($("#vMemberCenter_dpj").text() == "0") {
+            $("#vMemberCenter_dpj").remove();
+        }
+
         $(".memberCenter .user-photo").css({ "left": ($(".memberCenter").width() - $(".memberCenter .user-photo").width()) / 2 + "px" });
 
         //针对不同的用户进行不同的功能区域隐藏显示
@@ -141,12 +192,12 @@
                     if (GetQueryString("orderid")) { //如果支付成功跳转到该页面,则发送支付成功微信模板消息
                         var orderid = GetQueryString("orderid");
                         var uid = GetQueryString("uid");
-                        var ajaxUrl = "http://" + window.location.host + "/api/ProductsHandler.ashx?action=sendPaySuccessMsg&orderid="+orderid+"&uid="+uid;
+                        var ajaxUrl = "http://" + window.location.host + "/api/ProductsHandler.ashx?action=sendPaySuccessMsg&orderid=" + orderid + "&uid=" + uid;
                         $.ajax({
                             type: 'get', dataType: 'json', timeout: 10000,
                             url: ajaxUrl,
                             success: function (e) {
-                                
+
                             }
                         });
                     }
@@ -165,9 +216,13 @@
                             }
                         }
                     });
-                    
+
                     break;
             }
+
+
+
+
         }
         //是否开启签到活动
         if ($("#isSignOn").val() == "0") {
@@ -179,7 +234,7 @@
             $(".shop-no").parent("li").eq(0).hide();
         }
         else if ($(".member-img-tags").children("li:visible").length % 3 == 2) {
-            $(".shop-no").closest("ul").append("<li><a class='shop-no'>更多</a></li>");
+            $(".shop-no").closest("ul").append("<li style ='display :none'><a class='shop-no'>更多</a></li>");
         }
 
 
@@ -195,7 +250,6 @@
         var r = window.location.search.substr(1).match(reg);
         if (r != null) return unescape(r[2]); return null;
     }
-
 
 
 

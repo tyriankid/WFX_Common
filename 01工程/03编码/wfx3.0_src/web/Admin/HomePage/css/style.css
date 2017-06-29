@@ -273,7 +273,7 @@ input,a{
 	width: 550px;
 }
 .addAttr img,.nav_li_attr img{
-	width: 100%;
+	width: 150px;
 	height: auto;
 }
 .addAttr table tr td,.nav_li_attr tr td{
@@ -310,7 +310,7 @@ input,a{
 	padding-right: 10px;
 }
 .addAttr tr td:first-child,.nav_li_attr tr td:first-child{
-	width: 100px;
+	width: 80px;
     font-size:15px;
 }
 .changeBtn{
@@ -578,10 +578,40 @@ textarea{
     margin:5px 0;
     font-size:15px;
 }
-.splb ul li a p:last-child span:first-child,.sp ul li a p:last-child span:first-child{
+
+        .splb ul li a p:last-child span:first-child,.sp ul li a p:last-child span:first-child{
 	color: #D9690B;
 	font-size: 1em;
 }
+
+.sp ul {
+    min-height: 28px;
+    overflow: hidden;
+}
+
+    .sp ul li {
+        float: left;
+        overflow: hidden;
+    }
+
+        .sp ul li a {
+            position: relative;
+            display: block;
+        }
+
+            .sp ul li a span {
+                position: absolute;
+                width: 100%;
+                height: 2em;
+                line-height: 2em;
+                background: rgba(0,0,0,0.5);
+                color: #fff;
+                bottom: 0;
+                left: 0;
+                text-indent: .5em;
+            }
+
+
 .manner1 li,.manner4 li{
 	width: 50%;
 }
@@ -608,13 +638,19 @@ textarea{
 .manner3 li a p:nth-child(2){
 	top: 15px;
 }
-.delsp{
-    width:80px;
-    height:80px;
-    line-height:80px;
+.manner5 li {
+    width:33.3%;
+}
+.manner6 li {
+    width: 25%;
+}
+.delsp {
+    width: 80px;
+    height: 80px;
+    line-height: 80px;
     display: inline-block;
-    position:relative;
-    margin:5px;
+    position: relative;
+    margin: 5px;
 }
 .delsp img{
     width:100%;
@@ -659,6 +695,7 @@ select{
     box-shadow:0 0 20px #9c9c9c;
     min-width:1000px;
 }
+
 .layoutImg iframe{
     width:100%;
     height:500px;
@@ -689,6 +726,55 @@ select{
 .kb {
     position:relative;
 }
+/*商品选择弹窗*/
+.layoutProduct {
+    display: none;
+    position: fixed;
+    width: 80%;
+    height: 550px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
+    padding: 10px;
+    z-index: 9999999;
+    background: #fff;
+    border: 1px solid #CCC;
+    box-shadow: 0 0 20px #9c9c9c;
+    min-width: 1000px;
+}
+
+    .layoutProduct iframe {
+        width: 100%;
+        height: 500px;
+        margin: 0 auto;
+    }
+
+    .layoutProduct a {
+        display: inline-block;
+        width: 66px;
+        height: 36px;
+        text-align: center;
+        line-height: 36px;
+        background: #428bca;
+        color: #fff;
+        margin: 0 10px;
+        cursor: pointer;
+        border-radius: 5px
+    }
+
+        .layoutProduct a.allSelect {
+            float: right;
+            width: 20px;
+            height: 20px;
+            line-height: 20px;
+            background: #F55656;
+        }
+
+        .layoutProduct a:hover {
+            background: #4e5d6f;
+        }
 .search_div{
     padding:10px;
 }

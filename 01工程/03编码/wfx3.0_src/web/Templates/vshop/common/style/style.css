@@ -346,6 +346,13 @@ textarea{
 .manner3 li a p:nth-child(2){
 	top: 15px;
 }
+.manner5 li {
+    width: 33.3%;
+}
+.manner6 li {
+    width: 25%;
+}
+
 .delsp{
     width:80px;
     height:80px;

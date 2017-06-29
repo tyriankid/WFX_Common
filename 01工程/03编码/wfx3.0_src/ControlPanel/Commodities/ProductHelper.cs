@@ -381,6 +381,11 @@
             return new ProductBatchDao().GetTopStoreProductBaseInfo();
         }
 
+        public static DataTable GetStoreProductBaseInfo(int storeId)
+        {
+            return new ProductBatchDao().GetStoreProductBaseInfo(storeId);
+        }
+
         public static bool MutiProductSubmmitReview(string productids)
         {
             return new ProductBatchDao().MutiProductSubmmitReview(productids);

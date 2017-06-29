@@ -17,7 +17,6 @@
             this.SiteDescription = "最安全，最专业的网上商店系统";
             this.Theme = "default";
             this.VTheme = "default";
-            this.AliOHTheme = "default";
             this.WapTheme = "default";
             this.SiteName = "Hishop";
             this.LogoUrl = "/utility/pics/logo.jpg";
@@ -66,7 +65,6 @@
             this.ValueAddedServiceIsOpen = "0";
             this.EnableVshopReferral = false;
             this.EnableBankUnionPay = false;
-            this.EnableAliOHBankUnionPay = false;
             this.EnableWapBankUnionPay = false;
             this.EnableAPPBankUnionPay = false;
             this.WeixinCertPath = "";
@@ -106,8 +104,8 @@
                 SearchMetaDescription = node.SelectSingleNode("SearchMetaDescription").InnerText, SearchMetaKeywords = node.SelectSingleNode("SearchMetaKeywords").InnerText, SiteDescription = node.SelectSingleNode("SiteDescription").InnerText, SiteName = node.SelectSingleNode("SiteName").InnerText, SiteUrl = node.SelectSingleNode("SiteUrl").InnerText, UserId = null, Theme = node.SelectSingleNode("Theme").InnerText, YourPriceName = node.SelectSingleNode("YourPriceName").InnerText, EmailSender = node.SelectSingleNode("EmailSender").InnerText, EmailSettings = node.SelectSingleNode("EmailSettings").InnerText, SMSSender = node.SelectSingleNode("SMSSender").InnerText, SMSSettings = node.SelectSingleNode("SMSSettings").InnerText, SiteMapTime = node.SelectSingleNode("SiteMapTime").InnerText, SiteMapNum = node.SelectSingleNode(" SiteMapNum").InnerText, TaobaoShippingType = int.Parse(node.SelectSingleNode("TaobaoShippingType").InnerText), EnabledBFD = bool.Parse(node.SelectSingleNode("EnabledBFD").InnerText), 
                 BFDUserName = node.SelectSingleNode("BFDUserName").InnerText, EnabledCnzz = bool.Parse(node.SelectSingleNode("EnabledCnzz").InnerText), CnzzUsername = node.SelectSingleNode("CnzzUsername").InnerText, CnzzPassword = node.SelectSingleNode("CnzzPassword").InnerText, EnableMobileClient = bool.Parse(node.SelectSingleNode("EnableMobileClient").InnerText), MobileClientSpread = node.SelectSingleNode("MobileClientSpread").InnerText, CellPhoneUserCode = node.SelectSingleNode("CellPhoneUserCode").InnerText, CellPhoneToken = node.SelectSingleNode("CellPhoneToken").InnerText, ApplicationMark = node.SelectSingleNode("ApplicationMark").InnerText, SiteToken = node.SelectSingleNode("SiteToken").InnerText, SiteTime = node.SelectSingleNode("SiteTime").InnerText, WeixinAppId = node.SelectSingleNode("WeixinAppId").InnerText, WeixinAppSecret = node.SelectSingleNode("WeixinAppSecret").InnerText, WeixinToken = node.SelectSingleNode("WeixinToken").InnerText, WeixinPaySignKey = node.SelectSingleNode("WeixinPaySignKey").InnerText, WeixinPartnerID = node.SelectSingleNode("WeixinPartnerID").InnerText, 
                 WeixinPartnerKey = node.SelectSingleNode("WeixinPartnerKey").InnerText, VTheme = node.SelectSingleNode("VTheme").InnerText, VipCardLogo = node.SelectSingleNode("VipCardLogo").InnerText, VipCardBG = node.SelectSingleNode("VipCardBG").InnerText, VipCardQR = node.SelectSingleNode("VipCardQR").InnerText, VipCardName = node.SelectSingleNode("VipCardName").InnerText, VipCardPrefix = node.SelectSingleNode("VipCardPrefix").InnerText, VipRequireName = bool.Parse(node.SelectSingleNode("VipRequireName").InnerText), VipRequireMobile = bool.Parse(node.SelectSingleNode("VipRequireMobile").InnerText), VipRequireAdress = bool.Parse(node.SelectSingleNode("VipRequireAdress").InnerText), VipRequireQQ = bool.Parse(node.SelectSingleNode("VipRequireQQ").InnerText), VipEnableCoupon = bool.Parse(node.SelectSingleNode("VipEnableCoupon").InnerText), EnablePodRequest = bool.Parse(node.SelectSingleNode("EnablePodRequest").InnerText), EnableAppOffLinePay = bool.Parse(node.SelectSingleNode("EnableAppOffLinePay").InnerText), EnableAppPodPay = bool.Parse(node.SelectSingleNode("EnableAppPodPay").InnerText), EnableAppAliPay = bool.Parse(node.SelectSingleNode("EnableAppAliPay").InnerText), 
-                EnableAppWapAliPay = bool.Parse(node.SelectSingleNode("EnableAppWapAliPay").InnerText), EnableWapAliPay = bool.Parse(node.SelectSingleNode("EnableWapAliPay").InnerText), EnableBankUnionPay = bool.Parse(node.SelectSingleNode("EnableBankUnionPay").InnerText), EnableWapBankUnionPay = bool.Parse(node.SelectSingleNode("EnableWapBankUnionPay").InnerText), EnableAliOHBankUnionPay = bool.Parse(node.SelectSingleNode("EnableAliOHBankUnionPay").InnerText), EnableAPPBankUnionPay = bool.Parse(node.SelectSingleNode("EnableAppBankUnionPay").InnerText), IsValidationService = bool.Parse(node.SelectSingleNode("IsValidationService").InnerText), EnableWeiXinRequest = bool.Parse(node.SelectSingleNode("EnableWeiXinRequest").InnerText), EnableOffLineRequest = bool.Parse(node.SelectSingleNode("EnableOffLineRequest").InnerText), EnableWeixinWapAliPay = bool.Parse(node.SelectSingleNode("EnableWeixinWapAliPay").InnerText), WeixinNumber = node.SelectSingleNode("WeixinNumber").InnerText, WeixinLoginUrl = node.SelectSingleNode("WeixinLoginUrl").InnerText, WeiXinCodeImageUrl = node.SelectSingleNode("WeiXinCodeImageUrl").InnerText, OffLinePayContent = node.SelectSingleNode("OffLinePayContent").InnerText, WapTheme = node.SelectSingleNode("WapTheme").InnerText, EnableWapOffLinePay = bool.Parse(node.SelectSingleNode("EnableWapOffLinePay").InnerText), 
-                EnableWapPodPay = bool.Parse(node.SelectSingleNode("EnableWapPodPay").InnerText), AliOHAppId = node.SelectSingleNode("AliOHAppId").InnerText, EnableAliOHAliPay = bool.Parse(node.SelectSingleNode("EnableAliOHAliPay").InnerText), AliOHTheme = node.SelectSingleNode("AliOHTheme").InnerText, EnableAliOHOffLinePay = bool.Parse(node.SelectSingleNode("EnableAliOHOffLinePay").InnerText), EnableAliOHPodPay = bool.Parse(node.SelectSingleNode("EnableAliOHPodPay").InnerText), AliOHFollowRelay = node.SelectSingleNode("AliOHFollowRelay").InnerText, AliOHServerUrl = node.SelectSingleNode("AliOHServerUrl").InnerText, EnableVshopShengPay = bool.Parse(node.SelectSingleNode("EnableVshopShengPay").InnerText), EnableWapShengPay = bool.Parse(node.SelectSingleNode("EnableWapShengPay").InnerText), EnableAppShengPay = bool.Parse(node.SelectSingleNode("EnableAppShengPay").InnerText), EnableAliOHShengPay = bool.Parse(node.SelectSingleNode("EnableAliOHShengPay").InnerText), AliOHFollowRelayTitle = node.SelectSingleNode("AliOHFollowRelayTitle").InnerText, ServiceStatus = int.Parse(node.SelectSingleNode("ServiceStatus").InnerText), OpenVstore = int.Parse(node.SelectSingleNode("OpenVstore").InnerText), OpenAliho = int.Parse(node.SelectSingleNode("OpenAliho").InnerText), 
+                EnableAppWapAliPay = bool.Parse(node.SelectSingleNode("EnableAppWapAliPay").InnerText), EnableWapAliPay = bool.Parse(node.SelectSingleNode("EnableWapAliPay").InnerText), EnableBankUnionPay = bool.Parse(node.SelectSingleNode("EnableBankUnionPay").InnerText), EnableWapBankUnionPay = bool.Parse(node.SelectSingleNode("EnableWapBankUnionPay").InnerText),EnableAPPBankUnionPay = bool.Parse(node.SelectSingleNode("EnableAppBankUnionPay").InnerText), IsValidationService = bool.Parse(node.SelectSingleNode("IsValidationService").InnerText), EnableWeiXinRequest = bool.Parse(node.SelectSingleNode("EnableWeiXinRequest").InnerText), EnableOffLineRequest = bool.Parse(node.SelectSingleNode("EnableOffLineRequest").InnerText), EnableWeixinWapAliPay = bool.Parse(node.SelectSingleNode("EnableWeixinWapAliPay").InnerText), WeixinNumber = node.SelectSingleNode("WeixinNumber").InnerText, WeixinLoginUrl = node.SelectSingleNode("WeixinLoginUrl").InnerText, WeiXinCodeImageUrl = node.SelectSingleNode("WeiXinCodeImageUrl").InnerText, OffLinePayContent = node.SelectSingleNode("OffLinePayContent").InnerText, WapTheme = node.SelectSingleNode("WapTheme").InnerText, EnableWapOffLinePay = bool.Parse(node.SelectSingleNode("EnableWapOffLinePay").InnerText), 
+                EnableWapPodPay = bool.Parse(node.SelectSingleNode("EnableWapPodPay").InnerText), EnableVshopShengPay = bool.Parse(node.SelectSingleNode("EnableVshopShengPay").InnerText), EnableWapShengPay = bool.Parse(node.SelectSingleNode("EnableWapShengPay").InnerText), EnableAppShengPay = bool.Parse(node.SelectSingleNode("EnableAppShengPay").InnerText), ServiceStatus = int.Parse(node.SelectSingleNode("ServiceStatus").InnerText), OpenVstore = int.Parse(node.SelectSingleNode("OpenVstore").InnerText), OpenAliho = int.Parse(node.SelectSingleNode("OpenAliho").InnerText), 
                 OpenTaobao = int.Parse(node.SelectSingleNode("OpenTaobao").InnerText), OpenWap = int.Parse(node.SelectSingleNode("OpenWap").InnerText), OpenMobbile = int.Parse(node.SelectSingleNode("OpenMobbile").InnerText), OpenReferral = int.Parse(node.SelectSingleNode("OpenReferral").InnerText), OpenManyService = bool.Parse(node.SelectSingleNode("OpenManyService").InnerText), FlowReferralDeduct = decimal.Parse(node.SelectSingleNode("FlowReferralDeduct").InnerText), RegReferralDeduct = decimal.Parse(node.SelectSingleNode("RegReferralDeduct").InnerText), AccountRate = decimal.Parse(node.SelectSingleNode("AccountRate").InnerText), FlowIpRate = decimal.Parse(node.SelectSingleNode("FlowIpRate").InnerText), RegIpRate = decimal.Parse(node.SelectSingleNode("RegIpRate").InnerText), DeductMinDraw = decimal.Parse(node.SelectSingleNode("DeductMinDraw").InnerText), ServicePosition = int.Parse(node.SelectSingleNode("ServicePosition").InnerText), ServiceCoordinate = node.SelectSingleNode("ServiceCoordinate").InnerText, ServiceIsOpen = node.SelectSingleNode("ServiceIsOpen").InnerText, ValueAddedServicePosition = int.Parse(node.SelectSingleNode("ValueAddedServicePosition").InnerText), ValueAddedServiceCoordinate = node.SelectSingleNode("ValueAddedServiceCoordinate").InnerText, 
                 ValueAddedServiceSiteId = node.SelectSingleNode("ValueAddedServiceSiteId").InnerText, ValueAddedServiceSettingId = node.SelectSingleNode("ValueAddedServiceSettingId").InnerText, ValueAddedServiceIsOpen = node.SelectSingleNode("ValueAddedServiceIsOpen").InnerText, EnableVshopReferral = bool.Parse(node.SelectSingleNode("EnableVshopReferral").InnerText), WeixinCertPath = node.SelectSingleNode("WeixinCertPath").InnerText, WeixinCertPassword = node.SelectSingleNode("WeixinCertPassword").InnerText, AndroidStartImg = node.SelectSingleNode("AndroidStartImg").InnerText.Trim(), IOSStartImg = node.SelectSingleNode("IOSStartImg").InnerText.Trim(), OpenMultStore = (node.SelectSingleNode("OpenMultStore").InnerText.Trim() == "1") ? true : false, StoreShipPostFee = node.SelectSingleNode("StoreShipPostFee").InnerText.ToDecimal(), StoreShipDesctiption = node.SelectSingleNode("StoreShipDesctiption").InnerText.Trim(), StoreStockValidateType = node.SelectSingleNode("StoreStockValidateType").InnerText.Trim().ToInt(), AppSignInPoints = node.SelectSingleNode("AppSignInPoints").InnerText.Trim().ToInt(), AppDepletePoints = node.SelectSingleNode("AppDepletePoints").InnerText.Trim().ToInt(), AppFirstPrizeType = node.SelectSingleNode("AppFirstPrizeType").InnerText.Trim().ToInt(), AppFirstPrizePoints = node.SelectSingleNode("AppFirstPrizePoints").InnerText.Trim().ToInt(), 
                 AppFirstPrizeCouponId = node.SelectSingleNode("AppFirstPrizeCouponId").InnerText.Trim().ToInt(), AppSecondPrizeType = node.SelectSingleNode("AppSecondPrizeType").InnerText.Trim().ToInt(), AppSecondPrizePoints = node.SelectSingleNode("AppSecondPrizePoints").InnerText.Trim().ToInt(), AppSecondPrizeCouponId = node.SelectSingleNode("AppSecondPrizeCouponId").InnerText.Trim().ToInt(), AppThirdPrizeType = node.SelectSingleNode("AppThirdPrizeType").InnerText.Trim().ToInt(), AppThirdPrizePoints = node.SelectSingleNode("AppThirdPrizePoints").InnerText.Trim().ToInt(), AppThirdPrizeCouponId = node.SelectSingleNode("AppThirdPrizeCouponId").InnerText.Trim().ToInt(), AppFourPrizeType = node.SelectSingleNode("AppFourPrizeType").InnerText.Trim().ToInt(), AppFourPrizePoints = node.SelectSingleNode("AppFourPrizePoints").InnerText.Trim().ToInt(), AppFourPrizeCouponId = node.SelectSingleNode("AppFourPrizeCouponId").InnerText.Trim().ToInt(), AppFirstPrizePercent = node.SelectSingleNode("AppFirstPrizePercent").InnerText.Trim().ToInt(), AppSecondPrizePercent = node.SelectSingleNode("AppSecondPrizePercent").InnerText.Trim().ToInt(), AppThirdPrizePercent = node.SelectSingleNode("AppThirdPrizePercent").InnerText.Trim().ToInt(), AppFourPrizePercent = node.SelectSingleNode("AppFourPrizePercent").InnerText.Trim().ToInt()
@@ -221,20 +219,10 @@
             SetNodeValue(doc, root, "EnablePodRequest", this.EnablePodRequest ? "true" : "false");
             SetNodeValue(doc, root, "EnableWapOffLinePay", this.EnableWapOffLinePay ? "true" : "false");
             SetNodeValue(doc, root, "EnableWapPodPay", this.EnableWapPodPay ? "true" : "false");
-            SetNodeValue(doc, root, "AliOHAppId", this.AliOHAppId);
-            SetNodeValue(doc, root, "EnableAliOHOffLinePay", this.EnableAliOHOffLinePay ? "true" : "false");
-            SetNodeValue(doc, root, "AliOHTheme", this.AliOHTheme);
-            SetNodeValue(doc, root, "EnableAliOHAliPay", this.EnableAliOHAliPay ? "true" : "false");
-            SetNodeValue(doc, root, "EnableAliOHPodPay", this.EnableAliOHPodPay ? "true" : "false");
-            SetNodeValue(doc, root, "AliOHFollowRelay", this.AliOHFollowRelay);
-            SetNodeValue(doc, root, "AliOHFollowRelayTitle", this.AliOHFollowRelayTitle);
-            SetNodeValue(doc, root, "AliOHServerUrl", this.AliOHServerUrl);
             SetNodeValue(doc, root, "EnableVshopShengPay", this.EnableVshopShengPay ? "true" : "false");
             SetNodeValue(doc, root, "EnableWapShengPay", this.EnableWapShengPay ? "true" : "false");
             SetNodeValue(doc, root, "EnableAppShengPay", this.EnableAppShengPay ? "true" : "false");
-            SetNodeValue(doc, root, "EnableAliOHShengPay", this.EnableAliOHShengPay ? "true" : "false");
             SetNodeValue(doc, root, "EnableBankUnionPay", this.EnableBankUnionPay ? "true" : "false");
-            SetNodeValue(doc, root, "EnableAliOHBankUnionPay", this.EnableAliOHBankUnionPay ? "true" : "false");
             SetNodeValue(doc, root, "EnableWapBankUnionPay", this.EnableWapBankUnionPay ? "true" : "false");
             SetNodeValue(doc, root, "EnableAppBankUnionPay", this.EnableAPPBankUnionPay ? "true" : "false");
             SetNodeValue(doc, root, "ServiceStatus", this.ServiceStatus.ToString());
@@ -290,16 +278,6 @@
         }
 
         public decimal AccountRate { get; set; }
-
-        public string AliOHAppId { get; set; }
-
-        public string AliOHFollowRelay { get; set; }
-
-        public string AliOHFollowRelayTitle { get; set; }
-
-        public string AliOHServerUrl { get; set; }
-
-        public string AliOHTheme { get; set; }
 
         public string AndroidStartImg { get; set; }
 
@@ -397,16 +375,6 @@
         public string EmailSender { get; set; }
 
         public string EmailSettings { get; set; }
-
-        public bool EnableAliOHAliPay { get; set; }
-
-        public bool EnableAliOHBankUnionPay { get; set; }
-
-        public bool EnableAliOHOffLinePay { get; set; }
-
-        public bool EnableAliOHPodPay { get; set; }
-
-        public bool EnableAliOHShengPay { get; set; }
 
         public bool EnableAppAliPay { get; set; }
 

@@ -190,11 +190,14 @@
         public static DataTable GetProducts(MemberInfo member, int? topicId, int BrandId, int? categoryId, string keyWord, int pageNumber, int maxNum, out int total, string sort, string order, string swr = "", int rangeType = 0,int storeid = 0)
         {
             ProductInfo.ProductRanage productRanage = new ProductInfo.ProductRanage();
-            if (!Hidistro.ControlPanel.Config.CustomConfigHelper.Instance.AnonymousOrder)
+            //if (!Hidistro.ControlPanel.Config.CustomConfigHelper.Instance.AnonymousOrder)
                 productRanage = DistributorsBrower.GetCurrStoreProductRange();
+            /*
             else//如果匿名点餐功能开启,则获取所有商品
                 productRanage = ProductInfo.ProductRanage.All;
+             */
             return new ProductBrowseDao().GetProductsRange(member, topicId, BrandId, categoryId, Globals.GetCurrentDistributorId(), keyWord, pageNumber, maxNum, out total, sort, order == "asc", productRanage, swr, rangeType,storeid);
+        
         }
         /// <summary>
         /// 通过显示端获取第一个分类id

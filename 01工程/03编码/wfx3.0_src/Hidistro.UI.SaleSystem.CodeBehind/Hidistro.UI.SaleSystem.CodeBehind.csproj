@@ -90,7 +90,6 @@
     <Compile Include="WgwWapArticle.cs" />
     <Compile Include="VSecondPage.cs" />
     <Compile Include="VProductSearchBuy.cs" />
-    <Compile Include="PCProductSearchBuy.cs" />
     <Compile Include="VMyStoreMessage.cs" />
     <Compile Include="VGetCouponsEx.cs" />
     <Compile Include="VBigWheelEx.cs" />

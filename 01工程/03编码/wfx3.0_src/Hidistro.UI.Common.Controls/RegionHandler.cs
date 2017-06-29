@@ -104,6 +104,7 @@
                     builder.Append("{");
                     builder.Append("\"Status\":\"OK\",");
                     builder.Append("\"Regions\":[");
+
                     foreach (var q in vcitys)
                     {
                         builder.Append("{");
@@ -130,6 +131,7 @@
                     builder.Append("{");
                     builder.Append("\"Status\":\"OK\",");
                     builder.Append("\"Regions\":[");
+
                     foreach (int num2 in citys.Keys)
                     {
                         builder.Append("{");

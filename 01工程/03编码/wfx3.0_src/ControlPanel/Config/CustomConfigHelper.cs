@@ -1,23 +1,12 @@
 ﻿namespace Hidistro.ControlPanel.Config
 {
-    using Hidistro.ControlPanel.Store;
     using Hidistro.Core;
-    using Hidistro.Core.Enums;
-    using Hidistro.Core.Function;
-    using Hidistro.Entities;
-    using Hidistro.Entities.Commodities;
-    using Hidistro.Entities.Store;
-    using Hidistro.SqlDal.Commodities;
     using System;
-    using System.Collections.Generic;
     using System.Data;
-    using System.Data.Common;
-    using System.Globalization;
     using System.IO;
     using System.Security.Cryptography;
     using System.Text;
     using System.Web;
-    using System.Web.Caching;
 
 
     public class CustomConfigHelper
@@ -75,7 +64,10 @@
                             //是否pro辣
                             if (dsCustomConfig.Tables["default"].Columns.Contains("IsProLa"))
                                 _instance._isProLa = bool.Parse(dsCustomConfig.Tables["default"].Rows[0]["IsProLa"].ToString());
-                            
+                            //是否点睛教育
+                            if (dsCustomConfig.Tables["default"].Columns.Contains("Dianjing"))
+                                _instance._dianjing = bool.Parse(dsCustomConfig.Tables["default"].Rows[0]["Dianjing"].ToString());
+
                         }
 
                         //定制处理
@@ -440,6 +432,15 @@
         public bool IsProLa
         {
             get { return _isProLa; }
+        }
+
+        /// <summary>
+        /// 点睛教育需求开关
+        /// </summary>
+        private bool _dianjing = false;
+        public bool Dianjing
+        {
+            get { return _dianjing; }
         }
     }
 }

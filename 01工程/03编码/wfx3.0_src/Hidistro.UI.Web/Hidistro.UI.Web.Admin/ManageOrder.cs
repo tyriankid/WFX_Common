@@ -920,11 +920,15 @@ namespace Hidistro.UI.Web.Admin
                 if (e.CommandName == "CONFIRM_PAY" && orderInfo.CheckAction(OrderActions.SELLER_CONFIRM_PAY))
                 {
                     int groupBuyId = orderInfo.GroupBuyId;
+
                     if (!OrderHelper.ConfirmPay(orderInfo))
                     {
                         this.ShowMsg("确认订单收款失败", false);
                         return;
                     }
+                    //点睛教育需求:给代理商以及1级分销商加上佣金的20%的积分
+                    DistributorsBrower.UpdateDistributorPoints(orderInfo);
+
                     DebitNoteInfo debitNoteInfo = new DebitNoteInfo();
 
                     debitNoteInfo.NoteId = Globals.GetGenerateId();

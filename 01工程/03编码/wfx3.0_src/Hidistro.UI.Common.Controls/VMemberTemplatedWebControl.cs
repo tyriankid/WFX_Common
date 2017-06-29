@@ -278,6 +278,30 @@ namespace Hidistro.UI.Common.Controls
 
         }
 
+
+        
+        /// <summary>        /// 判断用户有没有关注公众号        /// </summary>        /// <returns></returns>        public bool WxSubscribe(string openid)        {
+            //开启微信才开始判断
+            SiteSettings masterSettings = SettingsManager.GetMasterSettings(true);            if (!masterSettings.IsValidationService)                return true;
+
+            //获取access_token
+
+            string responseResult = this.GetResponseResult("https://api.weixin.qq.com/cgi-bin/token?appid=" + masterSettings.WeixinAppId + "&secret=" + masterSettings.WeixinAppSecret + "&grant_type=client_credential");
+            if (responseResult.Contains("access_token"))
+            {
+                JObject obj2 = JsonConvert.DeserializeObject(responseResult) as JObject;
+                string wxUserInfoStr = this.GetResponseResult("https://api.weixin.qq.com/cgi-bin/user/info?access_token=" + obj2["access_token"].ToString() + "&openid=" + openid + "&lang=zh_CN");
+                if (wxUserInfoStr.Contains("subscribe"))
+                {
+                    JObject wxUserInfo = JsonConvert.DeserializeObject(wxUserInfoStr) as JObject;
+
+                    if (Convert.ToInt32(wxUserInfo["subscribe"].ToString()) != 0)
+                    {
+                        return true;
+                    }
+                }
+            }            return false;        }        /// <summary>
+
         /// <summary>
         /// 获取推荐人ID
         /// </summary>

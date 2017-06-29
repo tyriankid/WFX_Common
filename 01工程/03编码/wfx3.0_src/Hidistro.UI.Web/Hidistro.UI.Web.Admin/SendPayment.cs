@@ -8,7 +8,6 @@
     using Hidistro.Entities.Sales;
     //using Hidistro.Membership.Context;
     //using Hidistro.SaleSystem.Catalog;
-    using Hidistro.SaleSystem.Member;
     using Hidistro.SaleSystem.Vshop;
     using Hishop.Plugins;
     using System;

@@ -173,6 +173,7 @@ namespace Hidistro.UI.Web.Admin.HomePage
                             hpmdr["PMStyle"] = AttrStrs[4];//样式
                             //hpmdr["PMTop"] = AttrStrs[5];//显示个数
                             hpmdr["PMContents"] = AttrStrs[6];//内容
+
                             break;
                         case "LieBiao":
                             //hpmdr["PMHeight"] = AttrStrs[1];//高度

@@ -196,7 +196,7 @@
             {
                 skus[i] = skus[i].Substring(skus[i].IndexOf("：")+1);
                 result += skus[i]+",";
-            }
+            } 
             result = result.TrimEnd(',');
             return result;
         }

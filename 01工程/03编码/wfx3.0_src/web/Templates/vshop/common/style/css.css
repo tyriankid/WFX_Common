@@ -12,7 +12,11 @@ ul.con-title li:last-child a, ul.orders-title li:last-child a { border-right: 0;
 ul.orders-title li.activenum, ul.con-title li.activenum { border-bottom: 2px solid #da4453; }
 ul.orders-title li.activenum a, ul.con-title li.activenum a { color: #da4453; }
 
-ul.memberorders-title li{ width: 33.33333%;}
+ul.orders-title li.Collection, ul.con-title li.Collection{ border-bottom: 2px solid #da4453; }
+ul.orders-title li.Collection a, ul.con-title li.Collection a { color: #da4453; }
+
+
+ul.memberorders-title li{ width:19.33333%;}
 /*** title ***/
 
 /*commission-details start*/
@@ -45,11 +49,12 @@ ul.orders-title { }
 .memberCenter .user-name { width: 100%; color: #666; /* text-align: center; */ font-size: 16px; /* margin-top: 115px; */ position: absolute; left: 85px; top: 20px; padding: 0; color: #FFF; font-weight: bold; }
 .memberCenter .user-name span { display: block; font-size: 14px; font-weight: normal; padding-top: 5px; }
 .jifen-box { position: absolute; right: 25px; top: 40px; color: #FFF; }
-.memberCenter .user-tags { width: 100%; height: 60px; background: #FFF; border-bottom: 1px solid #E2E2E2; position: absolute; bottom: 0; left: 0; margin-bottom: 0; }
+.memberCenter .user-tags { width: 100%; height: 80px; background: #FFF; border-bottom: 1px solid #E2E2E2; position: absolute; bottom: 0; left: 0; margin-bottom: 0; }
 .memberCenter .user-tags li { width: 25%; height: 100%; border-left: 1px solid #E2E2E2; margin-left: -1px; float: left; }
-.memberCenter .user-tags li a { width: 100%; padding-top: 35px; float: left; line-height: 20px; text-align: center; color: #3333; background-size: 30px; background-position: center 5px; background-repeat: no-repeat; }
+.memberCenter .user-tags li a { width: 100%; padding-top: 50px; float: left; line-height: 20px; text-align: center; color: #333333; background-size: 30px; background-position: center 20px; background-repeat: no-repeat; }
 .memberCenter .user-tags li a.order { background-image: url("../images/user-tags-1.png"); }
 .memberCenter .user-tags li a.pay { background-image: url("../images/user-tags-2.png"); }
+.memberCenter .user-tags li a.pay1 { background-image: url("../images/user-tags-5.png"); }
 .memberCenter .user-tags li a.delivery { background-image: url("../images/user-tags-3.png"); }
 .memberCenter .user-tags li a.return { background-image: url("../images/user-tags-4.png"); }
 .memberBottom { width: 100%; padding-top: 10px; border-top: 1px solid #e1e1e1; border-bottom: 1px solid #e1e1e1; }
@@ -90,21 +95,22 @@ ul.orders-title { }
 
 
 .order-img-tags { width: 100%; background: #fff; margin: 10px 0; /* border-top: 1px solid #EEEEEE; */ box-shadow: #DDD 1px 1px 2px; display: inline-block; }
-.order-img-tags li { width: 33.3333333333%; height: 135px; border-left: 1px solid #EEEEEE; border-top: 1px solid #EEEEEE; margin-left: -1px; float: left; }
-.order-img-tags li a { width: 100%; float: left; text-align: center; padding-top: 78px; padding-bottom: 10px; font-size: 16px; background-size: 50px; background-position: center 18px; background-repeat: no-repeat; }
-.order-img-tags li a span { display: block; font-size: 12px; color: #CDCDCD; padding-top: 3px; }
+.order-img-tags li { height: 60px; border-left: 1px solid #EEEEEE; border-top: 1px solid #EEEEEE; margin-left: -1px;}
+.order-img-tags li a { width: 100%; float: left;  padding-top: 15px; padding-bottom: 5px; font-size: 16px; padding-left: 60px;text-align: left;color:#7d7878;font-size: 14px; background-size: 50px; background-position: center 18px; background-repeat: no-repeat; }
+.order-img-tags li a span { display: block; font-size: 12px; color: #CDCDCD; padding-top: 3px;float: right;position: relative;top: -20px;left: -20px; }
 .order-img-tags li a span i { font-style: normal; color: #F60; }
-.order-img-tags li a.shop-info { background: url("../images/shop-img-1.png") center 18px no-repeat; background-size: 50px; }
-.order-img-tags li a.shop-underling { background-image: url("../images/shop-img-2.png"); /* background-size: 70px; */ }
-.order-img-tags li a.shop-brokerage { background: url("../images/shop-img-3.png") center 18px no-repeat; background-size: 50px; }
-.order-img-tags li a.shop-qr { background: url("../images/shop-img-4.png") center 18px no-repeat; background-size: 50px; }
-.order-img-tags li a.shop-card { background: url("../images/shop-img-5.png") center 18px no-repeat; background-size: 50px; }
-.order-img-tags li a.shop-order { background: url("../images/shop-img-6.png") center 18px no-repeat; background-size: 50px; }
-.order-img-tags li a.shop-friend { background: url("../images/shop-img-7.png") center 18px no-repeat; background-size: 50px; }
-.order-img-tags li a.shop-top { background: url("../images/shop-img-8.png") center 18px no-repeat; background-size: 50px; }
-.order-img-tags li a.shop-visit { background: url("../images/user-img-9.png") center 18px no-repeat; background-size: 50px; }
-.order-img-tags li a.shop-underorder { background: url("../images/user-img-10.png") center 18px no-repeat; background-size: 50px; }
-.order-img-tags li a.shop-no { background: url("../images/shop-img-10.png") center 18px no-repeat; background-size: 50px; color: #ccc; }
+.order-img-tags li a.shop-info { background: url("../images/shop-img-1.png") 20px 12px no-repeat; background-size: 25px; }
+.order-img-tags li a.shop-underling { background: url("../images/shop-img-2.png") 20px 12px no-repeat;  background-size: 25px;  }
+.order-img-tags li a.shop-brokerage { background: url("../images/shop-img-3.png") 20px 12px no-repeat; background-size: 25px; }
+.order-img-tags li a.shop-qr { background: url("../images/shop-img-4.png") 20px 12px no-repeat; background-size: 25px; }
+.order-img-tags li a.shop-card { background: url("../images/shop-img-5.png") 20px 12px no-repeat; background-size: 25px; }
+.order-img-tags li a.shop-order { background: url("../images/shop-img-6.png") 20px 12px no-repeat; background-size: 25px; }
+.order-img-tags li a.shop-distributors { background: url("../images/shop-img-6.png") 20px 12px no-repeat; background-size: 25px; }
+.order-img-tags li a.shop-friend { background: url("../images/shop-img-7.png") 20px 12px no-repeat; background-size: 25px; }
+.order-img-tags li a.shop-top { background: url("../images/shop-img-8.png") 20px 12px no-repeat; background-size: 25px; }
+.order-img-tags li a.shop-visit { background: url("../images/user-img-9.png") 20px 12px no-repeat; background-size: 25px; }
+.order-img-tags li a.shop-underorder { background: url("../images/user-img-10.png") 20px 12px no-repeat; background-size: 25px; }
+.order-img-tags li a.shop-no { background: url("../images/shop-img-10.png") 20px 12px no-repeat; background-size: 25px; color: #ccc; }
 .money-top { width: 100%; background: #ff2d4b; height: auto; position: relative; padding: 10px 0 10px 15px; /* padding-top: 20px; */ font-size: 16px; background: #FFF; box-shadow: #DDD 1px 1px 2px; }
 .money-top a { display: inline-block; /* width: 100%; */ /* height: 100%; */ color: #555; }
 .money-top a .show-money { /* width: 100%; */ /* float: left; */ margin-top: 20px; font-size: 28px; color: #CC3735; }
@@ -124,11 +130,12 @@ ul.orders-title { }
 .alipay .alipay-wechatpay { width: 100%; height: 50px; line-height: 50px; text-align: center; color: #fff; font-size: 16px; background: #3A8AD8; display: inline-block; margin-top: 15px; /* margin: 10px 20px 0 20px; */ border-radius: 3px; }
 .alipay p { width: 100%; /* height: 50px; */ /* line-height: 30px; */ /* text-indent: 10%; */ color: #999; padding: 10px 0 20px 20px; }
 /*--------------------店铺管理-----------------*/
-.tixian-box { background: #CC3735; color: #FFF; position: absolute; top: 70px; width: 100%; height: 130px; max-width: 650px; margin: 0 auto; padding: 20px 10px; font-size: 16px; }
+.tixian-box { background: url(../images/bg.png) no-repeat center center;background-size: 100% 100%; color: #FFF; position: absolute; top: 70px; width: 100%; height: 130px; max-width: 650px; margin: 0 auto; padding: 20px 10px; font-size: 16px; }
 .tixian-box p { }
 .tixian-box p.tixian-mney { padding-top: 25px; font-size: 28px; }
-.tixian-mx { background: url(../images/icon-tixian.png) right top no-repeat; background-size: 20px; float: right; color: #FFF; padding-right: 30px; margin-right: 10px; }
-.tixian-btn { float: right; color: #E49593; border: 1px solid #E49593; text-align: center; padding: 8px 28px; border-radius: 5px; margin-right: 10px; font-size: 16px; }
+.tixian-mx { background: url(../images/icon-right.png) right top no-repeat; background-size: 20px; float: right; color: #FFF; padding-right: 30px; margin-right: 10px; }
+.tixian-btn { float: right; color: #E49593;background: #ffffff; border: 1px solid #E49593; text-align: center; padding: 8px 28px; border-radius: 5px; margin-right: 10px; font-size: 16px; }
+.tixian-btns { float: right; color: #E49593;background: #ffffff; border: 1px solid #E49593; text-align: center; padding: 8px 28px; border-radius: 5px; margin-right: 10px; font-size: 16px; }
 .withdraw-btn { float: right; color: yellow; border: 1px solid yellow; text-align: center; padding: 8px 28px; border-radius: 5px; margin-right: 10px; font-size: 16px; }
 .tixian-box-nopos { position: static; }
 /*--------------------佣金提现-----------------*/ 
@@ -173,6 +180,25 @@ ul.orders-title { }
 .keu-list { }
 .keu-list li { border-bottom: 1px solid #E7E7E7; height: auto; font-size: 16px; position: relative; }
 .keu-list li a { display: block; height: 70px; line-height: 70px; width: 100%; background: #FFF url(../images/icon-qq.png) 10px center no-repeat; background-size: 35px; padding-left: 60px; }
+.list2 li {
+    display: block;
+    height: 70px;
+    line-height: 70px;
+    width: 100%;
+    background: #FFF url(../images/wechat.png) 10px center no-repeat;
+    background-size: 35px;
+    padding-left: 50px;
+}
+.list2 li a {background-image:none;padding-left:10px;}
+    .list2 li a em {
+        width: 10px;
+        height: 15px;
+        display: inline-block;
+        background: url(../images/icon-arrow2.png) right center no-repeat;
+        position: absolute;
+        top: 30px;
+        right: 10px;
+    }
 .keu-list li a em { width: 10px; height: 15px; display: inline-block; background: url(../images/icon-arrow2.png) right center no-repeat; position: absolute; top: 30px; right: 10px; }
 .kefu-btn-box { padding: 20px; }
 .kefu-btn-tell { display: block; width: 100%; height: 40px; line-height: 40px; text-align: center; background: #CC3734; float: left; color: #fff; font-size: 16px; border-radius: 3px; }
@@ -279,7 +305,7 @@ padding-left: 20px; clear: both; }
 
 
 .manager-mybox{border-top: 1px solid #E5E5E5; border-bottom: 1px solid #E5E5E5; margin:20px 0; padding:15px;background-size: 9px;  height: auto; background:#FFF;}
-.manager-my{ background: url(../images/icon-arrow2.png) right center no-repeat;background-size: 9px;  height: auto;}
+.manager-my{ /*background: url(../images/icon-arrow2.png) right center no-repeat;标头符号>去掉*/   background-size: 9px;  height: auto;}
 .manager-my .my-photo{
     width: 60px;
     height: 60px;

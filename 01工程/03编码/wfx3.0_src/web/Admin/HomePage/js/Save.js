@@ -108,7 +108,10 @@ function save() {
                     res += $(this).children("ul").attr("class") + "●";                                                     //|显示的样式|
                     res += "●";//|显示个数|
                     //***********************内容开始***********************                 
-                    res += $("#addAttr" + i + " table select:eq(0)").val() + "♦" + $("#addAttr" + i + " table select:eq(1)").val() + "♦" + $("#addAttr" + i + " table select:eq(2)").val();
+                    $(this).find("ul li").each(function () {
+                        //图片  文字   链接
+                        res += $(this).find("img").attr("productid") + "♢";//商品id
+                    });
                     //***********************内容结束*********************** 
                     break;
                 case "KongBai":

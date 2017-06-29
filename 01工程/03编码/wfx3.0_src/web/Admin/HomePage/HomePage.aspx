@@ -6,7 +6,7 @@
 	<title>Document</title>
 	<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
 	
-	<link rel="stylesheet" type="text/css" href="css/style.css"/>
+	<link rel="stylesheet" type="text/css" href="css/style.css?v=3"/>
 	<link rel="stylesheet" type="text/css" href="css/jquery.minicolors.css"/>
 	
 	<script src="js/jquery-2.1.4.min.js" type="text/javascript" charset="utf-8"></script>
@@ -23,8 +23,8 @@
 	<!----------------------------百度UEditor富文本编辑器-------------------------------------->
 	<script src="../../UEditor/ueditor.config.js" type="text/javascript" charset="utf-8"></script>
 	<script src="../../UEditor/ueditor.all.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="js/databind.js?d=4" type="text/javascript" charset="utf-8"></script>	
-    <script src="js/Save.js?i=2"  type="text/javascript" charset="utf-8"></script>
+    <script src="js/databind.js?d=6" type="text/javascript" charset="utf-8"></script>	
+    <script src="js/Save.js?i=3"  type="text/javascript" charset="utf-8"></script>
 	<style type="text/css">
 		.slides{
 			position: relative;
@@ -70,7 +70,10 @@
 	        //			});
 	        $("#btncl").click(function () {
 	            closechsImg();
-	        });
+            });
+            $("#btnPrjCancel").click(function () {
+                closeSelectPrj();
+            });
 
 	    });
 	</script>
@@ -90,7 +93,7 @@
 			<li class="picture"><a href="javascript:;">图片</a></li>
 			<li class="slide"><a href="javascript:;">幻灯片</a></li>
 			<li class="search"><a href="javascript:;">搜索栏</a></li>
-			<!--<li class="goods"><a href="javascript:;">商品</a></li>-->
+			<li class="goods"><a href="javascript:;">商品</a></li>
 			<li class="list"><a href="javascript:;">商品<br />列表</a></li>
             <li class="space"><a href="javascript:;">辅助<br />空白</a></li>
 			<!--<li class="video"><a href="javascript:;">视频</a></li>-->
@@ -115,11 +118,18 @@
             <iframe src="ImageData.aspx"></iframe>
         </div>
     </div>
+    <!--选择商品-->
+    <div class="layoutProduct">
+        <a  href="javascript:" style="display:none" onclick="setIframeUrlProduct('/Admin/HomePage/SelectProduct.aspx')">选择商品</a><a type="button" id="btnPrjCancel" class="allSelect"/>X</a>
+        <div>
+            <iframe src="SelectProduct.aspx"></iframe>
+        </div>
+    </div>
 	<div class="attribute_frame"></div>	
 	<div class="subBtn">
         
 	</div>
-        <script src="js/jquery.draw.js?d=3" type="text/javascript" charset="utf-8"></script>
+        <script src="js/jquery.draw.js?d=9" type="text/javascript" charset="utf-8"></script>
         </form>
 </body>
 </html>

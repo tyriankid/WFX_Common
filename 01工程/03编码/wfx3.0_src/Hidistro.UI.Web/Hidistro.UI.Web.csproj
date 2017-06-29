@@ -110,31 +110,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Hidistro.UI.Web.Admin.AliOH\AddMenu.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Hidistro.UI.Web.Admin.AliOH\AliOHAliPaySet.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Hidistro.UI.Web.Admin.AliOH\AliOHOffLinePaySet.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Hidistro.UI.Web.Admin.AliOH\App_Code\AliOHClientHelper.cs" />
-    <Compile Include="Hidistro.UI.Web.Admin.AliOH\App_Code\RefundHelper.cs" />
-    <Compile Include="Hidistro.UI.Web.Admin.AliOH\App_Code\RsaKeyHelper.cs" />
-    <Compile Include="Hidistro.UI.Web.Admin.AliOH\App_Code\TradeHelper.cs" />
-    <Compile Include="Hidistro.UI.Web.Admin.AliOH\EditMenu.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Hidistro.UI.Web.Admin.AliOH\ManageAliOHThemes.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Hidistro.UI.Web.Admin.AliOH\ManageAMenu.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Hidistro.UI.Web.Admin.AliOH\WebForm1.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
     <Compile Include="Hidistro.UI.Web.Admin.distributor\AddProducRange.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
@@ -881,6 +856,9 @@
     <Compile Include="Hidistro.UI.Web.Admin\SMSSettings.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Hidistro.UI.Web.Admin\SelectProduct.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Hidistro.UI.Web.Admin\TaoBaoNote.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
@@ -952,9 +930,6 @@
     <Compile Include="Hidistro.UI.Web.Admin\AddCouponAct.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Hidistro.UI.Web.Admin\RegAgent.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
     <Compile Include="Hidistro.UI.Web.Admin\ManageWhoKnowMe.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
@@ -995,7 +970,6 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Hidistro.UI.Web.API\Access_token.cs" />
-    <Compile Include="Hidistro.UI.Web.API\alipay.cs" />
     <Compile Include="Hidistro.UI.Web.API\APIHelper.cs" />
     <Compile Include="Hidistro.UI.Web.API\CustomMsgHandler.cs" />
     <Compile Include="Hidistro.UI.Web.API\GetQRCode.cs" />

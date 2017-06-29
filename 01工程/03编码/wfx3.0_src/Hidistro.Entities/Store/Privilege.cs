@@ -72,24 +72,6 @@
         Votes = 0x7d9,
         ArticleCategories = 0x7d5,//Add By JHB on 150923
         Articles = 0x7d6,
-        AliohAddMenu = 0x2eef,
-        AliohBankUnionPaySet = 0x2ef2,
-        AliohBannerAdd = 0x2ee4,
-        AliohBannerDelete = 0x2ee6,
-        AliohBannerEdit = 0x2ee5,
-        AliohBannerManage = 0x2ee3,
-        AliohBaseConfig = 0x2eed,
-        AliohDeleteMenu = 0x2ef1,
-        AliohEditMenu = 0x2ef0,
-        AliohHomeTopicSet = 0x2ee9,
-        AliohIconSet = 0x2ee7,
-        AliohManageMenu = 0x2eee,
-        AliohManageThemes = 0x2ee1,
-        AliohMobileAlipaySet = 0x2eea,
-        AliohOfflinePaySet = 0x2eec,
-        AliohProductSet = 0x2ee8,
-        AliohShengPaySet = 0x2eeb,
-        AliohThemesSet = 0x2ee2,
     }
 }
 

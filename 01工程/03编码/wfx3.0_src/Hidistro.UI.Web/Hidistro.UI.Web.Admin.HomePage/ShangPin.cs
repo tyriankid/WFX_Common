@@ -13,6 +13,7 @@ namespace Hidistro.UI.Web.Admin.HomePage
     public class ShangPin : BaseModel
 	{
         public DataTable dt =null;
+        public string[] licons = null;
         public string StyleName = "";
         protected Repeater rptGoods;
 		protected void Page_Load(object sender, System.EventArgs e)
@@ -24,7 +25,15 @@ namespace Hidistro.UI.Web.Admin.HomePage
             try
             {
                 dt = DataBaseHelper.GetDataTable("YiHui_HomePage_Model", " PageID ='" + this.PKID + "'");
-                string sql = "select  p.*,(select MIN(SalePrice) from Hishop_SKUs where ProductId =p.ProductId) as SalePrice from Hishop_Products as p  where p.SaleStatus=1 and p.ProductId in (" + dt.Rows[0]["PMContents"] + ") ";
+                StyleName = dt.Rows[0]["PMStyle"].ToString();
+                licons = dt.Rows[0]["PMContents"].ToString().TrimEnd('♢').Split('♢');
+                string productids = "";
+                for(int i = 0; i < licons.Length; i++)
+                {
+                    productids += licons[i] + ",";
+                }
+                productids = productids.TrimEnd(',');
+                string sql = "select  p.*,(select MIN(SalePrice) from Hishop_SKUs where ProductId =p.ProductId) as SalePrice from Hishop_Products as p  where p.SaleStatus=1 and p.ProductId in (" + productids + ") ";
                 rptGoods.DataSource = DataBaseHelper.GetDataSet(sql);
                 rptGoods.DataBind();
             }

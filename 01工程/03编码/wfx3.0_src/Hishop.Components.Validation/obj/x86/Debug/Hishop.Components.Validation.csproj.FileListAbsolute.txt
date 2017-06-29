@@ -1,6 +1,5 @@
 C:\project\WFX_Common\01工程\03编码\wfx3.0_src\Hishop.Components.Validation\bin\Debug\Hishop.Components.Validation.dll
 C:\project\WFX_Common\01工程\03编码\wfx3.0_src\Hishop.Components.Validation\bin\Debug\Hishop.Components.Validation.pdb
-C:\project\WFX_Common\01工程\03编码\wfx3.0_src\Hishop.Components.Validation\obj\x86\Debug\Hishop.Components.Validation.csprojResolveAssemblyReference.cache
 C:\project\WFX_Common\01工程\03编码\wfx3.0_src\Hishop.Components.Validation\obj\x86\Debug\Hishop.Components.Validation.Properties.Resources.resources
 C:\project\WFX_Common\01工程\03编码\wfx3.0_src\Hishop.Components.Validation\obj\x86\Debug\Hishop.Components.Validation.csproj.GenerateResource.Cache
 C:\project\WFX_Common\01工程\03编码\wfx3.0_src\Hishop.Components.Validation\obj\x86\Debug\Hishop.Components.Validation.dll

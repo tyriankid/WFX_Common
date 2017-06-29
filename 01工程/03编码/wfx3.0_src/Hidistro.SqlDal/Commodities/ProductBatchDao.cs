@@ -83,6 +83,20 @@
                 return DataHelper.ConverDataReaderToDataTable(reader);
             }
         }
+
+        /// <summary>
+        /// 获取当前门店的所有商品基本信息,首页自定义配置时使用.
+        /// </summary>
+        /// <returns></returns>
+        public DataTable GetStoreProductBaseInfo(int storeId)
+        {
+            DbCommand sqlStringCommand = this.database.GetSqlStringCommand(string.Format("SELECT ProductId, ProductName, ProductCode, MarketPrice,ImageUrl1, ThumbnailUrl40, SaleCounts, ShowSaleCounts FROM Hishop_Products where  salestatus != 0 {0}", storeId>0?"and  storeid ="+storeId:""));
+            using (IDataReader reader = this.database.ExecuteReader(sqlStringCommand))
+            {
+                return DataHelper.ConverDataReaderToDataTable(reader);
+            }
+        }
+
         /// <summary>
         /// 子门店批量提交商品值总店审核
         /// </summary>

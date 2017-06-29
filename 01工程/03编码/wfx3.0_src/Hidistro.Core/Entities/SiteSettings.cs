@@ -12,7 +12,6 @@
             this.SiteUrl = siteUrl;
             this.Theme = "default";
             this.VTheme = "default";
-            this.AliOHTheme = "default";//alioh
             this.Disabled = false;
             this.SiteName = "众赞移动云商平台1.5正式版";
             this.LogoUrl = "/utility/pics/logo.jpg";
@@ -55,7 +54,6 @@
             this.EnableAgentProductRange = false;
             this.EnableProductReviews = true;
             this.EnableStoreInfoSet = true;
-            this.EnableAliOHBankUnionPay = false;//alioh
             this.EnableQuickPay = false;//快速收银,默认不开启
             this.DistributorCutOff = "default";//分销商特殊优惠,默认为默认(无优惠)
             this.EnableOrderRemind = false;
@@ -171,17 +169,7 @@
                 EnableAgentProductRange = bool.Parse(node.SelectSingleNode("OpenAgentProductRange").InnerText),
                 EnableProductReviews = bool.Parse(node.SelectSingleNode("OpenProductReviews").InnerText),
                 EnableStoreInfoSet = (node.SelectSingleNode("OpenStoreInfoSet")) == null ? true : (bool.Parse(node.SelectSingleNode("OpenStoreInfoSet").InnerText)),
-
-                AliOHAppId = (node.SelectSingleNode("AliOHAppId")) == null ? "" : (node.SelectSingleNode("AliOHAppId").InnerText),
-                EnableAliOHAliPay = (node.SelectSingleNode("EnableAliOHAliPay")) == null ? false : bool.Parse(node.SelectSingleNode("EnableAliOHAliPay").InnerText),
-                AliOHTheme = node.SelectSingleNode("AliOHTheme") == null ? "default" : node.SelectSingleNode("AliOHTheme").InnerText,
-                EnableAliOHOffLinePay = node.SelectSingleNode("EnableAliOHOffLinePay") == null ? false : bool.Parse(node.SelectSingleNode("EnableAliOHOffLinePay").InnerText),
-                EnableAliOHPodPay = node.SelectSingleNode("EnableAliOHPodPay") == null ? false : bool.Parse(node.SelectSingleNode("EnableAliOHPodPay").InnerText),
-                AliOHFollowRelay = node.SelectSingleNode("AliOHFollowRelay") == null ? "" : node.SelectSingleNode("AliOHFollowRelay").InnerText,
-                AliOHServerUrl = node.SelectSingleNode("AliOHServerUrl") == null ? "" : node.SelectSingleNode("AliOHServerUrl").InnerText,
-                EnableAliOHShengPay = node.SelectSingleNode("EnableAliOHShengPay") == null ? false : bool.Parse(node.SelectSingleNode("EnableAliOHShengPay").InnerText),
-                AliOHFollowRelayTitle = node.SelectSingleNode("AliOHFollowRelayTitle") == null ? "" : node.SelectSingleNode("AliOHFollowRelayTitle").InnerText,
-                EnableAliOHBankUnionPay = node.SelectSingleNode("EnableAliOHBankUnionPay") == null ? false : bool.Parse(node.SelectSingleNode("EnableAliOHBankUnionPay").InnerText),
+                
 
                 EnableQuickPay = (node.SelectSingleNode("EnableQuickPay")) == null ? false : (bool.Parse(node.SelectSingleNode("EnableQuickPay").InnerText)),
                 DistributorCutOff = (node.SelectSingleNode("DistributorCutOff")) == null ? "default" : node.SelectSingleNode("DistributorCutOff").InnerText,
@@ -308,17 +296,6 @@
             SetNodeValue(doc, root, "OpenAgentProductRange", this.EnableAgentProductRange.ToString());
             SetNodeValue(doc, root, "OpenProductReviews", this.EnableProductReviews.ToString());
             SetNodeValue(doc, root, "OpenStoreInfoSet", this.EnableStoreInfoSet.ToString());
-
-            SetNodeValue(doc, root, "AliOHAppId", this.AliOHAppId);
-            SetNodeValue(doc, root, "EnableAliOHOffLinePay", this.EnableAliOHOffLinePay ? "true" : "false");
-            SetNodeValue(doc, root, "AliOHTheme", this.AliOHTheme);
-            SetNodeValue(doc, root, "EnableAliOHAliPay", this.EnableAliOHAliPay ? "true" : "false");
-            SetNodeValue(doc, root, "EnableAliOHPodPay", this.EnableAliOHPodPay ? "true" : "false");
-            SetNodeValue(doc, root, "AliOHFollowRelay", this.AliOHFollowRelay);
-            SetNodeValue(doc, root, "AliOHFollowRelayTitle", this.AliOHFollowRelayTitle);
-            SetNodeValue(doc, root, "AliOHServerUrl", this.AliOHServerUrl);
-            SetNodeValue(doc, root, "EnableAliOHShengPay", this.EnableAliOHShengPay ? "true" : "false");
-            SetNodeValue(doc, root, "EnableAliOHBankUnionPay", this.EnableAliOHBankUnionPay ? "true" : "false");
 
             SetNodeValue(doc, root, "EnableQuickPay", this.EnableQuickPay.ToString());
             SetNodeValue(doc, root, "DistributorCutOff", this.DistributorCutOff.ToString());
@@ -526,28 +503,6 @@
         public bool EnableProductReviews { get; set; }
 
         public bool EnableStoreInfoSet{get;set; }
-        #region 服务窗
-        //服务窗
-        public string AliOHAppId { get; set; }
-
-        public string AliOHFollowRelay { get; set; }
-
-        public string AliOHFollowRelayTitle { get; set; }
-
-        public string AliOHServerUrl { get; set; }
-
-        public string AliOHTheme { get; set; }
-
-        public bool EnableAliOHAliPay { get; set; }
-
-        public bool EnableAliOHBankUnionPay { get; set; }
-
-        public bool EnableAliOHOffLinePay { get; set; }
-
-        public bool EnableAliOHPodPay { get; set; }
-
-        public bool EnableAliOHShengPay { get; set; }
-        #endregion
 
         //快速收银
         public bool EnableQuickPay { get; set; }

@@ -744,47 +744,11 @@ namespace Hidistro.UI.Web.API
                 httpContext.Response.Write("{\"success\":false, \"msg\":\"订单中商品有退货(款)不允许完成\"}");
                 return;
             }
-            #region 特殊需求,包含[会员充值]的商品,生成等价的优惠券给用户
-            if (CustomConfigHelper.Instance.CouponRecharge)
-            {
-                //找到所有会员充值的商品
-                List<LineItemInfo> couponGoodList = lineItems.Values.Where(n => ProductHelper.GetProductBaseInfo(n.ProductId).ProductName == "会员充值").ToList();
-                //创建后台couponInfo
-                foreach (LineItemInfo info in couponGoodList)
-                {
-                    for (int i = 0; i < info.Quantity; i++)
-                    {
-                        CouponInfo target = new CouponInfo
-                                {
-                                    Name = "会员充值" + info.ItemAdjustedPrice.ToString("F2") + "元",
-                                    ClosingTime = DateTime.MaxValue,
-                                    StartTime = DateTime.Now,
-                                    Amount = 0M,
-                                    DiscountValue = info.ItemAdjustedPrice,
-                                    NeedPoint = 0
-                                };
-                        string lotNumber = string.Empty;
-
-                        int resultCouponId = CouponHelper.CreateCoupon(target, 0);
-                        IList<CouponItemInfo> listCouponItem = new List<CouponItemInfo>();
-                        if (resultCouponId > 0) //如果后台新建成功或者已经存在,开始对用户进行发送
-                        {
-                            CouponItemInfo item = new CouponItemInfo();
-                            string claimCode = string.Empty;
-                            claimCode = System.Guid.NewGuid().ToString().Replace("-", "").Substring(0, 15);
-                            item = new CouponItemInfo(resultCouponId, claimCode, new int?(currentMember.UserId), currentMember.UserName, currentMember.Email, System.DateTime.Now);
-                            listCouponItem.Add(item);
-                        }
-                        CouponHelper.SendClaimCodes(resultCouponId, listCouponItem);
-                    }
-                }
-            }
-            #endregion
             int num = 0;
             decimal couponAmountValue = 0;
             SiteSettings masterSettings = SettingsManager.GetMasterSettings(false);
             #region pro辣特殊需求,当设置的购买送优惠券的比例大于0时,赠送商品价格*rent%的等值优惠券
-            if (masterSettings.orderCouponRent > 0)
+            if (masterSettings.orderCouponRent > 0 && CustomConfigHelper.Instance.IsProLa)
             {
                 //累加所有分类不为酒水和饮料类商品的价格
                 decimal total = orderInfo.GetTotal()-orderInfo.AdjustedFreight ;
@@ -2896,6 +2860,7 @@ namespace Hidistro.UI.Web.API
             int buyAmount = 0;                                                       //购买数量
             ShoppingCartInfo shoppingCart;
             string str5 = "";
+            
             if (int.TryParse(context.Request["buyAmount"], out buyAmount) && !string.IsNullOrEmpty(context.Request["productSku"]) && !string.IsNullOrEmpty(context.Request["from"]) && (context.Request["from"] == "signBuy" || context.Request["from"] == "groupBuy" || context.Request["from"] == "countDown" || context.Request["from"] == "cutDown"))
             {
                 string productSkuId = context.Request["productSku"];
@@ -2957,11 +2922,7 @@ namespace Hidistro.UI.Web.API
             }
             /****代理商采购修改2015-11-20*****/
             bool isAgent = false;
-            ManagerInfo managerinfo = ManagerHelper.GetManagerByClientUserId(currentMember.UserId);
-            if (managerinfo != null && managerinfo.ClientUserId.Equals(currentMember.UserId))
-                isAgent = true;//如果是代理商在前台购买，则取成本价
-            if (CustomConfigHelper.Instance.AutoShipping || CustomConfigHelper.Instance.IsProLa)
-                isAgent = false;//如果门店购买功能(爽爽挝啡)开启,后台也存在授权账号,此种情况下不为后台代理商处理,不去成本价
+            ManagerInfo managerinfo = ManagerHelper.GetManagerByClientUserId(currentMember.UserId); 
             OrderInfo orderInfo = ShoppingProcessor.ConvertShoppingCartToOrder(shoppingCart, flagCountDown, flagGroupBuy, isAgent);
             //bool isActing = ShoppingProcessor.isActing();
             if (orderInfo == null)
@@ -3579,6 +3540,13 @@ namespace Hidistro.UI.Web.API
                         string text = defaultView2[0]["FirstCommission"].ToString();    //直接销售佣金(百分比)
                         string text2 = defaultView2[0]["SecondCommission"].ToString();  //上一级销售佣金(百分比)
                         string text3 = defaultView2[0]["ThirdCommission"].ToString();   //上二级销售佣金(百分比)
+
+                        //点睛教育(只存在直接返佣与代理商佣金,同时拿20分之一佣金比例的积分
+                        if (CustomConfigHelper.Instance.Dianjing)
+                        {
+                            text2 = "0";text3 = "0";
+                        }
+
                         if (!string.IsNullOrEmpty(text) && !string.IsNullOrEmpty(text2) && !string.IsNullOrEmpty(text3))
                         {
                             MemberInfo currentMember = MemberProcessor.GetCurrentMember();
@@ -3657,70 +3625,7 @@ namespace Hidistro.UI.Web.API
                                 }
                             }
 
-                            //20151112 add by hj:针对齐品汇的特殊返佣处理.三级店铺若有代理则重新计算佣金
-                            if (CustomConfigHelper.Instance.IsQipinhui)
-                            {
-                                int categoryId = int.Parse(lineItemInfo.MainCategoryPath.TrimEnd('|'));//分类id
-                                string specialName = "";//当前代理商的名字
-                                if (userIdDistributors.IsAgent == 1)
-                                {
-                                    specialName = DistributorGradeBrower.GetAgentGradeInfo(userIdDistributors.AgentGradeId).AgentGradeName;
-                                }
-                                else
-                                {
-                                    //获取当前的代理商id
-                                    if (userIdDistributors.AgentPath != null && userIdDistributors.AgentPath.Length > 0)
-                                    {
-                                        int currentDistributorAgentId = 0;
-                                        if (userIdDistributors.AgentPath.IndexOf('|') < 0)//如果没有代理商
-                                        {
-                                            currentDistributorAgentId = Convert.ToInt32(userIdDistributors.AgentPath);
-                                        }
-                                        else
-                                        {
-                                            string[] arrayAgent = userIdDistributors.AgentPath.Trim().Trim('|').Split('|');
-                                            currentDistributorAgentId = int.Parse(arrayAgent[arrayAgent.Length - 1]);
-                                        }
-                                        specialName = DistributorGradeBrower.GetAgentGradeInfo(DistributorsBrower.GetDistributorInfo(currentDistributorAgentId).AgentGradeId).AgentGradeName;
-                                    }
-                                    else
-                                    {
-                                        return result;
-                                    }
-                                }
-                                //通过分类id和代理商名字获取特殊的分佣比例
-                                decimal currentRate = Convert.ToDecimal(CatalogHelper.GetSpecialCategoryRent(categoryId, specialName));
-                                string noCommOpenids = CustomConfigHelper.Instance.NoCommOpenids != "" ? CustomConfigHelper.Instance.NoCommOpenids.ToLower() : "";//先获取不参加返佣的4个openid
-                                decimal currentSubTotal = CatalogHelper.isSpecialRateExist(categoryId) ? lineItemInfo.GetSubTotal() * currentRate : lineItemInfo.GetSubTotalByCostPrice();//根据当前分类id判断当前是用特殊比例计算还是使用成本价计算
-
-
-                                if (userIdDistributors.IsAgent == 1)//代理商在三级返佣的直接层
-                                {//当前天使获取的返佣是 商品售价-成本价-其余两个等级的返佣
-                                    //如果当前的openid属于不参加返佣的几个openid之一,那么就为0,不然照常计算.
-                                    if (userIdDistributors.OpenId != null)
-                                        lineItemInfo.ItemsCommission = noCommOpenids.IndexOf(userIdDistributors.OpenId.ToLower()) >= 0 ? 0 : lineItemInfo.GetSubTotal() - currentSubTotal;
-                                    else
-                                        lineItemInfo.ItemsCommission = lineItemInfo.GetSubTotal() - currentSubTotal;
-                                    lineItemInfo.SecondItemsCommission = 0;
-                                    lineItemInfo.ThirdItemsCommission = 0;
-                                }
-                                else if (userIdDistributors2 != null && userIdDistributors2.IsAgent == 1)
-                                {
-                                    if (userIdDistributors2.OpenId != null)
-                                        lineItemInfo.SecondItemsCommission = noCommOpenids.IndexOf(userIdDistributors2.OpenId.ToLower()) >= 0 ? 0 : (lineItemInfo.GetSubTotal() - currentSubTotal - (lineItemInfo.ItemsCommission));
-                                    else
-                                        lineItemInfo.SecondItemsCommission = lineItemInfo.GetSubTotal() - currentSubTotal - (lineItemInfo.ItemsCommission);
-                                    lineItemInfo.ThirdItemsCommission = 0;
-                                }
-                                else if (userIdDistributors3 != null && userIdDistributors3.IsAgent == 1)
-                                {
-                                    if (userIdDistributors3.OpenId != null)
-                                        lineItemInfo.ThirdItemsCommission = noCommOpenids.IndexOf(userIdDistributors3.OpenId.ToLower()) >= 0 ? 0 : (lineItemInfo.GetSubTotal() - currentSubTotal - (lineItemInfo.ItemsCommission + lineItemInfo.SecondItemsCommission));
-                                    else
-                                        lineItemInfo.ThirdItemsCommission = lineItemInfo.GetSubTotal() - currentSubTotal - (lineItemInfo.ItemsCommission + lineItemInfo.SecondItemsCommission);
-                                }
-
-                            }
+                            
 
 
 

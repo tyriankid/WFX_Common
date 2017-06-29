@@ -248,10 +248,10 @@
 
                     try
                     {
-                        WriteLog(orderInfo == null ? "orderinfo空" : "不为空");
+                        //WriteLog(orderInfo == null ? "orderinfo空" : "不为空");
                         if (string.IsNullOrEmpty(orderInfo.OrderId))
                         {
-                            orderInfo.OrderId = GenerateOrderIdByOrder(Hidistro.ControlPanel.Config.CustomConfigHelper.Instance.OrderIdSortNumCount,dbTran);
+                            orderInfo.OrderId = GenerateOrderIdByOrder(0,dbTran);
                         }
                         
                         if (!new OrderDao().CreatOrder(orderInfo, dbTran))
@@ -305,7 +305,7 @@
                     }
                     catch(Exception ex)
                     {
-                        WriteLog(ex.Message);
+                        //WriteLog(ex.Message);
                         dbTran.Rollback();
                         throw;
                     }

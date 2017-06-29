@@ -390,6 +390,8 @@
                 Messenger.OrderPayment(member, order.OrderId, order.GetTotal());
                 int historyPoint = dao5.GetHistoryPoint(member.UserId);
                 MemberGradeInfo memberGrade = GetMemberGrade(member.GradeId);
+                //点睛教育需求:给代理商以及1级分销商加上佣金的20%的积分
+                DistributorsBrower.UpdateDistributorPoints(order);
                 if ((memberGrade != null) && (memberGrade.Points > historyPoint))
                 {
                     return flag;

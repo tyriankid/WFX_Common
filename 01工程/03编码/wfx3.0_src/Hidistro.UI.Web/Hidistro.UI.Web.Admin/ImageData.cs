@@ -5,11 +5,6 @@ using Hidistro.Core.Entities;
 using Hidistro.Entities.Store;
 using Hidistro.UI.Common.Controls;
 using Hidistro.UI.ControlPanel.Utility;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Web;
-using System.Web.UI.WebControls;
 namespace Hidistro.UI.Web.Admin
 {
 	[PrivilegeCheck(Privilege.PictureMange)]

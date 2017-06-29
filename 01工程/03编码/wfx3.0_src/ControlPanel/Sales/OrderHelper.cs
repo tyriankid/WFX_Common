@@ -112,6 +112,7 @@
                     productDetails.ShowSaleCounts += info.Quantity;
                     dao2.UpdateProduct(productDetails, null);
                 }
+                //更改用户积分
                 UpdateUserAccount(order);
                 if (!string.IsNullOrEmpty(str))
                 {
@@ -767,6 +768,9 @@
                 }
             }
         }
+
+
+
         /// <summary>
         /// 导出Excel查询
         /// </summary>

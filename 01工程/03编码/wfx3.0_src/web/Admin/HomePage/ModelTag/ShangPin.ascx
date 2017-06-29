@@ -6,9 +6,9 @@
             <ItemTemplate>
                 <li>
                     <a href="<%# "ProductDetails.aspx?ProductId=" + Eval("ProductId") %>">
-                        <img src="<%#Eval("ImageUrl1") %>">
+                        <img productid="<%#Eval("productid") %>" src="<%#Eval("ImageUrl1") %>">
                         <p><%#Eval("ProductName") %></p>
-                        <p><span>￥<%# Eval("SalePrice", "{0:F2}") %></span><span>原价：￥<%# Eval("MarketPrice", "{0:F2}") %></span></p>
+                        <p><span>￥<%# Eval("SalePrice", "{0:F2}") %></span></p>
                     </a>
                 </li>
             </ItemTemplate>

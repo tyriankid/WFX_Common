@@ -91,6 +91,7 @@
     <Compile Include="WXPay\HttpService.cs" />
     <Compile Include="WXPay\Log.cs" />
     <Compile Include="WXPay\Notify.cs" />
+    <Compile Include="WXPay\ResultNotify.cs" />
     <Reference Include="LitJson, Version=0.7.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\LitJSON.dll</HintPath>

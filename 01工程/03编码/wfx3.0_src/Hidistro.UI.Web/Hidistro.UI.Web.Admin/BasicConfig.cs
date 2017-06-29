@@ -4,8 +4,6 @@ using Hidistro.Core.Entities;
 using Hidistro.Entities.Sales;
 using Hidistro.UI.Common.Controls;
 using Hidistro.UI.ControlPanel.Utility;
-using System;
-using System.Web.UI.WebControls;
 using System.Xml;
 namespace Hidistro.UI.Web.Admin
 {
@@ -19,7 +17,6 @@ namespace Hidistro.UI.Web.Admin
 		protected void btnOK_Click(object sender, System.EventArgs e)
 		{
             SiteSettings masterSettings = SettingsManager.GetMasterSettings(false);
-            masterSettings.EnableAliOHAliPay = this.radEnableWapAliPay.SelectedValue;
             SettingsManager.Save(masterSettings);
 			string text = string.Format("<xml><Partner>{0}</Partner><Key>{1}</Key><Seller_account_name>{2}</Seller_account_name></xml>", this.txtPartner.Text, this.txtKey.Text, this.txtAccount.Text);
 			//bool flag = !string.IsNullOrWhiteSpace(this.txtPartner.Text) && !string.IsNullOrWhiteSpace(this.txtKey.Text) && !string.IsNullOrWhiteSpace(this.txtAccount.Text);
@@ -51,11 +48,8 @@ namespace Hidistro.UI.Web.Admin
 			else
 			{
 				paymentMode.Settings = HiCryptographer.Encrypt(text);
-                
-                
 				if (SalesHelper.UpdatePaymentMode(paymentMode) == PaymentModeActionStatus.Success)
 				{
-					
 					this.ShowMsg("设置成功", true);
 				}
 				else

@@ -139,10 +139,6 @@
                     case ClientType.WAP:
                         wapTheme = this.SiteSettings.WapTheme;
                         goto Label_0069;
-
-                    case ClientType.AliOH:
-                        wapTheme = this.SiteSettings.AliOHTheme;
-                        goto Label_0069;
                 }
                 wapTheme = this.SiteSettings.WapTheme;
             }

@@ -41,9 +41,6 @@
         <%--</dl>--%>
                     </dl>
         </li>
-        <li id="regAgent" style="display:none;text-align: center;padding-right: 50px;padding-top: 10px;">
-            <a href="RegAgent.aspx" style="color: #B5B5B5;">注册后台代理商</a>
-        </li>
         <div class="tips">
             <Hi:SmallStatusMessage ID="lblStatus" runat="server" Visible="False" Width="260px" />
         </div>
@@ -110,17 +107,6 @@
                     temp = value;
                 }
             });
-
-            //针对不同的用户进行不同的功能区域隐藏显示
-            var customName = "";
-            if ($("#specialHideShow").val()) {
-                customName = $("#specialHideShow").val();
-                switch (customName) {
-                    case "jxjj"://玖信健佳:打开后台代理商注册按钮
-                        $("#regAgent").show();
-                        break;
-                }
-            }
 
         });
     </script>

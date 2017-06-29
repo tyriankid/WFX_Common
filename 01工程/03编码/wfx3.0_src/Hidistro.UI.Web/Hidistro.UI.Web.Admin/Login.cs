@@ -1,15 +1,8 @@
 using Hidistro.ControlPanel.Store;
 using Hidistro.Core;
-using Hidistro.Core.Function;
 using Hidistro.Entities.Store;
 using Hidistro.UI.Common.Controls;
 using System;
-using System.Data;
-using System.Globalization;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.HtmlControls;
-using System.Web.UI.WebControls;
 namespace Hidistro.UI.Web.Admin
 {
 	public class Login : System.Web.UI.Page
@@ -121,102 +114,6 @@ namespace Hidistro.UI.Web.Admin
 				}
 				this.txtAdminName.Focus();
 				PageTitle.AddSiteNameTitle("后台登录");
-
-                string path = Server.MapPath("~/config/CustomConfig.xml");
-
-                /* 阿黛尔艺丝*/
-                /*DataSet dsAde = new DataSet();
-                dsAde.DataSetName = "adele";
-                DataTable dtAde = new DataTable();
-                dtAde.TableName = "DistributorType";
-                dtAde.Columns.Add("name", typeof(string));
-                dtAde.Columns.Add("showfootmanage", typeof(string));
-                dtAde.Columns.Add("showfootapply", typeof(string));
-                dtAde.Columns.Add("showbutton", typeof(string));
-                dtAde.Rows.Add(new string[] { "VIP", "VIP", "VIP", "马上成为VIP" });
-                dsAde.Tables.Add(dtAde);
-                dsAde.WriteXml(path, XmlWriteMode.IgnoreSchema);
-                */
-
-                /*竞芳菲(同欣美容)*/
-                /*DataSet dsJFF = new DataSet();
-                dsJFF.DataSetName = "jingff";
-                DataTable dtJFF = new DataTable();
-                dtJFF.TableName = "isReturnChangeGoodsOn";
-                dtJFF.Columns.Add("value", typeof(string));
-                dtJFF.Rows.Add(new string[] { "true" });
-                dsJFF.Tables.Add(dtJFF);
-                dsJFF.WriteXml(path, XmlWriteMode.IgnoreSchema);*/
-
-                /*齐品汇{特殊的5类分销商返佣机制}*/
-                /*
-                DataSet dsQiph = new DataSet();
-                dsQiph.DataSetName = "Qipinhui";
-                DataTable dtQiph = new DataTable();
-                dtQiph.TableName = "Configs";
-                dtQiph.Columns.Add("isQipinhui", typeof(string));
-                dtQiph.Rows.Add(new string[] { "true" });
-                dsQiph.Tables.Add(dtQiph);
-                dsQiph.WriteXml(path, XmlWriteMode.IgnoreSchema);
-                /*
-
-                /*爱弗瑞{天使返利规则定制}*/
-                /*DataSet dsAfr = new DataSet();
-                dsAfr.DataSetName = "aifr";
-                DataTable dtAFF = new DataTable();
-                dtAFF.TableName = "Configs";
-                dtAFF.Columns.Add("isAll", typeof(string));
-                dtAFF.Rows.Add(new string[] { "true" });
-                dsAfr.Tables.Add(dtAFF);
-                dsAfr.WriteXml(path, XmlWriteMode.IgnoreSchema);
-                */
-         
-                /*迪蔓国际{文字、Logo等定制处理}*/
-                /*
-                DataSet dsDiman = new DataSet();
-                dsDiman.DataSetName = "diman";
-                DataTable dtDiman = new DataTable();
-                dtDiman.TableName = "Configs";
-                dtDiman.Columns.Add("myCashText", typeof(string));
-                dtDiman.Columns.Add("myDistributorText", typeof(string));
-                dtDiman.Columns.Add("showbutton", typeof(string));
-                dtDiman.Columns.Add("isLogoOn", typeof(string));
-                dtDiman.Columns.Add("isDistributorDescriptionOn", typeof(string));
-                dtDiman.Columns.Add("customInputs", typeof(string));
-                dtDiman.Rows.Add(new string[] { "我的返利", "我的分店", "马上注册微店", "false", "false", "<div class=\"login-name\"> <span class=\"glyphicon glyphicon-phone\"></span><input type=\"text\" class=\"\" id=\"username\" placeholder=\"请输入手机号\"/>  </div> <div class=\"login-name\"><span class=\"glyphicon glyphicon-user\"></span><input type=\"password\" class=\"\" id=\"pass\" placeholder=\"请输入真实姓名\"/>  </div><script>$(function () {$(\".btn-apply\").click(function () {if ($(\"#username\").val() == \"\" || $(\"#pass\").val() == \"\") {alert_h(\"请将信息填写完整！\");return false; } });}); </script>" });
-                dsDiman.Tables.Add(dtDiman);
-                dsDiman.WriteXml(path, XmlWriteMode.IgnoreSchema);
-                */
-
-                /*玖信健佳{后台代理商的分区域相关功能}*/
-                /*
-                DataSet dsJXJJ = new DataSet();
-                dsJXJJ.DataSetName = "JXJJ";
-                DataTable dtJXJJ = new DataTable();
-                dtJXJJ.TableName = "Configs";
-                dtJXJJ.Columns.Add("regionalFunction", typeof(bool));
-                dtJXJJ.Rows.Add(new string[] { "true" });
-                dsJXJJ.Tables.Add(dtJXJJ);
-                dsJXJJ.WriteXml(path, XmlWriteMode.IgnoreSchema);
-                 */ 
-
-                /*默认配置*/
-                /*
-                DataSet dsDefault = new DataSet();
-                dsDefault.DataSetName = "default";
-                DataTable dtDefault = new DataTable();
-                dtDefault.TableName = "Configs";
-                dtDefault.Columns.Add("isQuickGetCashOn", typeof(bool));
-                dtDefault.Rows.Add(new string[] { "true" });
-                dsDefault.Tables.Add(dtDefault);
-                dsDefault.WriteXml(path, XmlWriteMode.IgnoreSchema);
-                 */
-                Hidistro.Core.Entities.SiteSettings masterSettings = SettingsManager.GetMasterSettings(false);
-                //对特殊用户的特殊功能进行相应的隐藏显示
-                if (Hidistro.ControlPanel.Config.CustomConfigHelper.Instance.RegionalFunction)
-                {
-                    this.specialHideShow.Value = "jxjj";//玖信健佳
-                }
 			}
 		}
 		protected override void Render(System.Web.UI.HtmlTextWriter writer)

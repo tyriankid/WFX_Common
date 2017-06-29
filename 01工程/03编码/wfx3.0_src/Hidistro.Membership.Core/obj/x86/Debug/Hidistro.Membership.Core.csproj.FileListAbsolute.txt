@@ -9,3 +9,4 @@ C:\project\WFX_Common\01工程\03编码\wfx3.0_src\Hidistro.Membership.Core\bin\
 C:\project\WFX_Common\01工程\03编码\wfx3.0_src\Hidistro.Membership.Core\bin\Debug\Hishop.Components.Validation.pdb
 C:\project\WFX_Common\01工程\03编码\wfx3.0_src\Hidistro.Membership.Core\obj\x86\Debug\Hidistro.Membership.Core.dll
 C:\project\WFX_Common\01工程\03编码\wfx3.0_src\Hidistro.Membership.Core\obj\x86\Debug\Hidistro.Membership.Core.pdb
+C:\project\WFX_Common\01工程\03编码\wfx3.0_src\Hidistro.Membership.Core\obj\x86\Debug\Hidistro.Membership.Core.csprojResolveAssemblyReference.cache

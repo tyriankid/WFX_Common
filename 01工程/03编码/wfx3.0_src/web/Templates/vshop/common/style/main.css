@@ -186,10 +186,10 @@ hr { margin: 10px 0px; }
 .goods-list-grid .text-muted { padding-left:6px; color:#999; font-size: 14px; white-space: nowrap; font-weight: normal;}
 .goods-list-grid .sales { padding-left:0;}
 .goods-list-grid .sales b{ color: #F60; font-weight:normal; padding:0 2px;}
-.goods-list-grid .name { margin: 5px 0; /* line-height: 24px; */ height: 20px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
+.goods-list-grid .name { margin: 5px 0; /* line-height: 24px; */ height: 38px; overflow: hidden; text-overflow: ellipsis; /*white-space: nowrap;*/}
 .goods-list-grid .del { margin-left: 5px; }
 .distributor-head { position: relative; background: #FFFFFF; height: 280px; width: 100%; background-size: 100% 100%; }
-.memberCenter { position: relative; height: 145px; overflow: hidden; background: url(../images/user-bg.png) no-repeat; background-size: 100% 100%; }
+.memberCenter { position: relative; height: 182px; overflow: hidden; background: url(../images/user-bg.png) no-repeat; background-size: 100% 100%; }
 .home-head img { width: 100%; height: 100%; }
 .home-head .info { position: absolute; top: 46px; left: 120px; color: #fff; }
 .home-head .info .presentExp a span { background: #999966; }
@@ -824,10 +824,18 @@ width: 100%; height: auto; }
 .right-tags li.right-tags-service a { width: 100%; height: 100%; border-radius: 4px; border: 1px solid #8a8c8f; background: #fff url("../images/tags-img-1.png") center center no-repeat; background-size: 75%; opacity: 0.8; float: left; }
 
 .right-tags li.right-tags-select a { width: 100%; height: 100%; border-radius: 4px; border: 1px solid #8a8c8f; background: #fff url("../images/tags-img-2.png") center center no-repeat; background-size: 75%; opacity: 0.8; float: left; }
-footer .glyphicon { width: 20px; height: 20px; background: url("../images/footer-tags.png") no-repeat; background-size: 205%; margin-top: 6px; }
+footer .glyphicon { width: 20px; height: 20px; background: url("../images/footer-tags.png") no-repeat; background-size: 205%; margin-top: 6px;display:inline-block; }
+
 footer .footer-div-home div { background-position: 0px 2px; }
+
 footer .footer-div-home-over div { background-position: -21px 2px; }
+
 footer .footer-div-home-over p { color:  #F60; }
+
+footer .footer-div-bbs div { background-position: 0px -99px; }
+footer .footer-div-bbs-over div{background-position:-20px -99px;}
+footer .footer-div-bbs-over p { color:  #F60; }
+
 footer .footer-div-type div { background-position: 0px -18px; }
 footer .footer-div-type-over p { color: #F60; }
 footer .footer-div-type-over div { background-position: -21px -18px; }
@@ -1076,26 +1084,30 @@ textarea.form-control{ border-color: #E5E5E5 !important; padding:15px; font-size
 .modal-open .modal{ background-color:  rgba(0, 0, 0, .3)}
 
 
-.user-photo-box{ height: 85px;background:url(../images/distributor-head-banner.jpg) no-repeat; background-size:cover; position: relative;}
+.user-photo-box{ height: 102px;background:url(../images/distributor-head-banner.png) no-repeat; background-size:cover; position: relative;}
 
-.member-img-tags { width: 100%; background: #fff; margin: 10px 0 2px 0; border-top: 1px solid #e2e2e2; display: inline-block; }
-.member-img-tags li { width: 33.33%;height:118px; border-left: 1px solid #e2e2e2; border-bottom: 1px solid #e2e2e2; margin-left: -1px; float: left; position: relative;}
-.member-img-tags li a { width: 100%; float: left; text-align: center; padding-top: 80px; padding-bottom: 15px; font-size: 16px; }
-.member-img-tags li a.member-userInfo { background: url("../images/user-img-1.png") center 18px no-repeat; background-size: 50px; }
-.member-img-tags li a.member-collect { background: url("../images/user-img-2.png") center 18px no-repeat; background-size: 50px; }
-.member-img-tags li a.member-refer { background: url("../images/user-img-3.png") center 18px no-repeat; background-size: 50px; }
-.member-img-tags li a.member-service { background: url("../images/user-img-4.png") center 18px no-repeat; background-size: 50px; }
-.member-img-tags li a.member-juan { background: url("../images/user-img-5.png") center 18px no-repeat; background-size: 50px; }
-.member-img-tags li a.member-todayOrder { background: url("../images/user-img-accounts.png") center 18px no-repeat; background-size: 50px; }
-.member-img-tags li a.member-gift { background: url("../images/user-img-gift.png") center 18px no-repeat; background-size: 50px; }
-.member-img-tags li a.member-jifen { background: url("../images/user-img-6.png") center 18px no-repeat; background-size: 50px; }
-.member-img-tags li a.member-address { background: url("../images/user-img-7.png") center 18px no-repeat; background-size: 50px; }
-.member-img-tags li a.member-msg{ background: url("../images/user-img-msg.png") center 18px no-repeat; background-size: 50px; }
-.member-img-tags li a.member-sign{ background: url("../images/user-img-sign.png") center 18px no-repeat; background-size: 50px; }
-.member-img-tags li a.member-store{ background: url("../images/user-img-popular.png") center 18px no-repeat; background-size: 50px; }
-.member-img-tags li a.exit { background: url("../images/user-img-8.png") center 18px no-repeat; background-size: 50px; }
-.member-img-tags li a.shop-no { background: url("../images/shop-img-10.png") center 18px no-repeat; background-size: 50px; color: #ccc; }
-.member-img-tags li i{ position:absolute; top:20px; height: 20px; /* line-height: 20px; */ left:50%; margin-left: 15px; background-color: #f30; border-radius: 20px; color: #FFF; padding: 2px 6px; font-size: 10px; font-style: normal;}
+.member-img-tags { width: 100%; background: #dddddd; margin: 10px 0 2px 0; border-top: 1px solid #e2e2e2; display: inline-block;padding-bottom: 20px; }
+.member-img-tags li {height:50px;background: #ffffff; border-left: 1px solid #e2e2e2; border-bottom: 1px solid #e2e2e2; margin-left: -1px; position: relative;}
+.member-img-tags li a {width:100%;float: left; text-align: center; padding-top: 15px; padding-bottom: 5px; padding-left: 60px;text-align: left;color:#7d7878;font-size: 14px;}
+
+.member-img-tags li a.member-userInfo { background: url("../images/user-img-1.png") 20px 12px no-repeat; background-size: 25px; }
+.member-img-tags li a.member-collect { background: url("../images/user-img-2.png") 20px 12px no-repeat; background-size: 25px; }
+.member-img-tags li a.member-refer { background: url("../images/user-img-3.png") 20px 12px no-repeat; background-size: 25px; }
+.member-img-tags li a.member-service { background: url("../images/user-img-4.png") 20px 12px no-repeat; background-size: 25px; }
+.member-img-tags li a.member-friend { background: url("../images/shop-img-friend.png") 20px 12px no-repeat; background-size: 25px; }
+.member-img-tags li a.member-juan { background: url("../images/user-img-5.png") 20px 12px no-repeat; background-size: 25px; }
+.member-img-tags li a.member-juan1{ background: url("../images/user-img-6.png") 20px 12px no-repeat; background-size: 25px; }
+.member-img-tags li a.member-todayOrder { background: url("../images/user-img-accounts.png") 20px 12px no-repeat; background-size: 25px; }
+.member-img-tags li a.member-gift { background: url("../images/user-img-gift.png") 20px 12px no-repeat; background-size: 25px; }
+.member-img-tags li a.member-gift1 { background: url("../images/user-img-8.png") 20px 12px no-repeat; background-size: 25px; }
+.member-img-tags li a.member-jifen { background: url("../images/user-img-6.png") 20px 12px no-repeat; background-size: 25px; }
+.member-img-tags li a.member-address { background: url("../images/user-img-7.png") 20px 12px no-repeat; background-size: 25px; }
+.member-img-tags li a.member-msg{ background: url("../images/user-img-msg.png") 20px 12px no-repeat; background-size: 25px; }
+.member-img-tags li a.member-sign{ background: url("../images/user-img-sign.png") 20px 12px no-repeat; background-size: 25px; }
+.member-img-tags li a.member-store{ background: url("../images/user-img-popular.png") 20px 12px no-repeat; background-size: 25px; }
+.member-img-tags li a.exit { background: url("../images/user-img-8.png") 20px 12px no-repeat; background-size: 25px; }
+.member-img-tags li a.shop-no { background: url("../images/shop-img-10.png") 20px 12px no-repeat; background-size: 25px; color: #ccc; }
+.member-img-tags li i{ position:absolute;top: 1px; height: 20px; /* line-height: 20px; */ left:8%; margin-left: 7px; background-color: #f30; border-radius: 20px; color: #FFF; padding: 2px 6px; font-size: 10px; font-style: normal;}
 
 
 

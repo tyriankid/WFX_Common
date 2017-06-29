@@ -1,5 +1,4 @@
 C:\project\WFX_Common\01工程\03编码\wfx3.0_src\Hishop.Plugins\bin\Debug\Hishop.Plugins.dll
 C:\project\WFX_Common\01工程\03编码\wfx3.0_src\Hishop.Plugins\bin\Debug\Hishop.Plugins.pdb
-C:\project\WFX_Common\01工程\03编码\wfx3.0_src\Hishop.Plugins\obj\x86\Debug\Hishop.Plugins.csprojResolveAssemblyReference.cache
 C:\project\WFX_Common\01工程\03编码\wfx3.0_src\Hishop.Plugins\obj\x86\Debug\Hishop.Plugins.dll
 C:\project\WFX_Common\01工程\03编码\wfx3.0_src\Hishop.Plugins\obj\x86\Debug\Hishop.Plugins.pdb
